@@ -34,12 +34,17 @@ function checkBirthday(data){
 
 function getBasicInfo(data){
 	var userData      ={};
-	userData.genderVal    = $("#gender").val();
+	userData.gender       = $("#gender").val();
 	userData.seeking      = $("#seeking").val();
 	userData.bday         = $("#dob").val();
 	userData.zip          = $("#zip").val();
 	userData.age 		  = getAgeFromDob(userData.bday);
-	userData.locationData = getLocationFromZip(userData.zip);
+	var locationData = getLocationFromZip(userData.zip);
+	userData.city = locationData.city;
+	userData.state = locationData.state;
+	userData.country = locationData.country;
+	userData.lat = locationData.lat;
+	userData.lng = locationData.lng;
 	userData.description  = callFbApi(data);
 	if(typeof(data.uid)!=='undefined'){
 		userData.uid = data.uid;

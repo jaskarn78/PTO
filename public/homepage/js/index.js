@@ -21,9 +21,10 @@ $(document).ready(function(){
 
 });
 function getMatches(myInfo){
-	db.collection("users").where("userData.gender", "==", parseInt(myInfo.seeking)).where("userData.seeking", "==", parseInt(myInfo.gender))
+	db.collection("users").where("userData.gender", "==", parseInt(myInfo.seeking)).where("userData.seeking", "==", parseInt(myInfo.gender)).limit(100)
 		.get().then(function(querySnapshot) {
 	    querySnapshot.forEach(function(doc) {
+	    	console.log(doc.data());
 	    	matchObj[doc.data().userData.uid.replace("-", "")] = doc.data();
 			//storeMatches(doc.data());
 	        populateMatches(doc.data());

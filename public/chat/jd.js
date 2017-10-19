@@ -19,14 +19,14 @@ $(document).ready(function(){
 			<div class="jd-body" id="jd-body"></div>\
 			<div class="jd-footer"><input id="chatInput" placeholder="Write A Message"></div>\
 		</div>');
-		/*$.ajax({
+		$.ajax({
 			url:'chat.class.php',
 			type:'POST',
 			data:'get_all_msg=true&user=' +id+'&me='+userInfo.user_id+'&my_image='+decodeURIComponent(userInfo.profile_img),
 			success:function(data){
 				$("#jd-chat").find(".jd-user:first .jd-body").append("<span class='me'> " + data +"</span>");
 			}
-		});*/
+		});
 	});
 	
 	$("#jd-chat").delegate(".close-this","click",function(){
@@ -60,7 +60,7 @@ $(document).ready(function(){
 			var msg=$(box).find("input").val();
 			var input = document.getElementById("chatInput");
 			var to = $.trim($(box).find(".jd-header").attr("id"));
-			/*$.ajax({
+			$.ajax({
 				url:'chat.class.php',
 				type:'POST',
 				data:'send=true&to=' + to + '&msg=' + msg+'&me='+userInfo.user_id+'&my_image='+userInfo.profile_img,
@@ -74,17 +74,17 @@ $(document).ready(function(){
 					
 				}
 
-			});*/
+			});
 		}
 	});
 	
 	function message_cycle()
 	{
-		/*var userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+		var userInfo = JSON.parse(sessionStorage.getItem("userData"));
 		$.ajax({
 			url:'chat.class.php',
 			type:'POST',
-			data:'unread=true&me='+userInfo.user_id+'&my_image='+userInfo.profile_img,
+			data:'unread=true&me='+userInfo.uid+'&my_image='+userInfo.photoURL,
 			dataType:'JSON',
 			success:function(data){
 				$.each(data , function( index, obj ) {
@@ -112,9 +112,9 @@ $(document).ready(function(){
 					});
 				});				
 			}
-		});*/
+		});
 	}
 	
 	
-	//setInterval(message_cycle,3000);
+	setInterval(message_cycle,3000);
 });  

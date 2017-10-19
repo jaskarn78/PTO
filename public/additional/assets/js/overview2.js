@@ -24,5 +24,5 @@ function saveData(user){
 	goToNext();
 }
 function goToNext(){
-	window.location.href='social';
+	window.location.href='social.html';
 }

@@ -34,5 +34,5 @@ function saveData(user){
 }
 
 function goToNext(){
-	window.location.href='overview2';
+	window.location.href='overview2.html';
 }

@@ -44,12 +44,12 @@ function getImage(data){
 }
 
 function setGenderAge(data){
-	$("#genderAge").text(parseGender(data.userData.genderVal)+", "+data.userData.age);
+	$("#genderAge").text(parseGender(data.userData.gender)+", "+data.userData.age);
 }
 
 function setLocation(data){
 	console.log(data);
-	$("#location").text(data.userData.locationData.city+", "+data.userData.locationData.state);
+	$("#location").text(data.userData.city+", "+data.userData.state);
 }
 
 function loadImage(user){
@@ -85,11 +85,11 @@ function getDescription(data){
  function writeUserData(user) {
 	db.collection("users").doc(user.userData.uid).set({
 		userData : {"name":user.userData.name, "email":user.userData.email, "photoURL":user.userData.photoURL, 
-		"birthday":user.userData.bday,"description":user.userData.description, "city":user.userData.locationData.city, 
-		"country":user.userData.locationData.country,"state":user.userData.locationData.state,"zip":user.userData.locationData.zip,
-		"lat":user.userData.locationData.lat,"lng":user.userData.locationData.lng,"provderData":user.userData.providerData,
-		"accessToken":user.userData.access_token, "age":user.userData.age, "uid":user.userData.uid, "gender":user.userData.genderVal,
-		"seeking":user.userData.seeking}
+		"birthday":user.userData.bday,"description":user.userData.description, "city":user.userData.city, 
+		"country":user.userData.country,"state":user.userData.state,"zip":user.userData.zip,
+		"lat":user.userData.lat,"lng":user.userData.lng,"provderData":user.userData.providerData,
+		"age":user.userData.age, "uid":user.userData.uid, "gender":parseInt(user.userData.gender),
+		"seeking":parseInt(user.userData.seeking)}
 	}).catch(function(error){
 		alert(error.message);
 	}).then(function(){
