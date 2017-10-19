@@ -1,0 +1,62 @@
+.login-clean form .btn-primary {
+  background:#f4476b;
+  border:none;
+  border-radius:4px;
+  padding:11px;
+  box-shadow:none;
+  margin-top:26px;
+  text-shadow:none;
+  outline:none !important;
+}
+
+.login-clean form .btn-primary:hover, .login-clean form .btn-primary:active {
+  background:#eb3b60;
+}
+
+.login-clean form .btn-primary:active {
+  transform:translateY(1px);
+}
+
+.login-clean form .btn-primary {
+  background:#f4476b;
+  border:none;
+  border-radius:4px;
+  padding:11px;
+  box-shadow:none;
+  margin-top:26px;
+  text-shadow:none;
+  outline:none !important;
+}
+
+.login-clean form .btn-primary:hover, .login-clean form .btn-primary:active {
+  background:#eb3b60;
+}
+
+.login-clean form .btn-primary:active {
+  transform:translateY(1px);
+}
+
+.list-group {
+  border:none;
+}
+
+.list-group-item:first-child {
+  border:none;
+}
+
+.list-group {
+  border:none;
+}
+
+.list-group {
+  border:none;
+}
+
+.list-group {
+  border:none;
+}
+
+.list-group-item {
+  border:none;
+}
+

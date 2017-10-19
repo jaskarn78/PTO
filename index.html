@@ -1,0 +1,180 @@
+<?php
+session_start();
+if(isset($_SESSION['id'])){
+	header("Location: ../php/setup/profile");
+	exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!--meta name="viewport" content="width=device-width, initial-scale=1.0"-->
+	<meta name="description" content="">
+	<title>Press To Open</title>
+	
+	
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="homepage/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="homepage/css/materialdesignicons.min.css" />
+	<link rel="stylesheet" type="text/css" href="homepage/css/jquery.mCustomScrollbar.min.css" >
+	<link rel="stylesheet" type="text/css" href="homepage/css/prettyPhoto.css" />
+	<link rel="stylesheet" type="text/css" href="homepage/css/template.css" />\
+	
+</head>
+
+<body data-target="#nino-navbar" data-spy="scroll">
+
+	<!-- Header
+    ================================================== -->
+	<header id="nino-header">
+		<div id="nino-headerInner">					
+			<nav id="nino-navbar" class="navbar navbar-default" role="navigation">
+				<div class="container">
+
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+				
+						<div class="navbar-brand" href="#">
+                            <img src="homepage/images/brand/PressToOpen_Final_TrademarkReady2.png"/>
+                        </div>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="nino-menuItem pull-left">
+						<div class="collapse navbar-collapse pull-left" id="nino-navbar-collapse">
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="#nino-header">Home<span class="sr-only">(current)</span></a></li>
+								<li><a href="#about">About</a></li>
+                                <li><a href=#join>Join</a></li>
+							</ul>
+						</div><!-- /.navbar-collapse -->
+					</div>
+                    <div class="nino-menuItem pull-right">
+                    <div class="collapse navbar-collapse pull-right" id="nino-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="navbar-login"><a onclick="window.location.href='signin/index.html'">Login</a></li>
+                            <li class="navbar-sign"><a onclick="window.location.href='signup/index.html'">Sign Up</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div>
+				</div><!-- /.container-fluid -->
+			</nav>
+
+			<section id="nino-slider" class="carousel slide container" data-ride="carousel">
+				
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<h2 class="nino-sectionHeading">
+							<span class="nino-subHeading">Find Love With<br>
+                            Part-time Relationships</span>
+						</h2>
+					</div>
+					<div class="item">
+						<h2 class="nino-sectionHeading">
+							<span class="nino-subHeading">Find Love With<br>
+                            Part-time Relationships</span>
+						</h2>
+					</div>
+					<div class="item">
+						<h2 class="nino-sectionHeading">
+							<span class="nino-subHeading">Find Love With<br>
+                            Part-time Relationships</span>
+						</h2>
+					</div>
+					<div class="item">
+						<h2 class="nino-sectionHeading">
+							<span class="nino-subHeading">Find Love With<br>
+                            Part-time Relationships</span>
+						</h2>
+					</div>
+                    <div class="statement">
+                        <h12 class="statment">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis. </h12></div>
+          
+                <div class="seeking">
+        
+                    <div class="seeking-header">I am ...</div>
+                    <select class="seekingselector">
+                        <option disabled>What are you seeking?</option>
+                        <option value="choix-2">Man seeking woman</option>
+                        <option value="choix-3">Woman seeking man</option>
+                        <option value="choix-4">Man seeking man</option>
+                        <option value="choix-5">Woman seeking woman</option>
+                        <option value="choix-5">Travel Partner</option>
+                        <option value="choix-5">Friend</option>
+                    </select>
+                    <button type="button" class="start-button">GET STARTED</button>
+                </div>
+            </div>
+               
+            </section>
+
+        </div>
+
+	</header><!--/#header-->
+    
+<!-------about------>
+	<section id="about">
+		<div class="container2" id="about">
+            <h2 class="nino-sectionHeading">
+				<span class="nino-subHeading">About</span></h2>
+            <div class="about-sec" layout="column" id="about-sc">
+                <div layout="row" class="verticalcenter">
+                    <div class="about-image">
+                        <img class="about-image" src="homepage/images/ico/about-image.png"/>
+                    </div>
+                    <div class="about-item">
+                        <div class="about-header">Can't Find A Part-Time Relationship?</div>
+                        <div>
+                            <p class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."</p>
+                        </div>
+                         <button type="button" id="about-signin" href="../signup">SIGN UP</button>
+
+                    </div>
+                </div>
+                   
+            </div>
+    	</div>
+			
+	</section><!--/#nino-story-->
+    
+	<section id="join">
+		<div class="container3" id="join">
+            <h2 class="nino-sectionHeading">
+				<span class="nino-subHeading">Join</span></h2>
+                <div class="join-sec" layout="column" id="about-sc">
+                    <div layout="row" class="verticalcenter">
+                        <div class="join-item">
+                            <div class="join-header">Join Part-time Relationship to find a genuine connection</div>
+                            <div>
+                                <p class="join-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. "Lorem ipsum dolor sit amet"</p>
+                            </div>
+                             <button type="button" id="about-signin" href="signin">Sign-Up</button>
+                        </div>
+                        <div class="join-image">
+                            <img class="join-image" src="homepage/images/ico/shutterstock_495755413.png"/>
+                        </div>
+                    </div>
+                </div> 
+        </div>
+	</section>
+
+
+
+	<!-- javascript -->
+	<script type="text/javascript" src="homepage/js/jquery.min.js"></script>	
+	<script type="text/javascript" src="homepage/js/isotope.pkgd.min.js"></script>
+	<script type="text/javascript" src="homepage/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="homepage/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="homepage/js/jquery.hoverdir.js"></script>
+	<script type="text/javascript" src="homepage/js/modernizr.custom.97074.js"></script>
+	<script type="text/javascript" src="homepage/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="homepage/js/template.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="homepage/js/scroll.js"></script>
+
+
+</body>
+</html>

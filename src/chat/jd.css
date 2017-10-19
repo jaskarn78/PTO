@@ -1,0 +1,130 @@
+hr{
+ display:block;
+ margin-top:0.5em;
+ margin-bottom:0.5em;
+ margin-left:auto;
+ margin-right:auto;
+ border-style:inset;
+ border-width:1px;
+ background-color:black;
+}
+
+#jd-chat{
+	position:fixed;
+	bottom:0;
+	float:right;
+	right:0;
+}
+
+#jd-chat .jd-user,.jd-online
+{	
+	margin-right:2px;	
+	width:250px;
+	display:inline-block;
+}
+
+#jd-chat .jd-online .light
+{
+	font-weight:bold;
+	text-decoration:none;
+	color:red;
+	text-transform:none;
+	float:right;
+	display:none;
+}
+
+#jd-chat .jd-header .close-this
+{
+	float:right;
+}
+#jd-chat .jd-header
+{
+ 	background-color: #F3676D;
+	border: 1px solid rgba(0, 39, 121, 0.76);
+	color: white;
+	text-align: center;
+	height: 35px;
+	overflow:hidden;
+	cursor:pointer;
+}
+
+#jd-chat .jd-body .jd-online_user
+{
+	display:block;
+	padding:5px;
+	margin-left: 10px;		
+	cursor:pointer;
+	height: auto;
+	width: 250px;
+  	overflow: hidden;
+}
+#jd-chat .jd-body
+{
+	min-height:250px;
+	height: 250px;
+	width: 100%;
+  	overflow-y: scroll;
+	background:white;
+}
+
+#jd-chat .jd-body  span.me
+{
+	display:block;
+	color:green;
+	width: auto;
+	font-size: 13px;
+
+}
+#jd-chat .jd-body  span.date
+{
+	display:block;
+	color:black;
+	font-size: 10px;
+	background-color: white;
+
+}
+#jd-chat .jd-body hr
+{
+	display:block;
+	margin-top:0.5em;
+	margin-bottom:0.5em;
+	border-style:inset;
+	border-width:1px;
+	background-color:black;
+}
+
+#jd-chat .jd-body span.other
+{
+	display:block;
+	color:red;
+	font-size: 13px;
+	width: auto;
+
+}
+#jd-chat .jd-body p.other
+{
+	display:block;
+	color:red;
+	font-size: 13px;
+	width: auto;
+	text-align: right;
+
+}
+
+#jd-chat .jd-footer
+{
+	
+	background-color: #F3676D;
+	border: 1px solid rgba(0, 39, 121, 0.76);
+	color:white;
+	overflow:hidden;
+	height: 50px;
+}
+
+#jd-chat .jd-footer input
+{
+	width:100%;
+	padding: 5px;
+	color: white;
+	font-size: 14px;
+}
