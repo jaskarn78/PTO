@@ -1,0 +1,229 @@
+ 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="412591321120-q6q71f9ur9qe6ndnpov4todi17h9hcc2.apps.googleusercontent.com">
+
+    <title id="title">Profile</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/button.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button1.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="../util/css/loader.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+
+</head>
+
+<body style="background-color:rgba(238,238,238,0.75);">
+    <div>
+        <nav class="navbar navbar-default navbar-fixed-top navigation-clean-button" style="padding-bottom:2px;">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand navbar-link" href="#" style="height:50px;padding:0px;width:201px;"> <img src="assets/img/partime-final-logo.jpg"></a>
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                </div>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="../homepage/search.html">Members </a></li>
+                        <li><a href="../messages">Messages </a></li>
+                        <li class="active" role="presentation"><a href="#">Winks </a></li>
+                    </ul>
+                     <div style = "display:none" align="middle" class="g-signin2" data-cookiepolicy='single_host_origin' data-onsuccess="onSignIn"></div>
+                    <p class="navbar-text navbar-right actions">
+                        <a href='./' ><img id="user_img" class="img-circle"  style="width:45px;height:45px;margin-bottom:10px;margin-right:10px;">
+                        <span id="nav_name" style="font-size:16px;margin-right:20px;"></span></a>
+                        <a class="navbar-link" href="#">
+                            <i class="glyphicon glyphicon-bell" style="font-size:20px;padding:10px;padding-top:10px;margin-top:0px;background-color:#32adf2;color:white;padding-bottom:10px;border-radius:5px; border-width: 1px;">
+                            </i>
+                        </a>
+                        <button id="signOutButton" class="btn btn-default action-button" style="padding-top:10px;padding-bottom:10px;margin-bottom:10px;margin-left:0px;">Sign Out </button>
+                    </p>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="loader" id="loader" style="display:none"></div>
+    <div id="myDiv" class="animate-bottom" style="padding-left:50px;padding-right:40px;margin-top:74px;">
+        <div class="container" style="margin-right:0px;padding-left:0px;padding-right:0px;width:1110px;margin-left:0px;">
+            <div class="row" style="margin-left:0px;margin-right:0px;padding-left:0px;padding-top:8px;margin-bottom:15px;">
+                <div class="col-md-12" style="padding-top:10px;padding-bottom:10px;width:auto;margin-left:10px;">
+                    <div style="width:100px;"><img id="profile_img" class="img-circle"  style="width:100px;height:100px;"></div>
+                </div>
+                <div class="col-md-12" style="width:200px;margin-right:125px;">
+                    <p id="name" style="font-size:24px;padding-top:15px;margin-bottom:0px;"></p>
+                    <p id="addr"></p>
+                </div>
+                <div class="col-md-12 hidden-xs hidden-sm" style="width:413px;height:80px;margin-right:0px;margin-left:230px;padding-right:0px;padding-left:33px;">
+                    <div>
+                        <div class="row" style="width:auto;margin-top:20px;margin-right:0px;margin-left:67px;">
+                            <div class="col-md-12" style="width:201px;padding-left:0px;">
+                                <p style="font-size:17px;width:220px;margin-right:0px;margin-bottom:0px;">Profile is 25% Complete</p><span style="margin-right:0px;padding-left:0px;padding-right:0px;margin-left:1px;font-size:12px;">Let us help you fill out your profile!</span></div>
+                            <div class="col-md-12" style="width:auto;margin-left:0px;margin-top:0px;padding-right:0px;padding-left:0px;">
+                                <button type="button" onclick="location.href='../additional/index.php'" class="btn btn-primary btn-block" type="button" style="width:110px;font-size:12px;padding-top:10px;padding-bottom:10px;background-color:#ff778a;background-image:url(&quot;#ff778a&quot;);margin-top:4px;">COMPLETE </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-left:16px;">
+                <div class="col-md-6" style="width:410px;padding-left:0px;padding-bottom:0px;padding-right:0px;">
+                    <div class="row" style="background-color:white;padding:10px;margin-right:0px;margin-left:0px;width:410px;padding-right:10px;padding-top:15px;padding-bottom:0px;">
+                        <div class="col-md-12" style="padding-right:0px;padding-left:0px;margin-bottom:25px;"><i class="glyphicon glyphicon-user" style="font-size:14px;margin-left:20px;color:#32adf2;"></i><span style="font-size:16px;margin-left:9px;margin-bottom:0px;padding-bottom:0px;">Basic Overview<i class="glyphicon glyphicon-edit" style="margin-left:175px;color:#ff778a;font-size:12px;"></i><a href="#" style="font-size:12px;margin-left:5px;color:#ff778a;">Edit </a></span></div>
+                        <div
+                        class="col-md-12" style="width:auto;padding-right:0px;padding-left:0px;margin-left:14px;">
+                            <ul class="list-group" style="width:180px;margin-bottom:0px;">
+                                <li class="list-group-item" style="padding-right:0px;padding-left:10px;margin-bottom:0px;height:70px;width:160px;"><span style="font-size:15px;">Education </span>
+                                    <p id="school" style="font-size:12px;"></p>
+                                </li>
+                                <li class="list-group-item" style="padding-left:10px;padding-right:0px;height:70px;width:160px;"><span style="font-size:15px;">Ethnicity </span>
+                                    <p id="ethnicity" style="font-size:12px;"></p>
+                                </li>
+                                <li class="list-group-item" style="padding-left:10px;padding-right:0px;height:70px;width:160px;"><span style="font-size:15px;">Drinker </span>
+                                    <p id="drinker" style="font-size:12px;"> </p>
+                                </li>
+                                <li class="list-group-item" style="padding-left:10px;padding-right:0px;height:70px;"><span style="font-size:15px;">Languages </span>
+                                     <p id="languages" style="font-size:12px"></p>
+                                </li>
+                            </ul>
+                    </div>
+                    <div class="col-md-12" style="width:auto;padding-right:0px;padding-left:0px;border:none;margin-left:15px;">
+                        <ul class="list-group" style="width:180px;margin-bottom:0px;">
+                            <li class="list-group-item" style="padding-right:0px;padding-left:0px;height:70px;margin-bottom:0px;width:160px;"><span style="font-size:15px;">Job </span>
+                                <p id="job_title" style="font-size:12px;"></p>
+                            </li>
+                            <li class="list-group-item" style="padding-left:0px;padding-right:0;height:70px;margin-bottom:0px;width:160px;"><span style="font-size:15px;">Hometown </span>
+                                <p id="home_town" style="font-size:12px;"></p>
+                            </li>
+                            <li class="list-group-item" style="padding-left:0px;padding-right:0px;height:70px;width:160px;"><span style="font-size:15px;">Smoker </span>
+                                <p id="smoker" style="font-size:12px;"></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row" style="background-color:white;padding:10px;margin-right:0px;margin-left:0px;width:410px;padding-right:10px;padding-top:0px;padding-bottom:0px;margin-top:15px;">
+                    <div class="col-md-12" style="padding:10px;padding-right:0px;padding-left:0px;margin-bottom:0px;"><i class="glyphicon glyphicon-globe" style="font-size:14px;margin-left:20px;color:#32adf2;"></i><span style="font-size:16px;margin-left:9px;margin-bottom:0px;padding-bottom:0px;">Social Media<i class="glyphicon glyphicon-edit" style="margin-left:197px;color:#ff778a;font-size:12px;"></i><a href="#" style="font-size:12px;margin-left:5px;color:#ff778a;">Edit </a></span>
+                        <div
+                        class="row" style="padding-top:0px;margin-left:0px;margin-right:0px;margin-top:25px;">
+                            <div class="col-md-12" style="width:140px;margin-top:10px;height:40px;"><i class="fa fa-facebook-official" style="font-size:18px;color:#3b5998;"></i><span style="margin-left:10px;font-size:12px;">Facebook </span></div>
+                            <div class="col-md-12" style="width:160px;margin-left:87px;height:49px;padding-top:0px;font-size:10px;margin-top:1px;padding-right:0px;padding-left:20px;"><button id="fbBtn" class="btn btn-primary btn-block" type="button" style="font-size:13px;padding-left:0px;padding-right:0px;width:100px;height:30px;margin-right:0px;border-color:#FF778A;background-color:white;background-image:url(&quot;#FFFFFF&quot;);color:#FF778A;">CONNECT </button></div>
+                    </div>
+                    <div class="row" style="padding-top:0px;margin-left:0px;margin-right:0px;margin-top:15px;">
+                        <div class="col-md-12" style="width:140px;margin-top:10px;height:40px;font-size:12px;"><i class="fa fa-twitter" style="font-size:18px;color:#0084b4;"></i><span style="margin-left:10px;font-size:14px;">Twitter </span></div>
+                        <div class="col-md-12" style="width:160px;margin-left:87px;height:49px;padding-top:0px;font-size:10px;margin-top:1px;padding-right:0px;padding-left:20px;">
+                            <button id="twitterBtn" class="btn btn-primary btn-block" type="button" style="font-size:13px;padding-left:0px;padding-right:0px;width:100px;height:30px;margin-right:0px;border-color:#FF778A; background-color:white;background-image:url(&quot;#FFFFFF&quot;);color:#FF778A;">CONNECT </button></div>
+                    </div>
+                    <div class="row" style="padding-top:0px;margin-left:0px;margin-right:0px;margin-top:15px;">
+                        <div class="col-md-12" style="width:140px;margin-top:10px;height:40px;"><i class="fa fa-instagram" style="font-size:18px;color:#cd486b;"></i><span style="margin-left:10px;font-size:12px;">Instagram </span></div>
+                        <div class="col-md-12" style="width:160px;margin-left:87px;height:49px;padding-top:0px;font-size:10px;margin-top:1px;padding-right:0px;padding-left:20px;">
+                            <button id="igBtn" class="btn btn-primary btn-block" role="button" href="#" style="font-size:13px;padding-left:0px;padding-right:0px;width:100px;height:30px;margin-right:0px;border-color:#FF778A;background-color:white;background-image:url(&quot;#FFFFFF&quot;);color:#FF778A;">CONNECT</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="width:650px;padding-left:0px;margin-left:32px;background-color:transparent;padding-right:0px;">
+            <div class="row visible-xs-block visible-sm-block visible-xs-inline visible-sm-inline visible-md-inline visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" style="width:585px;margin-left:0px;background-color:white;">
+                <div class="col-md-12 visible-xs-inline visible-sm-inline visible-md-inline-block visible-lg-inline-block" style="padding:10px;padding-right:10px;padding-left:10px;margin-left:0px;width:645px;padding-top:15px;background-color:white;padding-bottom:10px;height:200px;"><i class="fa fa-photo" style="font-size:14px;margin-left:10px;color:#32adf2;"></i><span style="font-size:16px;margin-left:9px;">My Photos<i class="glyphicon glyphicon-edit" style="margin-left:440px;color:#ff778a;font-size:12px;"></i><a href="#" style="font-size:12px;margin-left:5px;color:#ff778a;">Edit </a></span>
+                    <form id="upload" action="../upload.php" method="POST" enctype="multipart/form-data">
+
+                    <ul class="list-inline" style="margin-top:25px;margin-left:10px;width:568px;padding-left:0px;padding-right:0px;height:112px;">
+                        <li><a href=""><img id="image1" src="assets/img/person.png" style="width:100px;height:100px;"></a></li>
+
+
+                        <li> 
+                            <div class="image-upload" style="width:100px; height:100px;">
+                            <label for="file-input2">
+                                <img id="image2" src="assets/img/person.png" style="width:100px;height:100px;">
+                            </label>
+                            <input id="file-input2" name="file-input2" type="file" accept="image/*" style="display:none;width: 100px;height: 100px;"/></form> 
+                        </li>
+
+                        <li> 
+                            <div class="image-upload" style="width:100px; height:100px;">
+                            <label for="file-input3">
+                                <img id="image3"  src="assets/img/person.png" style="width:100px;height:100px;">
+                            </label>
+                            <input id="file-input3" type="file" accept="image/*" style="display:none;width: 100px;height: 100px;"/> 
+                        </li>
+
+                       <li> 
+                        <div class="image-upload" style="width:100px; height:100px;">
+                            <label for="file-input4">
+                                <img id="image4" src="assets/img/person.png" style="width:100px;height:100px;">
+                            </label>
+                            <input id="file-input4" type="file" accept="image/*"  style="display:none;width: 100px;height: 100px;"/> 
+                        </li>
+
+                       <li> 
+                        <div class="image-upload" style="width:100px; height:100px;">
+                            <label for="file-input5">
+                                <img id="image5" src="assets/img/person.png" style="width:100px;height:100px;">
+                            </label>
+                            <input id="file-input5" type="file" accept="image/*"  style="display:none;width: 100px;height: 100px;"/> 
+                        </li>
+                    </ul>
+                    <form>
+                </div>
+            </div>
+            <div class="row" style="width:585px;margin-left:0px;margin-top:15px;background-color:transparent;">
+                <div class="col-md-12" style="padding:10px;padding-right:10px;padding-left:10px;margin-left:0px;width:645px;padding-top:15px;background-color:white;margin-top:0px;height:299px;padding-bottom:10px;margin-bottom:10px;"><i class="fa fa-id-card-o" style="font-size:14px;margin-left:10px;color:#32adf2;"></i><span style="font-size:16px;margin-left:9px;padding-top:0px;margin-top:0px;">Biography<i class="glyphicon glyphicon-edit" style="margin-left:451px;color:#ff778a;font-size:12px;"></i><a href="#" style="font-size:12px;margin-left:5px;color:#ff778a;">Edit </a></span>
+                    <div>
+                        <p id="description" class="text-justify" style="padding-top:0px;padding-right:10px;padding-bottom:0px;padding-left:10px;margin-top:25px;font-size:13px;margin-bottom:10px;width:600px;"></p>
+                        <p class="text-justify" style="padding-top:0px;padding-right:10px;padding-bottom:0px;padding-left:10px;font-size:13px;margin-bottom:0px;width:600px;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.</p>
+                    </div>
+                </div>
+                <div class="col-md-12" style="padding:10px;padding-right:0px;padding-left:10px;margin-left:0px;width:645px;padding-top:15px;background-color:white;margin-top:20px;padding-bottom:5px;margin-bottom:100px;"><i class="fa fa-wpforms" style="font-size:17px;margin-left:14px;color:#32adf2;margin-top:0px;"></i><span style="font-size:16px;margin-left:5px;margin-bottom:0px;padding-bottom:0px;padding-top:0px;">3 Questions &amp; Answers<i class="glyphicon glyphicon-edit" style="margin-left:364px;color:#ff778a;font-size:12px;"></i><a href="#" style="font-size:12px;margin-left:5px;color:#ff778a;">Edit </a></span>
+                    <div
+                    style="width:550px;padding-left:5px;margin-bottom:10px;">
+                        <div class="row" style="margin-left:5px;margin-right:0px;padding-top:0px;width:600px;padding-right:0px;padding-bottom:0px;padding-left:0px;margin-top:25px;">
+                            <div class="col-lg-1 col-lg-offset-0 col-md-12" style="margin-top:3px;height:288px;padding-left:0px;padding-right:0px;width:32px;">
+                                <div style="width:30px;height:30px;color:white;background-color:#ff778a;border-radius:50%;padding-top:1px;margin-bottom:60px;"><span style="margin-left:10px;margin-top:0px;padding-top:0px;padding-bottom:0px;font-size:18px;">1 </span></div>
+                                <div style="width:30px;height:30px;color:white;background-color:#ff778a;border-radius:50%;padding-top:0px;margin-bottom:60px;"><span style="margin-left:10px;margin-top:0px;padding-top:0px;padding-bottom:0px;font-size:18px;">2 </span></div>
+                                <div style="width:30px;height:30px;color:white;background-color:#ff778a;border-radius:50%;padding-top:1px;"><span style="margin-left:10px;margin-top:0px;padding-top:0px;padding-bottom:0px;font-size:18px;margin-bottom:55px;">3 </span></div>
+                            </div>
+                            <div class="col-md-12" style="width:540px;padding-left:0px;margin-bottom:5px;padding-right:0px;">
+                                <p class="text-justify" style="padding-top:0px;padding-right:10px;padding-bottom:0px;padding-left:10px;font-size:15px;"> Lorem ipsum dolor sit amet?</p>
+                                <p class="text-justify" style="padding-top:0px;padding-right:10px;padding-bottom:0px;padding-left:10px;margin-top:-5px;font-size:12px;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat. Duis aute irure dolor.</p>
+                            </div>
+                            <div class="col-md-12" style="width:540px;padding-left:0px;margin-bottom:5px;">
+                                <p class="text-justify" style="padding-top:0px;padding-right:10px;padding-bottom:0px;padding-left:10px;font-size:15px;"> Lorem ipsum dolor sit amet?</p>
+                                <p class="text-justify" style="padding-top:0px;padding-right:10px;padding-bottom:0px;padding-left:10px;margin-top:-5px;font-size:12px;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat. Duis aute irure dolor.</p>
+                            </div>
+                            <div class="col-md-12" style="width:540px;padding-left:0px;margin-bottom:5px;">
+                                <p class="text-justify" style="padding-top:0px;padding-right:10px;padding-bottom:0px;padding-left:10px;font-size:15px;"> Lorem ipsum dolor sit amet?</p>
+                                <p class="text-justify" style="padding-top:0px;padding-right:10px;padding-bottom:0px;padding-left:10px;margin-top:-5px;margin-bottom:0px;font-size:12px;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat. Duis aute irure dolor.</p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>    
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-firestore.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>  
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-storage.js"></script>
+    <script src="../util/util.js"></script>    
+    <script src="assets/js/index.js"></script>
+
+
+
+
+
+</body>
+
+</html>

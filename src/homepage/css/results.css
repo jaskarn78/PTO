@@ -1,0 +1,290 @@
+body {
+  background: "#F6F6F6";
+  font-size: 18px; }
+
+select {
+	cursor: pointer;
+	background:white;
+  color: white;
+  width:10%;
+}
+
+
+select option {
+	background-color: white;
+	color: white;
+	height: 20px;
+	cursor: pointer;
+}
+
+/* =============== LAYOUT - MENU AREA =============== */
+#nino-navbar {
+	background: white;
+	border: none;
+  width: 100%;
+	border-radius: 0;
+  position: fixed;
+  top: 1;
+}
+
+#nino-navbar .navbar-nav> li > a {
+	color: black;
+  font-size: 12px;
+	font-weight: 500;
+	text-transform: uppercase;
+  margin-top: 40px;
+  float: left;
+
+
+}
+
+#nino-navbar .navbar-nav> li.navbar-login > a {
+	color: #F3676D;
+    padding-right: 25px;
+    padding-left: 25px;
+    margin-right: 5px;
+}
+#nino-navbar .navbar-nav> li.navbar-sign > a {
+	color: white;
+  background-color: #F3676D;
+  border: 1px solid;
+  border-radius: 5px;
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  opacity: 0.9;
+
+
+}
+
+#nino-navbar .navbar-nav > li > a:hover,
+#nino-navbar .navbar-nav > .active > a,
+#nino-navbar .navbar-nav > .active > a:hover {
+	color: black;
+	border-color: #F3676D;
+	background-color: white;
+}
+.navbar-brand{
+    width: 20%;
+    height: 100%;
+    margin-right: 50px;
+}
+
+#nino-navbar .navbar-nav> li > a {
+	color: black;
+    font-size: 12px;
+	font-weight: 500;
+	text-transform: uppercase;
+	border-bottom: 3px solid transparent;
+    padding-bottom: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-top: 10px;
+
+
+}
+
+.brand-image{
+    width:  180px; /*or 70%, or what you want*/
+    position: fixed;
+}
+
+.container {
+	position: relative;
+    top: -5px;
+}
+
+#nino-navbar .navbar-nav > li > a:hover,
+#nino-navbar .navbar-nav > .active > a,
+#nino-navbar .navbar-nav > .active > a:hover {
+	color: black;
+	border-color: #F3676D;
+	background: white;
+}
+#nino-navbar .nino-menuItem {
+    color: black;
+}
+
+
+/* ----------- FIXED NAVBAR WITH ANIMATE ----------- */
+
+.flex-grid {
+    width: 85%;
+    padding-top: 50px;
+    margin: auto;
+    list-style: square;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.palette {
+  width: 13em;
+  height: 15em;
+  background: "#FFFFFF";
+  border-radius:0px;
+  margin: 0.2em;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  text-align: center; }
+  .palette .wrapper {
+    border: 1px solid transparent;
+    border-radius: 0px;
+    height: 100%;
+    display: flex;
+    flex-flow: column; }
+    .palette .wrapper .colors {
+      height: 100%;
+      display: flex;
+      flex-direction: column; }
+    .palette .wrapper .color {
+      text-transform: lowercase;
+      height: 100%;
+      padding-top: 1.5em; }
+      .palette .wrapper .color span {
+        opacity: 0;
+        background-color: rgba(225, 225, 225, 0.5);
+        padding: .15em .25em;
+        border-radius: .25em;
+        color: #333;
+        transition: opacity ease-out .15s; }
+      .palette .wrapper .color:hover span {
+        opacity: 1; }
+      .palette .wrapper .color:first-child {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px; }
+      .palette .wrapper .color:last-child {
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px; }
+    .palette .wrapper footer {
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 1.8em;
+      flex: 0 1 2em;
+      margin: .3em 0;
+}
+.user{
+    margin: auto;
+    width: 100%;
+}
+.user-info{
+    margin: 10px;
+    font-size: 14px;
+
+}
+.user-more{
+    margin: auto;
+    width: 100%;
+    font-size: 5px;
+    background: "#F7F7F7"
+}
+.user-name{
+    margin: auto;
+}
+.user-location{
+    margin: auto;
+    font-size: 13px;
+}
+.icon-name{
+    font-size: 10px;
+}
+.user-image{
+
+}
+.user-more{
+    margin: auto;
+    width: 100%;
+    background-color: "#F7F7F7"
+
+}
+#person{
+    margin:auto;
+    float: left;
+    padding-left: 35px;
+    color:blue;
+}
+#wink{
+    margin: auto;
+    float: right;
+    padding-right: 35px;
+    color: red;
+}
+
+/*------filters-----*/
+#filtercolumn{
+    margin-top: 100px;
+    padding-left: 100px;
+
+}
+.filter-header{
+    width: 100%;
+}
+
+.header{
+    font-size: 20px;
+}
+#location{
+    color: green;
+}
+#age-icon{
+  color:blue;
+}
+#age-filter{
+  width: 70%;
+  text-align: center;
+}
+.locationdiv{
+    font-size: 15px;
+}
+
+
+#distance{
+    width: 100%;
+    border: none;
+    background-color:transparent;
+
+}
+#zip{
+    position: relative;
+    height: 3%;
+    width: 70%;
+}
+#filter{
+    margin: 0;
+    display: block;
+    color: #F3676D;
+    margin-top: 10%;
+    background-color: transparent;
+    box-shadow: none;
+    text-shadow: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 35px;
+    padding-left: 35px;
+    border: solid;
+    border-width: 0.5px;
+    border-color: #F3676D;
+    -webkit-transition: all .3s ease-in-out;
+
+}
+
+#filter:hover{
+    color: white;
+  border-color: white;
+    border-width: 0.5px;
+  background: #F3676D;
+    opacity: 1;
+    -webkit-transition: all .3s ease-in-out;
+
+}
+#seeking{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.seeking-header{
+  color: red;
+}

@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Step 2</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/body-start.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/nav2.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div class="visible-xs-block visible-sm-block visible-md-block visible-lg-block visible-xs-inline visible-sm-inline visible-md-inline visible-lg-inline visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+        <nav class="navbar navbar-default navigation-clean" style="height:52px;padding-bottom:0px;padding-top:5px;">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand navbar-link" href="#"> </a>
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                </div>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li role="presentation"><a href="#" style="font-size:35px;height:50px;padding-bottom:0px;padding-top:5px;"><span style="margin-bottom:0px;padding-bottom:0px;padding-top:0px;font-size:30px;font-family:'Advent Pro', sans-serif;">Back To Profile </span><i class="icon-close" style="font-size:40px;color:rgb(255,119,138);margin-top:0px;padding-top:0px;"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="visible-xs-block visible-sm-block visible-md-block visible-lg-block visible-xs-inline visible-sm-inline visible-md-inline visible-lg-inline">
+        <div class="container">
+            <div class="row" style="height:580px;">
+                <div class="col-md-4" style="width:147px;height:442px;padding:15px 15px 0px 0px;padding-left:0px;">
+                    <div style="margin-left:30px;margin-right:39px;border-radius:50%;border:solid;/*border-color:#FF778A;*/font-size:15px;width:65px;height:65px;border-width:2px;margin-bottom:60px;margin-top:14px;color:rgba(51,51,51,0.5);"><i class="fa fa-question" style="font-size:30px;margin-left:20px;/*color:rgba(51,51,51,0.5);*/padding-top:3px;padding-right:0px;padding-left:0px;margin-top:12px;"></i>
+                        <p style="width:75px;margin-right:0px;margin-top:18px;height:25px;font-size:20px;margin-left:-5px;font-family:'Advent Pro', sans-serif;">Questions </p>
+                    </div>
+                    <div style="margin-left:30px;margin-right:40px;border-radius:50%;border:solid;border-color:#FF778A;font-size:15px;width:65px;height:65px;border-width:2px;margin-bottom:60px;padding-top:8px;"><i class="icon-graduation" style="font-size:38px;margin-left:8px;color:#FF778A;margin-top:0px;padding-top:0px;padding-left:3px;"></i>
+                        <p style="margin-top:14px;height:25px;margin-left:-5px;font-size:20px;font-family:'Advent Pro', sans-serif;color:#FF778A;">Overview </p>
+                    </div>
+                    <div style="margin-left:30px;margin-right:40px;border-radius:50%;border:solid;border-color:rgba(51,51,51,0.5);font-size:15px;width:65px;height:65px;border-width:2px;padding-top:8px;margin-bottom:60px;"><i class="icon ion-android-globe" style="font-size:31px;margin-left:0px;color:rgba(51,51,51,0.5);padding-left:17px;padding-top:0px;margin-top:0px;margin-bottom:0px;margin-right:0px;"></i>
+                        <p style="margin-top:14px;height:25px;width:123px;margin-left:-20px;font-size:20px;font-family:'Advent Pro', sans-serif;">Social Media</p>
+                    </div>
+                </div>
+                <div class="col-md-8" style="width:740px;height:580px;margin-left:60px;padding:0px 15px;">
+                    <form id="myForm" name="myForm" >
+                        <div>
+                            <div class="row">
+                                <div class="col-md-12" style="width:225px;padding-right:15px;padding-left:15px;">
+                                    <h1 style="font-size:21px;">Marital Status</h1>
+                                    <select class="form-control input-lg" id="marital_status" name="marital_status">
+                                        <optgroup id="marital_status_option" label="Marital Status">
+                                            <option value="0">Never Married</option>
+                                            <option value="1">Married</option>
+                                            <option value="2">Divorced</option>
+                                            <option value="3">Seperated</option>
+                                            <option value="4">Widow/Widower</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col-md-12" style="width:auto;">
+                                    <h1 style="font-size:21px;">Do you have kids?</h1>
+                                    <select class="form-control input-lg" id="have_kids" name="children">
+                                        <optgroup id="have_kids_option" label="Kids">
+                                            <option value="0">No kids</option>
+                                            <option value="1">Yes (live away from home)</option>
+                                            <option value="2">Yes (sometimes at home)</option>
+                                            <option value="3">Yes (always at home)</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h1 style="font-size:21px;">Education </h1>
+                            <div class="row">
+                                <div class="col-md-12" style="width:225px;">
+                                    <select class="form-control input-lg" id="education_level" name="educationLevel" value="Education Level">
+                                        <optgroup label="Highest Education">
+                                            <option value="0">High School</option>
+                                            <option value="1">Associates Degree</option>
+                                            <option value="2">Bachelors Degree</option>
+                                            <option value="3">Masters Degree</option>
+                                            <option value="4">Doctorate</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col-md-12" style="width:225px;padding-right:15px;padding-left:0px;">
+                                    <input class="form-control input-lg" type="text" id="subject" name="subject" placeholder="   Subject" autofocus="" style="width:225px;padding-left:0px;padding-right:0px;">
+                                </div>
+                                <div class="col-md-12" style="width:225px;padding-right:0px;padding-left:15px;">
+                                    <input class="form-control input-lg" type="text" id="school" name="school" placeholder="   School" style="padding-left:0px;padding-right:0px;">
+                                </div>
+                            </div>
+                        </div>
+                         <div>
+                            <h1 style="font-size:21px;">Employment </h1>
+                            <div class="row">
+                                <div class="col-md-12" style="width:225px;padding-right:15px;padding-left:15px;">
+                                    <input class="form-control input-lg" type="text" id="job_title" name="job_title" placeholder="Title" autofocus="" style="width:225px;padding-left:0px;padding-right:0px;">
+                                </div>
+                                <div class="col-md-12" style="width:225px;padding-right:0px;padding-left:0px;margin-left:30px;">
+                                    <input class="form-control input-lg" type="text" id="job_company" name="company" placeholder="Company" style="padding-left:0px;padding-right:0px;">
+                                </div>
+
+                            </div>
+                        </div>
+                         <div>
+                            <div class="row">
+
+                            <div class="col-md-12" style="width:225px;padding-right:0px;padding-left:0px;margin-left:10px;">
+                                <h1 style="font-size:21px;">Financially Stable? </h1>
+                                    <select class="form-control input-lg" id="fin_stable" name="financial_stable">
+                                        <optgroup label="Are you financially stable?">
+                                            <option value="0">Yes</option>
+                                            <option value="1">No</option>
+                                            <option value="2">Not Sure</option>
+                                        </optgroup>
+                                    </select>
+                            </div>
+                            <div class="col-md-12" style="width:225px;padding-right:0px;padding-left:0px;margin-left:20px;">
+                                <h1 style="font-size:21px;">Political Affiliation </h1>
+                                    <select class="form-control input-lg" id="political_view" name="political" value="">
+                                        <optgroup label="Political Afflication">
+                                            <option value="0">Republican</option>
+                                            <option value="1">Democrat</option>
+                                            <option value="2">Libertarian</option>
+                                            <option value="3">Green Party</option>
+                                            <option value="4">Independent</option>
+                                        </optgroup>
+                                    </select>
+                            </div>
+                            </div>
+                        </div>
+                       <div>
+                            <div class="row">
+                                <div class="col-md-12" style="width:225px;padding-right:15px;padding-left:15px;">
+                                   <h1 style="font-size:21px;">Ethnicity </h1>
+
+                                    <select class="form-control input-lg" id="ethnicity" name="ethnicity">
+                                        <optgroup label="Ethnicity">
+                                            <option value="Caucasian">Caucasian</option>
+                                            <option value="African">African</option>
+                                            <option value="Asian">Asian</option>
+                                            <option value="Hispanic">Hispanic</option>
+                                            <option value="Pacific Islander">Pacific Islander</option>
+                                            <option value="Asian Indian">Asian Indian</option>
+                                            <option value="Native American">Native American</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-12" style="width:225px;padding-right:15px;padding-left:20px;">
+                                   <h1 style="font-size:21px;">Religion </h1>
+
+                                    <select class="form-control input-lg" id="religion" name="religion">
+                                        <optgroup label="Religion">
+                                            <option value="Christianity">Christianity </option>
+                                            <option value="Islam">Islam </option>
+                                            <option value="Nonreligious"> Nonreligious (Secular/Agnostic/Atheist)</option>
+                                            <option value="Hinduism">Hinduism </option>
+                                            <option value="Chinese traditional religion">Chinese traditional religion </option>
+                                            <option value="Buddhism">Buddhism </option>
+                                            <option value="Primal-indigenous">Primal-indigenous </option>
+                                            <option value="African traditional and Diasporic">African traditional and Diasporic </option>
+                                            <option value="Sikhism">Sikhism </option>
+                                            <option value="Juche">Juche </option>
+                                            <option value="Spiritism">Spiritism </option>
+                                            <option value="Judaism">Judaism </option>
+                                            <option value="Bahai">Bahai </option>
+                                            <option value="Jainism">Jainism </option>
+                                            <option value="Shinto">Shinto </option>
+                                            <option value="Cao Dai">Cao Dai </option>
+                                            <option value="Zoroastrianism">Zoroastrianism </option>
+                                            <option value="Tenrikyo">Tenrikyo </option>
+                                            <option value="Neo-Paganism">Neo-Paganism </option>
+                                            <option value="Unitarian-Universalism">Unitarian-Universalism</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h1 style="font-size:21px;">Hometown </h1>
+                            <div class="row">
+                                <div class="col-md-12" style="width:225px;padding-right:0px;padding-left:16px;">
+                                    <input class="form-control input-lg" type="text" id="home_country" name="home_country" placeholder="   Country" autofocus="" style="width:225px;padding-left:0px;padding-right:0px;margin-right:0px;">
+                                </div>
+                                <div class="col-md-12" style="width:96px;padding-right:0px;padding-left:0px;margin-left:30px;margin-right:0px;">
+                                    <input class="form-control input-lg" type="text" id="home_state" name="home_state" placeholder="   State" style="padding-left:0px;padding-right:0px;">
+                                </div>
+                                <div class="col-md-12" style="width:225px;padding-right:0px;padding-left:15px;">
+                                    <input class="form-control input-lg" type="text" id="home_city" name="home_city" placeholder="   City" style="padding-left:0px;padding-right:0px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+
+                            <h1 style="font-size:21px;">Languages<small style="margin-left:8px;font-size:15px;">(Select multiple)</small></h1>
+                            <div class="row">
+                                <div class="col-md-12" style="margin-bottom:40px;">
+                                    <select class="form-control input-lg" id=languages name="language[]" multiple="multiple" style="width:280px;height: 280px">
+                                        <option value="1">Akan</option>               <option value="2">Amharic</option>
+                                        <option value="3">Araic</option>            <option value="4">Assamese</option>
+                                        <option value="5">Awadhi</option>           <option value="6">Azerbaijani</option>
+                                        <option value="7">Balochi</option>          <option value="8">Belarusian</option>
+                                        <option value="9">Bengali (Bangla)</option> <option value="10">Bhojpuri</option> 
+                                        <option value="11">Burmese</option>         <option value="12">Cebuano (Visayan)</option>  
+                                        <option value="13">Chewa</option>           <option value="14">Chhattisgarhi</option>
+                                        <option value="15">Chittagonian</option>    <option value="16">Czech</option>
+                                        <option value="17">Deccan</option>          <option value="18">Dhundhari</option>
+                                        <option value="19">Dutch</option>           <option value="20">Eastern Min (Fuzhounese)</option>  
+                                        <option value="21">English</option>         <option value="22">French</option>
+                                        <option value="23">Fula</option>            <option value="24">GanChinese</option>
+                                        <option value="25">German</option>          <option value="26">Greek</option>
+                                        <option value="27">Gujarati</option>        <option value="28">HaitianCreole</option>
+                                        <option value="29">Hakka</option>           <option value="30">Haryanvi</option>
+                                        <option value="31">Hausa</option>           <option value="32">Hiligaynon/Ilonggo (Visayan)</option>  
+                                        <option value="33">Hindi</option>           <option value="34">Hmong</option>
+                                        <option value="35">Hungarian</option>       <option value="36">Igbo</option>
+                                        <option value="37">Ilocano</option>         <option value="38">Italian</option>
+                                        <option value="39">Japanese</option>        <option value="40">Javanese</option>
+                                        <option value="41">Jin</option>             <option value="42">Kannada</option>
+                                        <option value="43">Kazakh</option>          <option value="44">Khmer</option>
+                                        <option value="45">Kinyarwanda</option>     <option value="46">Kirundi</option>
+                                        <option value="47">Konkani</option>         <option value="48">Korean</option>
+                                        <option value="49">Kurdish</option>         <option value="50">Madurese</option>
+                                        <option value="51">Magahi</option>          <option value="52">Maithili</option>
+                                        <option value="53">Malagasy</option>        <option value="54">Malay (Malaysian/Indonesian)</option>  
+                                        <option value="55">Malayalam</option>       <option value="56">Mandarin</option>
+                                        <option value="57">Marathi</option>         <option value="58">Marwari</option>
+                                        <option value="59">Mossi</option>           <option value="60">Nepali</option>
+                                        <option value="61">Northern Min</option>    <option value="62">Odia (Oriya)</option>  
+                                        <option value="63">Oromo</option>           <option value="64">Pashto</option>
+                                        <option value="65">Persian</option>         <option value="66">Polish</option>
+                                        <option value="67">Portuguese</option>      <option value="68">Punjabi</option>
+                                        <option value="69">Quechua</option>         <option value="70">Romanian</option>
+                                        <option value="71">Russian</option>         <option value="72">Saraiki</option>
+                                        <option value="73">Serbo-Croatian</option>  <option value="74">Shona</option> 
+                                        <option value="75">Sindhi</option>          <option value="76">Sinhalese</option>
+                                        <option value="77">Somali</option>          <option value="78">Southern Min (Hokkien/Teochew)</option>  
+                                        <option value="79">Spanish</option>         <option value="80">Sundanese</option>
+                                        <option value="81">Swedish</option>         <option value="82">Sylheti</option>
+                                        <option value="83">Tagalog (Filipino)</option><option value="84">Tamil</option> 
+                                        <option value="85">Telugu</option>          <option value="86">Thai</option> 
+                                        <option value="87">Turkish</option>         <option value="88">Turkmen</option> 
+                                        <option value="89">Ukrainian</option>       <option value="90">Urdu</option> 
+                                        <option value="91">Uyghur</option>          <option value="92">Uzbek</option> 
+                                        <option value="93">Vietnamese</option>      <option value="94">Wu (e.g. Shanghainese)</option> 
+                                        <option value="95">Xhosa</option>           <option value="96">Xiang (Hunanese)</option> 
+                                        <option value="97">Yoruba</option>          <option value="98">Yue (Cantonese)</option>  
+                                        <option value="99">Zhuang</option>          <option value="100">Zulu</option>
+                                    </select>
+                                </div>
+                                
+                        <div class="row" style="margin-left:150px;margin-top:26px;margin-bottom: 100px;">
+                            <div class="col-md-12" style="width:auto;padding-left:0px;padding-right:0px;margin-top:15px;">
+                                <button id="nextBtn" type="button" class="btn btn-primary btn-block" data-bs-hover-animate="pulse" style="font-size:17px;padding-left:0px;padding-right:0px;width:140px;height:50px;margin-right:0px;background-color:#FF778A;background-image:url(&quot;#FF778A&quot;);color:white;font-family:'Advent Pro', sans-serif;">Next Step</button>
+                            </div>
+                            <div class="col-md-12" style="width:auto;margin-left:36px;padding-right:0px;padding-left:0px;margin-top:15px;">
+                                <button id="skipBtn" class="btn btn-primary btn-block" type="button" data-bs-hover-animate="pulse" style="width:140px;height:50px;background-image:none;background-color:transparent;color:black;border:solid;border-width:1px;font-family:'Advent Pro', sans-serif;">Skip For Now</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+       
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <script src="assets/js/overview.js"></script>
+</body>
+
+</html>
