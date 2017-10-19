@@ -1,0 +1,99 @@
+
+
+<!DOCTYPE html>
+<html style="background-repeat:no-repeat;background-size:cover;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Basic Info</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button1-1.css">
+
+</head>
+
+<body style="background-repeat:round;background-size:auto;background-position:top;min-height:667px;">
+    <div class="login-clean" style="background-color:transparent;padding-top:30px;height:100%;margin-top:0px;">
+        <nav class="navbar navbar-default navigation-clean-button">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand navbar-link" href="#"> </a>
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                </div>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav"></ul>
+                    <p class="navbar-text navbar-right actions" style="font-size:23px;margin-right:0px;margin-left:0px;"><span style="color:rgb(248,248,248);font-size:20px;font-family:Dosis, sans-serif;">Back To Homepage </span> <img class="img-circle" src="assets/img/52084.png" style="height:45px;color:rgba(245,245,245,0);background-color:rgba(255,255,255,0);width:45px;margin-left:1px;margin-right:-10px;padding-bottom:0px;margin-bottom:0px;"></p>
+                </div>
+            </div>
+        </nav>
+        <form name="myForm" style="background-color:transparent;padding-left:0px;padding-right:0px;padding-top:40px;width:auto;height:395px;">
+            <h1 class="text-left" style="margin-left:0px;color:rgb(240,245,251);margin-bottom:8px;font-family:'Roboto Condensed', sans-serif;margin-right:99px;padding-left:1px;font-size:25px;">I identify as...</h1>
+            <h2 class="sr-only">Login Form</h2>
+            <div class="form-group">
+                <select class="form-control" name="gender" id="gender" style="font-size:18px;width:400px;height:60px;padding-top:6px;padding-right:12px;padding-bottom:6px;padding-left:12px;background-color:rgba(255,255,255,0.15);color:white;margin-bottom:8px;">
+                        <optgroup label="Male">
+                            <option value="0">Male (Cis)</option>
+                            <option value="1">Male (Trans)</option>
+                            <option value="2">Genderqueer</option>
+                        </optgroup>
+                        <optgroup label="Female">
+                            <option value="3">Female (Cis)</option>
+                            <option value="4">Female (Trans)</option>
+                            <option value="5">Genderqueer</option>
+                        </optgroup>
+                        <optgroup label="Gender Non-Conforming">
+                            <option value="6">Intersex</option>
+                            <option value="7">Agender</option>
+                        </optgroup>
+                </select>
+            </div>
+            <h1 class="text-left" style="margin-left:0px;color:rgb(240,245,251);margin-bottom:8px;font-family:'Roboto Condensed', sans-serif;margin-right:99px;padding-left:1px;font-size:25px;">I am seeking...</h1>
+            <div class="form-group">
+                <select class="form-control" name="seeking" id="seeking" style="font-size:18px;width:400px;height:60px;padding-top:6px;padding-right:12px;padding-bottom:6px;padding-left:12px;background-color:rgba(255,255,255,0.15);color:white;margin-bottom:8px;">
+                        <optgroup label="Male">
+                            <option value="0">Male (Cis)</option>
+                            <option value="1">Male (Trans)</option>
+                            <option value="2">Genderqueer</option>
+                        </optgroup>
+                        <optgroup label="Female">
+                            <option value="3">Female (Cis)</option>
+                            <option value="4">Female (Trans)</option>
+                            <option value="5">Genderqueer</option>
+                        </optgroup>
+                        <optgroup label="Gender Non-Conforming">
+                            <option value="6">Intersex</option>
+                            <option value="7">Agender</option>
+                        </optgroup>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <div class="row" style="width:427px;">
+                    <div class="col-md-12" style="width:50%;"><span style="color:white;margin-left:0px;font-size:25px;margin-top:8px;">Birthdate </span>
+                        <input class="form-control" id='dob' name="dob" type="date" style="background-color:rgba(255,255,255,0.15);color:white;height:50px;">
+                    </div>
+                    <div class="col-md-12" style="width:164px;"><span style="color:white;font-size:25px;margin-bottom:8px;">Zip </span>
+                        <input class="form-control"  name="zip" id="zip" type="number" placeholder="Zip" style="width:auto;background-color:rgba(255,255,255,0.15);height:50px;color:white;">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="width:163px;margin-right:50%;margin-left:28%;">
+                <button class="btn btn-primary btn-block" type="button" id="basicInfoBtn" data-bs-hover-animate="pulse" style="width:170px;height:40px;padding-bottom:0px;padding-top:0px;font-size:15px;font-family:'Roboto Condensed', sans-serif;margin-top:40px;">SUBMIT INFORMATION</button>
+            </div>
+        </form>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <!--script src="../../util/verify.js"></script-->
+     <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>  
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-firestore.js"></script>
+    <script src="assets/js/index.js"></script>
+
+</body>
+
+</html>

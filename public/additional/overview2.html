@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Step 3</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/setup-nav.css">
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-default navigation-clean" style="height:52px;padding-bottom:0px;padding-top:5px;">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand navbar-link" href="#"> </a>
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                </div>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li role="presentation"><a href="#" style="font-size:35px;height:50px;padding-bottom:0px;padding-top:5px;"><span style="margin-bottom:0px;padding-bottom:0px;padding-top:0px;font-size:20px;font-family:'Advent Pro', sans-serif;">Back To Profile </span><i class="icon-close" style="font-size:30px;color:rgb(255,119,138);margin-top:0px;padding-top:0px;"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="visible-xs-block visible-sm-block visible-md-block visible-lg-block visible-xs-inline visible-sm-inline visible-md-inline visible-lg-inline">
+        <div class="container">
+            <div class="row" style="height:580px;">
+                <div class="col-md-4" style="width:147px;height:442px;padding:15px 15px 0px 0px;padding-left:0px;">
+                    <div style="margin-left:30px;margin-right:39px;border-radius:50%;border:solid;/*border-color:#FF778A;*/font-size:15px;width:65px;height:65px;border-width:3px;margin-bottom:60px;margin-top:14px;color:rgba(51,51,51,0.5);"><i class="fa fa-question" style="font-size:30px;margin-left:20px;/*color:rgba(51,51,51,0.5);*/padding-top:0px;padding-right:0px;padding-left:0px;margin-top:12px;"></i>
+                        <p style="width:75px;margin-right:0px;margin-top:18px;height:25px;font-size:20px;margin-left:-5px;font-family:'Advent Pro', sans-serif;">Questions </p>
+                    </div>
+                    <div style="margin-left:30px;margin-right:40px;border-radius:50%;border:solid;border-color:#FF778A;font-size:15px;width:65px;height:65px;border-width:3px;margin-bottom:60px;padding-top:8px;"><i class="icon-graduation" style="font-size:38px;margin-left:8px;color:#FF778A;margin-top:0px;padding-top:0px;padding-left:3px;"></i>
+                        <p style="margin-top:14px;height:25px;margin-left:-5px;font-size:20px;font-family:'Advent Pro', sans-serif;color:#FF778A;">Overview </p>
+                    </div>
+                    <div style="margin-left:30px;margin-right:40px;border-radius:50%;border:solid;border-color:rgba(51,51,51,0.5);font-size:15px;width:65px;height:65px;border-width:3px;padding-top:5px;margin-bottom:60px;"><i class="icon ion-android-globe" style="font-size:31px;margin-left:0px;color:rgba(51,51,51,0.5);padding-left:17px;padding-top:0px;margin-top:0px;margin-bottom:0px;margin-right:0px;"></i>
+                        <p style="margin-top:14px;height:25px;width:123px;margin-left:-20px;font-size:20px;font-family:'Advent Pro', sans-serif;">Social Media</p>
+                    </div>
+                </div>
+                <div class="col-md-8" style="width:740px;height:auto;margin-left:30px;padding:0px 15px;margin-top:0px;">
+                     <form id="myForm" name="myForm">
+                        <div class="row" style="width:820px;margin-top:26px;">
+                            <div class="col-md-12" style="width:auto;margin-bottom:10px;">
+                                <div style="width:310px;">
+                                    <h1 style="font-size:18px;">Do you smoke?</h1>
+                                    <select class="form-control input-lg" id="smoker" name="smoker" style="width:auto;">
+                                        <option value="0" selected="">No</option>
+                                        <option value="1">Yes, daily</option>
+                                        <option value="2">Yes, occasionally</option>
+                                        <option value="3">Yes, trying to quit</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="width:auto;margin-left:85px;margin-bottom:10px;">
+                                <div style="width:310px;">
+                                    <h1 style="font-size:18px;">Do you drink?</h1>
+                                    <select class="form-control input-lg" id="drinker" name="drinker" style="width:auto;">
+                                        <option value="0" selected="">No</option>
+                                        <option value="1">Yes, socially</option>
+                                        <option value="2">Yes, often</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="width:auto;margin-bottom:10px;">
+                                <div>
+                                    <h1 style="font-size:18px;">Would you like to start a family?</h1>
+                                    <select class="form-control input-lg" id="start_family" name="family_importance" style="width:auto;">
+                                        <option value="0" selected="">No</option>
+                                        <option value="1">Yes</option>
+                                        <option value="2">Not Sure</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="width:auto;margin-left:85px;margin-bottom:10px;">
+                                <div>
+                                    <h1 style="font-size:18px;">How important is religion to you?</h1>
+                                    <select class="form-control input-lg" id="religion_importance" name="religion_importance" style="width:auto;">
+                                        <option value="0">Not Important</option>
+                                        <option value="1">Somewhat Important</option>
+                                        <option value="2">Very Important</option>
+                                        <option value="3">Not Sure</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="width:auto;">
+                                <div>
+                                    <h1 style="font-size:18px;">How important is education level to you?</h1>
+                                    <select class="form-control input-lg" id="edlevel_importance" name="edlevel_importance" style="width:auto;">
+                                        <option value="0">Not Important</option>
+                                        <option value="1">Somewhat Important</option>
+                                        <option value="2">Very Important</option>
+                                        <option value="3">Not Sure</option>
+                                    </select>
+                                </div>
+                            </div>
+                               <div class="col-md-12" style="width:auto;margin-left: 10px;">
+                                <div>
+                                    <h1 style="font-size:18px;">Is sex important to you?</h1>
+                                    <select class="form-control input-lg" id="sex_importance" name="sex_importance" style="width:auto;">
+                                        <option value="0">Yes</option>
+                                        <option value="1">No</option>
+                                        <option value="2">No Preference</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="width:auto;margin-left:3px;">
+                                <div>
+                                    <h1 style="font-size:18px;">Is financial stability important to you?</h1>
+                                    <select class="form-control input-lg" id="stability_importance" name="stability_importance" style="width:auto;">
+                                        <option value="0">Not Important</option>
+                                        <option value="1">Somewhat Important</option>
+                                        <option value="2">Very Important</option>
+                                        <option value="3">Not Sure</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="width:auto;margin-left:25px;">
+                                <div>
+                                    <h1 style="font-size:18px;">Is political affiliation important to you?</h1>
+                                    <select class="form-control input-lg" id="political_importance" name="political_importance" style="width:auto;">
+                                        <option value="0">Not Important</option>
+                                        <option value="1">Somewhat Important</option>
+                                        <option value="2">Very Important</option>
+                                        <option value="3">Not Sure</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="width:auto;">
+                                <div>
+                                    <h1 style="font-size:18px;">How important is starting a family to you?</h1>
+                                    <select class="form-control input-lg" id="family_importance" name="family_importance" style="width:auto;">
+                                        <option value="0">Not Important</option>
+                                        <option value="1">Somewhat Important</option>
+                                        <option value="2">Very Important</option>
+                                        <option value="3">Not Sure</option>
+                                    </select>
+                                </div>
+                            </div>
+                               <div class="col-md-12" style="width:auto;">
+                                <div>
+                                    <h1 style="font-size:18px;">How important is ethnicity to you?</h1>
+                                    <select class="form-control input-lg" id="ethnicity_importance" name="ethnicity_importance" style="width:auto;">
+                                        <option value="0">Not Important</option>
+                                        <option value="1">Somewhat Important</option>
+                                        <option value="2">Very Important</option>
+                                        <option value="3">Not Sure</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left:150px;margin-top:26px;">
+                            <div class="col-md-12" style="width:auto;padding-left:0px;padding-right:0px;margin-top:15px;">
+                                <button class="btn btn-primary btn-block" type="button" id="nextBtn" data-bs-hover-animate="pulse" style="font-size:17px;padding-left:0px;padding-right:0px;width:140px;height:50px;margin-right:0px;background-color:#FF778A;background-image:url(&quot;#FF778A&quot;);color:white;font-family:'Advent Pro', sans-serif;">Next Step</button>
+                            </div>
+                            <div class="col-md-12" style="width:auto;margin-left:36px;padding-right:0px;padding-left:0px;margin-top:15px;">
+                                <button class="btn btn-primary btn-block" type="button" data-bs-hover-animate="pulse" style="width:140px;height:50px;background-image:none;background-color:transparent;color:black;border:solid;border-width:1px;font-family:'Advent Pro', sans-serif;">Skip For Now</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <script src="assets/js/overview2.js"></script>
+</body>
+
+</html>
