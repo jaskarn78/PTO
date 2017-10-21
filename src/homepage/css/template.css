@@ -411,6 +411,8 @@ img.img-full-width {
     padding-right: 15px;
     padding-left: 15px;
     margin-top: 10px;
+    cursor:hand;
+    cursor:pointer;
 
 	
 }
@@ -422,6 +424,8 @@ img.img-full-width {
     padding-right: 25px;
     padding-left: 25px;
     margin-right: 5px;
+    cursor:pointer;
+    cursor:hand;
 }
 #nino-navbar .navbar-nav> li.navbar-sign > a {
 	color: white;
@@ -433,6 +437,8 @@ img.img-full-width {
     padding-right: 25px;
     padding-left: 25px;
     opacity: 0.9;
+    cursor:pointer;
+    cursor:hand;
     
 }
 
@@ -446,6 +452,8 @@ img.img-full-width {
 #nino-navbar .nino-menuItem {
 	float: left;
     color: black;
+    cursor:pointer;
+    cursor:hand;
 }
 #nino-navbar .nino-iconsGroup li a {
 	border: none;

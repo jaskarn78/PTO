@@ -6,6 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title id="title">Members</title>
     <meta name="description" content="">
+    <meta name="manifest" src="/manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <link rel="stylesheet" type="text/css" href="materialize/css/materialize.css">
@@ -13,15 +14,17 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../util/css/loader.css">
+      <link rel="manifest" href="/manifest.json">
+
+
 
     
   </head>
 
   <body>
  
-			<nav id="nino-navbar" class="navbar navbar-default" role="navigation">
+			<nav id="nino-navbar" class="navbar navbar-default" style="background-color:white" role="navigation">
 				<div class="container">
-
 					<!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-brand" href="homepage.html">
                     <img class="brand-image" src="images/brand/PressToOpen_Final_TrademarkReady2.png" />
@@ -51,49 +54,7 @@
   <div class="row" id="filtercolumn">
     <div class="col s3">
     <!-- Grey navigation panel -->
-      <div class="filter-header"><h class="header">Filters</h><br><br><br>
-          <div class="locationdiv">
-              <i class="material-icons" id="location">location_on</i> Location
-          </div>
-          <form name="search">
-              <div class="row" id="location-filter">
-                <div class="col-sm-6">
-                      <select class="form-control" id="distance" name="distance">
-                    
-                        
-                      </select>
-                </div>
-                <div class="col-sm-6">
-                    <input class="form-control" type="text" id="zip" placeholder="Zip" name="zip" value=""/>
-                </div>
-              </div>
-              
-          <div class="age-header">
-                <i class="small material-icons" id="age-icon">perm_contact_calendar</i> Age:
-          </div>
-          <div class="row" id="age-filter">
-              <div class="col-sm-6">
-                <input class="age-start" placeholder="From" id="age-start" name="age-start" value="">
-              </div>
-              <div class="col-sm-6">
-                <input class="age-end" placeholder="To" id="age-end" name="age-end" value="">
-              </div>
-          </div>
-          <div class="seeking-header">
-              <i class="small material-icons" id="seeking-icon">perm_contact_calendar</i> Seeking:
-          </div>
-          <div class="row">
-            <div class="col-sm-9">
-              <select class="form-control" id="seeking" name="seeking">
-                   
-              </select>
-            </div><br>
-          </div><br><br>
-         
-         <input type="submit" id="filter">
-        </form>
-
-      </div>
+     
 
   </div>
   <div class="loader" id="loader" style="margin-left:50px"></div>
@@ -103,7 +64,7 @@
         </div>
       </div>
   </div>
-</div>
+<!--/div>
     <div id="jd-chat">
     <div class="jd-online">
       <div class="jd-header">Online User</div>
@@ -114,13 +75,12 @@
       <div class="jd-footer"><input id="search_chat" placeholder="Search"></div>
     </div>
     
-  </div>
+  </div-->
   
-  <link href="../chat/jd.css" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <!--script src="../php/chat/jquery-1.11.2.min.js" ></script-->
-  <script src="../chat/jd.js" ></script>
-  <script src="../chat/date.js"></script>
+  <!--script src="../chat/jd.js" ></script>
+  <script src="../chat/date.js"></script!-->
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-firestore.js"></script>

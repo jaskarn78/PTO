@@ -1,0 +1,16 @@
+{
+  "short_name": "PTO",
+  "name": "Press To Open",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "gcm_sender_id": "103953800507",
+  "icons": [
+    {
+      "src": "pt-heart.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    }
+  ],
+  "start_url": "index.html?launcher=true"
+}

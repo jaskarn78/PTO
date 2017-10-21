@@ -1,8 +1,8 @@
 
  $(document).ready(function(){
-	$("#signInBtn").click(function(){
+	$("#signInButton").click(function(){
 	 	var email = $("#email").val();
-	 	var pass  = $("#password").val();
+	 	var pass  = $("#pw").val();
 		signInWithEmail(email, pass);
  	});
 
@@ -18,7 +18,7 @@
 
 
 function signInWithEmail(email, pass){
-	firebase.auth().createUserWithEmailAndPassword(email, pass)
+	firebase.auth().signInWithEmailAndPassword(email, pass)
 	.then(function(user){
 		if(user!=null)
 			goToNext();

@@ -108,6 +108,7 @@ Chat.prototype.saveMessage = function(e) {
       photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
     }).then(function(){
       resetMaterialTextfield(this.messageInput);
+      sendMessagPush(currentUser.name, this.messageInput.value);
       this.toggleButton();
     }.bind(this)).catch(function(error){
       console.error("Error writing new messages to database", error);
@@ -204,11 +205,12 @@ Chat.prototype.onStart = function() {
     // Hide sign-in button.
     this.signInButton.setAttribute('hidden', 'true');
 
+ // We save the Firebase Messaging Device token and enable notifications.
+    this.saveMessagingDeviceToken();
     // We load currently existing chant messages.
     this.loadMatches();
 
-    // We save the Firebase Messaging Device token and enable notifications.
-    this.saveMessagingDeviceToken();
+   
   } else { // User is signed out!
     // Hide user's profile and sign-out button.
     this.userName.setAttribute('hidden', 'true');
@@ -262,12 +264,30 @@ Chat.prototype.checkSignedInWithMessage = function() {
 
 // Saves the messaging device token to the datastore.
 Chat.prototype.saveMessagingDeviceToken = function() {
-  // TODO(DEVELOPER): Save the device token in the realtime datastore
+  firebase.messaging().getToken().then(function(currentToken) {
+    if (currentToken) {
+      console.log('Got FCM device token:', currentToken);
+      // Saving the Device Token to the datastore.
+      firebase.database().ref('/fcmTokens').child(currentToken)
+          .set(Chat.userInfo.userData.uid);
+    } else {
+      // Need to request permissions to show notifications.
+      this.requestNotificationsPermissions();
+    }
+  }.bind(this)).catch(function(error){
+    console.error('Unable to get messaging token.', error);
+  });
 };
 
 // Requests permissions to show notifications.
 Chat.prototype.requestNotificationsPermissions = function() {
-  // TODO(DEVELOPER): Request permissions to send notifications.
+  console.log('Requesting notifications permission...');
+  firebase.messaging().requestPermission().then(function() {
+    // Notification permission granted.
+    this.saveMessagingDeviceToken();
+  }.bind(this)).catch(function(error) {
+    console.error('Unable to get permission to notify.', error);
+  });
 };
 
 // Resets the given MaterialTextField.
@@ -289,6 +309,29 @@ function getMessageTemplate(){
 
 function getLoadingImageUrl(){
   return 'https://www.google.com/images/spin-32.gif';
+}
+
+function sendMessagPush(name, text){
+  firebase.messaging().getToken().then(function(currentToken){
+    if(currentToken){
+      $.ajax({        
+        type : 'POST',
+        url : "https://fcm.googleapis.com/fcm/send",
+        headers : {
+            Authorization : 'key=' + 'AAAAF5pJnKc:APA91bFCzHjLvnbCvGP3C-GO6SfWWqaiEHOw-EZqwD8PHltA6WJsGsiTtfhsb4BM8GOD6aHmbkxqvT136qLhSkhJVeWVnGbr0diBG2EnDi-IhMJB4kuUJlFbtia7oWUgWs8_xyy44ucm'
+        },
+        contentType : 'application/json',
+        dataType: 'json',
+        data: JSON.stringify({"to": currentToken, "notification": {"title":name,"body":text, "icon":"pt-heart.png","click_action": "http://localhost:8081"}}),
+        success : function(response) {
+            console.log(currentToken);
+        },
+        error : function(xhr, status, error) {
+            console.log(xhr.error);                   
+        }
+      });
+    }
+  });
 }
 
 
