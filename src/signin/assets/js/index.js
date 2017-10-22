@@ -1,5 +1,6 @@
 
  $(document).ready(function(){
+ 	sessionStorage.clear();
 	$("#signInButton").click(function(){
 	 	var email = $("#email").val();
 	 	var pass  = $("#pw").val();
