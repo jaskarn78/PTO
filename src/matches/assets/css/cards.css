@@ -1,0 +1,8 @@
+.demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+}
+.demo-card-square > .mdl-card__title {
+  background:
+    url('../../../homepage/images/ico/pt-heart.png') bottom right 15% no-repeat #46B6AC;
+}
