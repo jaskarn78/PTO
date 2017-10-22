@@ -52,6 +52,7 @@ function populateMatches(matchData){
             </div>\
             <div class="card-content">\
               <h4 class="card-title">'+userData.name+'</h4>\
+              <p class="description">Description goes here</p>\
               <h6 class="category text-muted">'+parseGender(userData.gender)+", "+getAgeFromDob(userData.birthday)+'</h6>\
               <div class="footer">\
                 <a href="#pablo" id="'+userData.uid+' "class="btn btn-just-icon btn-linkedin btn-round"><i class="fa fa-linkedin"></i></a>\
