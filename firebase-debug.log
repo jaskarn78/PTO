@@ -1,0 +1,97 @@
+[debug] [2017-10-24T02:24:58.521Z] ----------------------------------------------------------------------
+[debug] [2017-10-24T02:24:58.523Z] Command:       /usr/local/Cellar/node/8.7.0/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-10-24T02:24:58.523Z] CLI Version:   3.13.1
+[debug] [2017-10-24T02:24:58.523Z] Platform:      darwin
+[debug] [2017-10-24T02:24:58.523Z] Node Version:  v8.7.0
+[debug] [2017-10-24T02:24:58.523Z] Time:          Mon Oct 23 2017 19:24:58 GMT-0700 (PDT)
+[debug] [2017-10-24T02:24:58.523Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-24T02:24:58.535Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-24T02:24:58.536Z] > authorizing via signed-in user
+[debug] [2017-10-24T02:24:58.537Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-10-24T02:24:58.537Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/5udK8OCVxXyyVDWh8sqstEkffWqCICv-xPUNVibP7jI7xnFQb6piOh6rmxtRxdtJ',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Mon Oct 23 2017 19:24:58 GMT-0700 (PDT)
+[debug] [2017-10-24T02:24:58.739Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-24T02:24:58.746Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/ptoapp-90ad1  
+ Mon Oct 23 2017 19:24:58 GMT-0700 (PDT)
+[debug] [2017-10-24T02:24:59.262Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-24T02:24:59.262Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/ptoapp-90ad1/tokens  
+ Mon Oct 23 2017 19:24:59 GMT-0700 (PDT)
+[debug] [2017-10-24T02:24:59.735Z] <<< HTTP RESPONSE 200
+[info] 5
+[info] 
+[info] === Deploying to 'ptoapp-90ad1'...
+[info] 
+[info] i  deploying database, storage, firestore, functions, hosting
+[info] i  database: checking rules syntax...
+[debug] [2017-10-24T02:25:00.502Z] >>> HTTP REQUEST PUT https://ptoapp-90ad1.firebaseio.com/.settings/rules.json?dryRun=true {
+  "rules": {
+    ".read": "true",
+    ".write": "true"
+  }
+} 
+ Mon Oct 23 2017 19:25:00 GMT-0700 (PDT)
+[debug] [2017-10-24T02:25:00.952Z] <<< HTTP RESPONSE 200
+[info] ✔  database: rules syntax is valid
+[debug] [2017-10-24T02:25:00.953Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/ptoapp-90ad1  
+ Mon Oct 23 2017 19:25:00 GMT-0700 (PDT)
+[debug] [2017-10-24T02:25:01.443Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2017-10-24T02:25:01.445Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/ptoapp-90ad1:test { source: { files: [ [Object] ] } } 
+ Mon Oct 23 2017 19:25:01 GMT-0700 (PDT)
+[debug] [2017-10-24T02:25:01.865Z] <<< HTTP RESPONSE 200
+[info] ✔  storage: rules file storage.rules compiled successfully
+[info] i  firestore: checking firestore.rules for compilation errors...
+[debug] [2017-10-24T02:25:01.867Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/ptoapp-90ad1:test { source: { files: [ [Object] ] } } 
+ Mon Oct 23 2017 19:25:01 GMT-0700 (PDT)
+[debug] [2017-10-24T02:25:02.199Z] <<< HTTP RESPONSE 200
+[info] ✔  firestore: rules file firestore.rules compiled successfully
+[debug] [2017-10-24T02:25:02.200Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~5.4.0",
+    "firebase-functions": "^0.7.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-10-24T02:25:02.201Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/ptoapp-90ad1?view=CONSUMER_VIEW  
+ Mon Oct 23 2017 19:25:02 GMT-0700 (PDT)
+[debug] [2017-10-24T02:25:02.201Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/ptoapp-90ad1?view=CONSUMER_VIEW  
+ Mon Oct 23 2017 19:25:02 GMT-0700 (PDT)
+[debug] [2017-10-24T02:25:02.824Z] <<< HTTP RESPONSE 200
+[info] ✔  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-10-24T02:25:02.843Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2017-10-24T02:25:02.844Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/ptoapp-90ad1  
+ Mon Oct 23 2017 19:25:02 GMT-0700 (PDT)
+[debug] [2017-10-24T02:25:02.844Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/ptoapp-90ad1/apiKeys  
+ Mon Oct 23 2017 19:25:02 GMT-0700 (PDT)
+[debug] [2017-10-24T02:25:03.230Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-24T02:25:03.247Z] <<< HTTP RESPONSE 200
+[info] i  storage: uploading rules storage.rules...
+[debug] [2017-10-24T02:25:03.249Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/ptoapp-90ad1/rulesets { source: { files: [ [Object] ] } } 
+ Mon Oct 23 2017 19:25:03 GMT-0700 (PDT)
+[debug] [2017-10-24T02:25:03.695Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-24T02:25:03.695Z] [rules] created ruleset projects/ptoapp-90ad1/rulesets/9cb00cdf-69d5-4b88-818f-4c2c55404961
+[info] i  firestore: uploading rules firestore.rules...
+[debug] [2017-10-24T02:25:03.696Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/ptoapp-90ad1/rulesets { source: { files: [ [Object] ] } } 
+ Mon Oct 23 2017 19:25:03 GMT-0700 (PDT)
+[debug] [2017-10-24T02:25:03.696Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta1/projects/ptoapp-90ad1/databases/(default)/indexes  
+ Mon Oct 23 2017 19:25:03 GMT-0700 (PDT)
+[debug] [2017-10-24T02:25:04.155Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-24T02:25:04.165Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-24T02:25:04.165Z] [rules] created ruleset projects/ptoapp-90ad1/rulesets/73a204c0-7ae0-4da3-8175-4bde4d16dc2a
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2017-10-24T02:25:09.633Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/ptoapp-90ad1/configs  
+ Mon Oct 23 2017 19:25:09 GMT-0700 (PDT)
+[debug] [2017-10-24T02:25:09.878Z] <<< HTTP RESPONSE 200
+[info] i  hosting: preparing public directory for upload...
+[debug] [2017-10-24T02:25:15.958Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/ptoapp-90ad1/uploads/-KxBBd2eRx9pa1eLrTe0?fileCount=1837&message=  
+ Mon Oct 23 2017 19:25:15 GMT-0700 (PDT)
