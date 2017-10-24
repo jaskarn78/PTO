@@ -53,13 +53,13 @@
 <body>
   <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
   <!-- Header section containing logo -->
-  <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+  <header style="display:none" class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
     <div class="mdl-layout__header-row">
       <div id="user-container">
-        <div hidden id="user-pic"></div>
-        <div hidden id="user-name"></div>
-        <button id="sign-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">Sign-out</button>
-          <button hidden id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+        <div hidden id="user-pic" style="display: none"></div>
+        <div hidden id="user-name" style="display: none"></div>
+        <button id="sign-out" style="display: none" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">Sign-out</button>
+          <button hidden id="sign-in" style="display:none" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
             <i class="material-icons">account_circle</i>Sign-in with Google
           </button>
       </div>

@@ -1,23 +1,17 @@
 
-var config = {
-	apiKey: "AIzaSyDXjq1Or10iD_J229t3qxyWxskmDBxjJ3s",
-	authDomain: "ptoapp-90ad1.firebaseapp.com",
-	databaseURL: "https://ptoapp-90ad1.firebaseio.com",
-	projectId: "ptoapp-90ad1",
-	storageBucket: "ptoapp-90ad1.appspot.com",
-	messagingSenderId: "101372763303"
-};
-firebase.initializeApp(config);
 var db = firebase.firestore();
 var data = JSON.parse(sessionStorage.getItem("userData"));
 var user = data.userData;
 var matchObj = {};
-
+var winkId;
+var winkData = {};
 $(document).ready(function(){
 	showLoader();
 	$("#nameLink").text(user.name);
+	$("#signOut").on("click", function(){ signOut(); })
 	getMatches(user);
 	console.log(JSON.parse(sessionStorage.getItem("matchData")));
+
 
 });
 function getMatches(myInfo){
@@ -26,15 +20,100 @@ function getMatches(myInfo){
 	    querySnapshot.forEach(function(doc) {
 	    	console.log(doc.data());
 	    	matchObj[doc.data().userData.uid.replace("-", "")] = doc.data();
-			//storeMatches(doc.data());
 	        populateMatches(doc.data());
 	        populateChat(doc.data());
 	        hideLoader();
+	       
 	    });
-	    storeMatches(matchObj)
+	    $(".user-more .wink").on("click", function(){
+    		var user = matchObj[$(this).attr("id").replace("-", "")].userData;
+
+			winkId = $(this).attr("id").replace("-", "");
+	   		$("#winkText").attr("disabled",false); 
+	   		$("#winkHeader").html('Send Wink To:<br><span style="font-size:14px;color:white" id="modalHeader"></span>');
+			openModal(user.name, user.photoURL, '');
+
+
+       });
+	   $("#sendWink").on("click", function(){
+	   		var winkText = $("#winkText").val();
+	   		if(winkText=="")
+	   			alert("Please type a proper message");
+	   		else{
+	   			sendWink(winkText);
+	   		}
+	   });
+
+		loadRecievedWinks();
+		$("#dropdown1").on("click", function(){
+			var id = $("#dropdown1 li").attr("id");
+			var user = matchObj[id].userData;
+	   		$("#winkHeader").html('&nbsp;&nbsp;Wink Sent By:<br><span style="font-size:14px;color:white" id="modalHeader"></span>');
+	   		$("#winkText").attr("disabled",true); 
+			openModal(winkData[id].name, winkData[id].photoUrl, winkData[id].text);
+			//$('#modal1').modal('open');
+
+		});
+
+		storeMatches(matchObj)
 
 	});
+}
 
+function openModal(name, photo, text){
+	$('.modal').modal({
+		complete: function(){ }
+	});
+	$('#modal1').modal('open');
+	$(".modal").css({"max-height":"320px"});
+	$("#modalHeader").text(name);
+	$("#winkImage").attr("src", photo);
+	if(text!=="undefined")
+		$("#winkText").text(text);
+}
+
+function clearTextArea(){
+	$("#winkText").val('');
+}
+
+function loadRecievedWinks(){
+	var winksRefToMe = firebase.database().ref('winks/'+user.uid+'/');
+  	winksRefToMe.off();
+  	var showToast = function(){
+  		Materialize.toast('Wink Recieved!', 3000, 'rounded');
+  	}
+  	var setMessage = function(data){
+    var val = data.val();
+    winkData[val.fromId] = val;
+    displayMessage(data.key, val.fromId, val.name, val.text, val.photoUrl, val.imageUrl);
+
+  }.bind(this);
+  	winksRefToMe.limitToLast(12).on('child_added', setMessage);
+  	winksRefToMe.limitToLast(12).on('child_changed', setMessage);
+  	winksRefToMe.limitToLast(1).on('child_added', showToast);
+  	winksRefToMe.limitToLast(1).on('child_changed', showToast);
+
+}
+
+function displayMessage(key, fromId, name, text, photoUrl, imageUrl){
+	if(key!=null || key!="undefined")
+		//$("#navHeart").css({"animation-name":"pulse_animation","animation-duration":"4s","animation-iteration-count":"infinite"});
+	$("#dropdown1").append('\
+		<li id="'+fromId+'"><p class="wink" id="'+fromId+'" style="color:#F61251;align:center" href="#!">From:<br>'+name+'</p></li>');
+}
+
+function sendWink(winkText){
+	var winksFromMe = user.uid+"_"+winkId;
+  	var winksRefFromMe = firebase.database().ref('winks/'+winkId+'/');
+  	 winksRefFromMe.push({
+      name: user.name,
+      text: winkText,
+      fromId: user.uid,
+      photoUrl: user.photoURL || '/images/profile_placeholder.png'
+    }).then(function(){
+		$('#modal1').modal('close');
+		Materialize.toast('Wink Sent!', 3000, 'rounded');
+	});
 }
 
 function storeMatches(matchData){
@@ -51,7 +130,12 @@ function populateMatches(matchData){
          <div layout="row" class="user-more">\
                 <a href="../member/member.html?match='+userData.uid.replace("-", "")+'">\
                 <i class="small material-icons" id="person">person_outline</i></a>\
-                <i class="small material-icons" id="wink">mood</i></div></div></div></div>');
+                <a data-target="modal1" style="background:none;border:none;border-shadow:none;cursor:pointer;cursor:hand;color:#FC747C" class="wink modal-trigger" id="'+userData.uid.replace("-", "")+'">\
+                <i name="wink" class="small material-icons">mood</i></a>\
+         </div>\
+         </div>\
+         </div>\
+         </div>');
 }
 
 function populateChat(matchData){
@@ -69,6 +153,13 @@ function getAgeFromDob(bday){
 function parseGender(genderVal){
 	var genderArr = ["Male (Cis)", "Male (Trans)","Genderqueer", "Female (Cis)", "Female (Trans)", "Genderqueer","Intersex", "Agender"];
 	return genderArr[genderVal];
+}
+function signOut(){
+	firebase.auth().signOut().then(function() {
+		window.location.href='../signin';
+	}, function(error) {
+		console.error('Sign Out Error', error);
+	});
 }
 
 function massLoad(){

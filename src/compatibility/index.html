@@ -21,24 +21,27 @@
 </head>
 
 <body class="login-page">
-    <div class="carousel carousel-slider center" data-indicators="true"  style="background-image: url('../homepage/images/bg-header.jpg'); background-size: cover; background-position: top center;">
+    <div class="carousel carousel-slider center" data-indicators="true" style="background: #febbbb;
+            background: -moz-linear-gradient(-45deg, #febbbb 0%, #fe9090 45%, #ff5c5c 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(-45deg, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(135deg, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#febbbb', endColorstr='#ff5c5c',GradientType=1)">
       <div class="carousel-fixed-item bottom" style="margin-top: 10px;">
         <button id="backBtn" class="btn waves-effect white grey-text darken-text-2">Back</button>
         <button id="nextBtn" class="btn waves-effect white grey-text darken-text-2">Next</button>
       </div>
-      <div class="carousel-item white-text" href="#one!" >
+      <div name="one" class="carousel-item white-text" href="#one!" >
         <div class="container">
           <div class="row">
-            <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-              <div class="card card-signup" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 5%">
-                <h class="description text-center">Step 1</h>
+            <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" >;
+            <div class="card card-signup" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 5%">
+                <h id="page" class="description text-center">Step 1</h>
 
                 <form class="form">
                   <div class="card-content">
                       <label>What is your relationship status?</label><br>
                     <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
-                          <option disabled selected>Relationship Status</option>
+                        <select id="relationship_status" class="selectpicker" data-style="btn btn-rose">
                             <option value=0>Divorced</option>
                             <option value=1>Never Married</option>
                             <option value=2>Widowed</option>
@@ -48,20 +51,19 @@
                     </div>
                     <label>Do you want to get married?</label><br>
                     <div class="input-group">
-                      <select class="selectpicker" data-style="btn btn-rose">
-                          <option disabled selected>Do you want to get married?</option>
+                      <select id="get_married" class="selectpicker" data-style="btn btn-rose">
                             <option value=0>Yes</option>
                             <option value=1>No</option>
                             <option value=2>Unsure</option>
                         </select>
                     </div>
-                    <label>Is it important that your partner wants the same?</label><br>
+                    <label>How Important that your partner wants the same?</label><br>
                      <div class="input-group">
-                      <select class="selectpicker" data-style="btn btn-rose">
-                          <option data-style="btn btn-rose" disabled selected>Marriage Importance</option>
-                            <option value=0>Yes</option>
-                            <option value=1>No</option>
-                            <option value=2>Unsure</option>
+                      <select id="get_married_importance" class="selectpicker" data-style="btn btn-rose">
+                         <option value=0>Not Important</option>
+                          <option value=1>Somewhat Important</option>
+                          <option value=10>Important</option>
+                          <option value=250>Very Important</option>
                         </select>
                     </div>
 
@@ -73,48 +75,49 @@
           </div>
         </div>
       </div>
-      <div class="carousel-item white-text" href="#two!">
+      <div name="two" class="carousel-item white-text" href="#two!">
        <div class="container">
             <div class="row">
               <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
                 <div class="card card-signup" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 5%">
-                  <h class="description text-center">Step 2</h>
+                  <h id="page" class="description text-center">Step 2</h>
 
                   <form class="form">
                     <div class="card-content">
                         <label>Do you have children?</label><br>
                       <div class="input-group">
-                          <select class="selectpicker" data-style="btn btn-rose">
+                          <select id="have_kids" class="selectpicker" data-style="btn btn-rose">
                               <option value=1>Yes, live away from home</option>
                               <option value=2>Yes, sometimes at home</option>
                               <option value=3>Yes, always at home</option>
                               <option value=4>No</option>
-
                           </select>
 
-                      </div>
-                      <label>Do you want children?</label><br>
-                      <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
-                              <option value=0>Yes</option>
-                              <option value=1>No</option>
-                              <option value=2>Unsure</option>
-                          </select>
                       </div>
                        <label>Would you date someone with children?</label><br>
                       <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
+                        <select id="have_kids_importance" class="selectpicker" data-style="btn btn-rose">
                               <option value=0>Yes</option>
                               <option value=1>No</option>
                               <option value=2>Unsure</option>
                           </select>
                       </div>
-                      <label>Is it important that your partner wants the same?</label><br>
-                       <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
+                      <label>Do you want children?</label><br>
+                      <div class="input-group">
+                        <select id="want_kids" class="selectpicker" data-style="btn btn-rose">
                               <option value=0>Yes</option>
                               <option value=1>No</option>
                               <option value=2>Unsure</option>
+                          </select>
+                      </div>
+                      
+                      <label>How important is it that your partner shares the same desire?</label><br>
+                       <div class="input-group">
+                        <select id="want_kids_importance: class="selectpicker" data-style="btn btn-rose">
+                              <option value=0>Not Important</option>
+                              <option value=1>Somewhat Important</option>
+                              <option value=10>Important</option>
+                              <option value=250>Very Important</option>
                           </select>
                       </div>
 
@@ -126,29 +129,29 @@
             </div>
           </div>
       </div>
-      <div class="carousel-item white-text" href="#three!">
+      <div name="three" class="carousel-item white-text" href="#three!">
         <div class="container">
             <div class="row">
               <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
                 <div class="card card-signup" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 5%">
-                  <h class="description text-center">Step 3</h>
+                  <h id="page" class="description text-center">Step 3</h>
 
                   <form class="form">
                     <div class="card-content">
                         <label>Do you use tobacco?</label><br>
                       <div class="input-group">
-                          <select class="selectpicker" data-style="btn btn-rose">
-                              <option value=1>Yes, daily</option>
-                              <option value=2>Yes, occassionally</option>
-                              <option value=3>Yes, trying to quit</option>
-                              <option value=4>No</option>
+                          <select id="use_tobacco" class="selectpicker" data-style="btn btn-rose">
+                              <option value=0>Yes, daily</option>
+                              <option value=1>Yes, occassionally</option>
+                              <option value=2>Yes, trying to quit</option>
+                              <option value=3>No</option>
 
                           </select>
 
                       </div>
                       <label>Would you date someone who uses tobacco?</label><br>
                       <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
+                        <select id="use_tobacco_importance" class="selectpicker" data-style="btn btn-rose">
                               <option value=0>Yes</option>
                               <option value=1>No</option>
                               <option value=2>No preference</option>
@@ -156,7 +159,7 @@
                       </div>
                       <label>Do you drink?</label><br>
                       <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
+                        <select id="drink" class="selectpicker" data-style="btn btn-rose">
                               <option value=0>Yes</option>
                               <option value=1>Yes, but only socially</option>
                               <option value=2>No</option>
@@ -164,7 +167,7 @@
                       </div>
                        <label>Would you date someone who drinks?</label><br>
                       <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
+                        <select id="drink_importance" class="selectpicker" data-style="btn btn-rose">
                               <option value=0>Yes</option>
                               <option value=1>No</option>
                               <option value=2>No preference</option>
@@ -178,48 +181,50 @@
             </div>
           </div>
       </div>
-      <div class="carousel-item white-text" href="#four!">
+      <div name="four" class="carousel-item white-text" href="#four!">
          <div class="container">
             <div class="row">
               <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
                 <div class="card card-signup" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 5%">
-                  <h class="description text-center">Step 4</h>
+                  <h id="page" class="description text-center">Step 4</h>
 
                   <form class="form">
                     <div class="card-content">
                       <label>Do you use marijuana?</label><br>
                        <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
+                        <select id="use_marijuana"  class="selectpicker" data-style="btn btn-rose">
                               <option value=0>Yes, daily</option>
                               <option value=1>Yes, occassionally</option>
                               <option value=2>Yes, trying to quit</option>
-                              <option value=2>No</option>
+                              <option value=3>No</option>
 
                           </select>
                       </div>
-                      <label>Would you date someone who uses marijuana?</label><br>
+                      <label>How important is this to you?</label><br>
                       <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
-                              <option value=0>Yes</option>
-                              <option value=1>No</option>
-                              <option value=2>No preference</option>
-                          </select>
+                        <select id="use_marijuana_importance" class="selectpicker" data-style="btn btn-rose">
+                          <option value=0>Not Important</option>
+                          <option value=1>Somewhat Important</option>
+                          <option value=10>Important</option>
+                          <option value=250>Very Important</option>
+                      </select>
                       </div>
                        <label>Do you misue drugs?</label><br>
                       <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
+                        <select id="misuse_drugs" class="selectpicker" data-style="btn btn-rose">
                               <option value=0>Yes</option>
                               <option value=1>Yes, sometimes</option>
                               <option value=2>No</option>
                           </select>
                       </div>
-                       <label>Would you date someone who misuses drugs?</label><br>
+                       <label>How important is this to you?</label><br>
                       <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
-                              <option value=0>Yes</option>
-                              <option value=1>No</option>
-                              <option value=2>No preference</option>
-                          </select>
+                        <select id="misuse_drugs_importance" class="selectpicker" data-style="btn btn-rose">
+                          <option value=0>Not Important</option>
+                          <option value=1>Somewhat Important</option>
+                          <option value=10>Important</option>
+                          <option value=250>Very Important</option>
+                      </select>
                       </div>
                     </div>
                       
@@ -229,29 +234,141 @@
             </div>
           </div>
       </div>
-      <div class="carousel-item white-text" href="#five!">
+      <div name="five" class="carousel-item white-text" href="#five!">
          <div class="container">
             <div class="row">
               <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
                 <div class="card card-signup" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 5%">
-                  <h class="description text-center">Step 5</h>
+                  <h id="page" class="description text-center">Step 5</h>
 
                   <form class="form">
                     <div class="card-content">
                       <label>Do you consider yourself financially stable?</label><br>
                        <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
+                        <select id="financially_stable" class="selectpicker" data-style="btn btn-rose">
                               <option value=0>Yes</option>
                               <option value=1>No</option>
                               <option value=2>Im working on it</option>
                           </select>
                       </div>
-                      <label>Is it important that your partner is financially stable?</label><br>
+                      <label>How important is it that your partner is financially stable?</label><br>
                       <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
+                        <select id="financially_stable_importance" class="selectpicker" data-style="btn btn-rose">
+                          <option value=0>Not Important</option>
+                          <option value=1>Somewhat Important</option>
+                          <option value=10>Important</option>
+                          <option value=250>Very Important</option>
+                      </select>
+                      </div>
+                      <label>What is your highest education level?</label><br>
+                       <div class="input-group">
+                        <select id="education_level" class="selectpicker" data-style="btn btn-rose">
+                              <option value=0>High School</option>
+                              <option value=1>Associates Degree</option>
+                              <option value=2>Bachelors Degree</option>
+                              <option value=0>Masters Degree</option>
+                              <option value=1>Doctoral Degree</option>
+                              <option value=2>Professional Degree</option>
+                              <option value=0>Military Training</option>
+                          </select>
+                      </div>
+                     <label>How important is it that your partner shares the same educational background as you?</label><br>
+                      <div class="input-group">
+                        <select id="education_level_importance" class="selectpicker" data-style="btn btn-rose">
+                          <option value=0>Not Important</option>
+                          <option value=1>Somewhat Important</option>
+                          <option value=10>Important</option>
+                          <option value=250>Very Important</option>
+                      </select>
+                      </div>
+                   </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+       <div name="six" class="carousel-item white-text" href="#six">
+         <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                <div class="card card-signup" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 5%">
+                  <h id="page" class="description text-center">Step 6</h>
+
+                  <form class="form">
+                    <div class="card-content">
+                      <label>What is your political affiliation?</label><br>
+                       <div class="input-group">
+                        <select id="political_affiliation" class="selectpicker" data-style="btn btn-rose">
+                              <option value=0>Republican</option>
+                              <option value=1>Democrat</option>
+                              <option value=2>Libertarian</option>
+                              <option value=3>Green Party</option>
+                              <option value=4>Independent</option>
+                              <option value=5>Other</option>
+                              <option value=6>None</option>
+                              <option value=7>Prefer Not To Answer</option>
+
+                          </select>
+                      </div>
+                      <label>How important is it that your partner share your political affiliation?</label><br>
+                      <div class="input-group">
+                        <select id="political_affiliation_importance" class="selectpicker" data-style="btn btn-rose">
+                          <option value=0>Not Important</option>
+                          <option value=1>Somewhat Important</option>
+                          <option value=10>Important</option>
+                          <option value=250>Very Important</option>
+                      </select>
+                      </div>
+                      
+                   </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+       <div name="seven" class="carousel-item white-text" href="#seven">
+         <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                <div class="card card-signup" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 5%">
+                  <h id="page" class="description text-center">Step 7</h>
+
+                  <form class="form">
+                    <div class="card-content">
+                      <label>Are you religious?</label><br>
+                      <div class="input-group">
+                        <select id="religious" class="selectpicker" data-style="btn btn-rose">
                               <option value=0>Yes</option>
                               <option value=1>No</option>
-                              <option value=2>No preference</option>
+                              <option value=2>Unsure</option>
+                          </select>
+                      </div>
+                       <label>How important is it that your partner is religious?</label><br>
+                      <div class="input-group">
+                        <select id="religious_importance" class="selectpicker" data-style="btn btn-rose">
+                             <option value=0>Not Important</option>
+                              <option value=1>Somewhat Important</option>
+                              <option value=10>Important</option>
+                              <option value=250>Very Important</option>
+                          </select>
+                      </div>
+                       <label>Do you consider yourself spiritual?</label><br>
+                      <div class="input-group">
+                        <select id="spiritual" class="selectpicker" data-style="btn btn-rose">
+                              <option value=0>Yes</option>
+                              <option value=1>No</option>
+                              <option value=2>Unsure</option>
+                          </select>
+                      </div>
+                      <label>How important is it that your partner is spiritual?</label><br>
+                      <div class="input-group">
+                        <select id="spiritual_importance" class="selectpicker" data-style="btn btn-rose">
+                             <option value=0>Not Important</option>
+                              <option value=1>Somewhat Important</option>
+                              <option value=10>Important</option>
+                              <option value=250>Very Important</option>
                           </select>
                       </div>
                    </div>
@@ -261,29 +378,116 @@
             </div>
           </div>
       </div>
-       <div class="carousel-item white-text" href="#six!">
+       <div name="eight" class="carousel-item white-text" href="#eight">
          <div class="container">
             <div class="row">
               <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
                 <div class="card card-signup" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 5%">
-                  <h class="description text-center">Step 6</h>
+                  <h id="page" class="description text-center">Step 8</h>
+
+                  <form class="form">
+                  <div class="card-content">
+
+                       <label>How often do you want to have sex with your partner?</label><br>
+                      <div class="input-group">
+                        <select id="sex_frequency" class="selectpicker" data-style="btn btn-rose">
+                             <option value=0>Never</option>
+                              <option value=1>Occasionally</option>
+                              <option value=2>Frequently</option>
+                              <option value=3>Very Frequently</option>
+                          </select>
+                      </div>
+                      <label>How important is this to you?</label><br>
+                      <div class="input-group">
+                        <select id="sex_frequency_importance" class="selectpicker" data-style="btn btn-rose">
+                              <option value=0>Not Important</option>
+                              <option value=1>Somewhat Important</option>
+                              <option value=10>Important</option>
+                              <option value=250>Very Important</option>
+                          </select>
+                      </div>
+                      <label>Have you ever been unfaithful to a partner in the past?</label><br>
+                      <div class="input-group">
+                        <select id="cheating" class="selectpicker" data-style="btn btn-rose">
+                              <option value=0>Yes</option>
+                              <option value=1>No</option>
+                              <option value=2>No preference</option>
+                          </select>
+                      </div>
+                      <label>How important is it that your partner answer the same?</label><br>
+                      <div class="input-group">
+                        <select id="cheating_importance" class="selectpicker" data-style="btn btn-rose">
+                             <option value=0>Not Important</option>
+                              <option value=1>Somewhat Important</option>
+                              <option value=10>Important</option>
+                              <option value=250>Very Important</option>
+                          </select>
+                      </div>
+                   </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div name="nine" id="last_page" class="carousel-item white-text" href="nine!">
+         <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                <div class="card card-signup" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 5%">
+                  <h id="page" class="description text-center">Step 9</h>
 
                   <form class="form">
                     <div class="card-content">
-                      <label>Are you religious?</label><br>
+
+                       <label>Do you consider yourself pet-friendly?</label><br>
                       <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
-                              <option value=0>Yes</option>
+                        <select id="pets" class="selectpicker" data-style="btn btn-rose">
+                             <option value=0>Yes</option>
                               <option value=1>No</option>
                               <option value=2>Unsure</option>
                           </select>
                       </div>
-                       <label>Is it important that your partner is spiritual?</label><br>
+                      <label>How important is it that your partner is pet-friendly?</label><br>
                       <div class="input-group">
-                        <select class="selectpicker" data-style="btn btn-rose">
+                        <select id="pets_importance" class="selectpicker" data-style="btn btn-rose">
+                              <option value=0>Not Important</option>
+                              <option value=1>Somewhat Important</option>
+                              <option value=10>Important</option>
+                              <option value=250>Very Important</option>
+                          </select>
+                      </div>
+                      <label>Do you enjoy traveling?</label><br>
+                      <div class="input-group">
+                        <select id="traveling" class="selectpicker" data-style="btn btn-rose">
                               <option value=0>Yes</option>
                               <option value=1>No</option>
                               <option value=2>No preference</option>
+                          </select>
+                      </div>
+                      <label>How important is it that your partner shares your enthusiasm for traveling?</label><br>
+                      <div class="input-group">
+                        <select id="traveling_importance" class="selectpicker" data-style="btn btn-rose">
+                             <option value=0>Not Important</option>
+                              <option value=1>Somewhat Important</option>
+                              <option value=10>Important</option>
+                              <option value=250>Very Important</option>
+                          </select>
+                      </div>
+                      <label>Do you have body piercings and/or tattoos?</label><br>
+                      <div class="input-group">
+                        <select id="body_mods" class="selectpicker" data-style="btn btn-rose">
+                              <option value=0>Yes</option>
+                              <option value=1>No, I want them</option>
+                              <option value=2>No, I do not want them</option>
+                          </select>
+                      </div>
+                      <label>Would you date someone that has body piercings and/or tattoos?</label><br>
+                      <div class="input-group">
+                        <select id="body_mods_importance" class="selectpicker" data-style="btn btn-rose">
+                             <option value=10>Yes</option>
+                              <option value=0>No</option>
+                              <option value=5>Unsure</option>
                           </select>
                       </div>
                    </div>
@@ -294,6 +498,7 @@
           </div>
         
       </div>
+
   </div>    
 
 </body>
