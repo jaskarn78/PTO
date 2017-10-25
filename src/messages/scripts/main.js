@@ -225,18 +225,24 @@ Chat.prototype.onStart = function() {
 Chat.prototype.loadMatches = function(){
   var db = this.firestore;
   var user = this.userInfo.userData;
+
   db.collection("users").where("userData.gender", "==", parseInt(user.seeking))
     .where("userData.seeking", "==", parseInt(user.gender))
     .get().then(function(querySnapshot){
       var index = 0;
       querySnapshot.forEach(function(doc){
         var match = doc.data();
-        $("#matched_users").append('<a class="mdl-navigation__link" id="'+match.userData.uid+'"">'+
+        $("#slide-out").append('<li class="matched_userList"><a class="userChat waves-effect" id="'+match.userData.uid+'"">'+
               '<img src="'+match.userData.photoURL+'"class="mdl-color-text--blue-grey-400 material-icons"'+
-              'style="width:40px; height:40px; border-radius:50%;">'+match.userData.name+'</a>');
+              'style="width:40px; height:40px;margin-bottom:10px;margin-right:5px; border-radius:50%;">'+match.userData.name+'</a></li>\
+                  <li><div class="divider"></div></li>');
     });
-    $(".mdl-navigation__link").on("click", function(){
+    Materialize.showStaggeredList('#slide-out');
+    $("#slide-out li a").on("click", function(){
         var toId = $(this).attr("id").replace("-", "");
+        $(".matched_userList").removeClass('active');
+        $(this).parent().addClass('active');//.removeClass('active');
+        //$(this).addClass('active');
         getConvoFromMe = user.uid+"_"+toId;
         getConvoToMe = toId+"_"+user.uid;
         Chat.loadMessages();
@@ -347,7 +353,7 @@ Chat.prototype.displayMessage = function(key, name, text, picUrl, imageUri) {
     div = container.firstChild;
     div.setAttribute('id', key);
     Chat.messageList.appendChild(div);
-    console.log(this.messageList);
+    //console.log(this.messageList);
   }
   if (picUrl) {
         div.querySelector('.pic').style.backgroundImage = 'url(' + picUrl + ')';
@@ -393,5 +399,6 @@ Chat.prototype.checkSetup = function() {
 };
 
 window.onload = function() {
+  // Initialize collapse button
   window.Chat = new Chat();
 };

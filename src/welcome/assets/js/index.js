@@ -1,14 +1,4 @@
 
-var config = {
-	apiKey: "AIzaSyDXjq1Or10iD_J229t3qxyWxskmDBxjJ3s",
-	authDomain: "ptoapp-90ad1.firebaseapp.com",
-	databaseURL: "https://ptoapp-90ad1.firebaseio.com",
-	projectId: "ptoapp-90ad1",
-	storageBucket: "ptoapp-90ad1.appspot.com",
-	messagingSenderId: "101372763303"
-};
-firebase.initializeApp(config);
-var db = firebase.firestore();
  $(document).ready(function(){
  	if(sessionStorage.getItem('userData')!==null){
 		var user = JSON.parse(sessionStorage.getItem('userData'));
@@ -83,7 +73,7 @@ function getDescription(data){
 }
 
  function writeUserData(user) {
-	db.collection("users").doc(user.userData.uid).set({
+	firebase.firestore().collection("users").doc(user.userData.uid).set({
 		userData : {"name":user.userData.name, "email":user.userData.email, "photoURL":user.userData.photoURL, 
 		"birthday":user.userData.bday,"description":user.userData.description, "city":user.userData.city, 
 		"country":user.userData.country,"state":user.userData.state,"zip":user.userData.zip,
@@ -93,6 +83,7 @@ function getDescription(data){
 	}).catch(function(error){
 		alert(error.message);
 	}).then(function(){
+		console.log(user);
 		goToNext();
 	});
 }

@@ -1,27 +1,20 @@
-
-var config = {
-	apiKey: "AIzaSyDXjq1Or10iD_J229t3qxyWxskmDBxjJ3s",
-	authDomain: "ptoapp-90ad1.firebaseapp.com",
-	databaseURL: "https://ptoapp-90ad1.firebaseio.com",
-	projectId: "ptoapp-90ad1",
-	storageBucket: "ptoapp-90ad1.appspot.com",
-	messagingSenderId: "101372763303"
-};
-firebase.initializeApp(config);
 var db = firebase.firestore();
 var data;
 var imageUploads = [];
 
 $(document).ready(function(){
 	$("#signOutButton").click(function(){ signOut(); });
+	$("#editPhotos").on("click",function(){ openModal(); });
+	$("#modalClose").on("click", function(){ $(".modal").modal('close');});
 	showLoader();
 	getUserData();
 
 });
 
+
 function queryUserData(){
 	firebase.auth().onAuthStateChanged(function(user){
-		db.collection("users").doc(user.uid).get().then(function(doc){
+		firebase.firestore().collection("users").doc(user.uid).get().then(function(doc){
 			if(doc.exists){
 				hideLoader();
 				data = doc.data();
@@ -67,7 +60,7 @@ function setProfileImage(imageURL){
 }
 
 function setName(name){
-	$("#nav_name").text(name);
+	$("#nameLink").text(name);
 	$("#name").text(name);
 }
 

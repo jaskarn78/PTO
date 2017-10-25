@@ -22,38 +22,14 @@
   </head>
 
   <body>
- 
-			<!--nav id="nino-navbar" class="navbar navbar-default" style="background-color:white" role="navigation">
-				<div class="container">
-                <div class="navbar-brand" href="homepage.html">
-                    <img class="brand-image" src="images/brand/PressToOpen_Final_TrademarkReady2.png" />
-                </div>
 
-					<div class="nino-menuItem pull-left">
-						<div class="collapse navbar-collapse pull-left" id="nino-navbar-collapse">
-							<ul class="nav navbar-nav" >
-								<li class="active"><a href="#home">Members</a></li>
-								<li><a href="../messages">Messages</a></li>
-                <li><a href=#join>Winks</a></li>
-							</ul>
-						</div>
-					</div>
-          <div class="nino-menuItem pull-right">
-          <div class="collapse navbar-collapse pull-right" id="nino-navbar-collapse">
-              <ul class="nav navbar-nav">
-                  <li class="navbar-login"><a id="nameLink" href="../profile"></a></li>
-                  <li class="navbar-sign"><a href="">Upgrade</a></li>
-              </ul>
-          </div>
-          </div>
-				</div>
-			</nav-->
     <nav>
     <div class="nav-wrapper" style="background-color:white">
-      <a href="#" class="brand-logo left"><img style="margin-top:10px;height:50px;" src="images/brand/PressToOpen_Final_TrademarkReady2.png"/></a> 
+      <a href="#" class="brand-logo left"><img style="margin-left:10px;margin-top:10px;height:40px;" src="images/brand/PressToOpen_Final_TrademarkReady2.png"/></a> 
       <ul id="nav-mobile" class="right hide-on-small-and-down">
-        <li><a class='dropdown-button ' href='#' data-activates='dropdown1'><img id="navHeart" style="margin-top:14px;height:35px;" src="/pt-heart.png"/>
-        </a><li>
+        <li><a class='dropdown-button ' href='#' data-activates='dropdown1'><img id="navHeart" style="margin-top:0px;height:25px;" src="/pt-heart.png"/>
+        <span id="badge" class="new badge">0</span></a><li>
+
          <ul style="margin-top:10px;" id='dropdown1' class='dropdown-content'>
         </ul>
         <li><a id="nameLink" style="font-size:12px;color:black;" href="../profile"></a></li>
@@ -61,11 +37,12 @@
           <!-- Dropdown Structure -->
          
       </ul>
-       <ul class="left hide-on-med-and-down" style="margin-left:25%;">
+       <ul class="left hide-on-med-and-down" style="margin-left:20%;">
           <li class="active"><a style="color:black;" href="#home">Members</a></li>
           <li><a style="color:black;" href="../messages">Messages</a></li>
           <li><a style="color:black;" href=#join>Winks</a></li>
         </ul>
+      </div>
   </nav>
 
 
@@ -77,27 +54,30 @@
     background: linear-gradient(135deg, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#febbbb', endColorstr='#ff5c5c',GradientType=1);">
       <div class="row">
-        <div class="col s7 push-s5" style="margin-left:12px;">
+        <div class="center-align">
           <img class="pulse" src="/pt-heart.png" style="margin-top:-20px;width:40px;height:40px;animation-name:pulse_animation;
             animation-duration: 4s;animation-iteration-count: infinite;">
         </div>
-        <div class="col s12 push-s5" style="margin-left: -15px;">
-          <p4 id="winkHeader" style="align:center; color:white"></p4>
+        <div class="center-align">
+          <h4 id="winkHeader" class="center-align" style="align:center; color:white"></h4>
         </div>
-        <div class="col s12 push-s5" style="margin-bottom: 15px;margin-left: -15px;">
+        <div class="center-align" style="margin-bottom: 15px;">
           <img id="winkImage" style="border-radius:50%;margin-top:5px;width:100px;height:100px;">
         </div>
-        <div class="col s6 push-s3" style="margin-top:15px;width: 50%;">
-        <textarea rows="8" cols="50" style="resize: none;color:black;background-color:white;" placeholder="Write your message here" id="winkText"></textarea>
-        <label style="font-size:12px;color:white" for="winkText">Wink Message</label>   
+        <div class="valign-wrapper" style="margin-top:20px;">
+        <textarea rows="8" cols="50" class="center-align" style="padding-right:15px;padding-left:15px;resize: none;color:black;background-color:white;" placeholder="Write your message here" id="winkText"></textarea>
         </div> 
+        <label style="font-size:10px;color:white" for="winkText">Wink Message</label>   
       </div>
     </div>
     <div class="modal-footer" style="background: #febbbb;
     background: -moz-linear-gradient(-45deg, #febbbb 0%, #fe9090 45%, #ff5c5c 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(-45deg, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg, #febbbb 0%,#fe9090 45%,#ff5c5c 100%);">
-      <a id="sendWink" style="color:white;"href="#!" class="waves-effect waves-red btn-flat ">Send Wink</a>
+      <a class="right-align waves-effect waves-red btn-flat " id="closeWink" data-target="modal1" style="max-width:100px;color:white;" >Close</a>
+      <a class="right-align waves-effect waves-red btn-flat " id="sendWink" data-target="modal1" style="max-width:100px;color:white;" href="#!" >Send Wink</a>
+      <a class="right-align waves-effect waves-red btn-flat " id="deleteWink" data-target="modal1" style="max-width:100px;color:white;" href="#!" >Delete</a>
+
     </div>
   </div>
   <div class="loader" id="loader" style="margin-left:50px"></div>

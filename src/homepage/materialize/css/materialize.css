@@ -3307,14 +3307,14 @@ input[type=range] + .thumb {
 }
 
 span.badge {
-  min-width: 3rem;
-  padding: 0 6px;
+  min-width: 2.5rem;
+  padding: 0 3px;
   margin-left: 14px;
   text-align: center;
   font-size: 1rem;
   line-height: 22px;
   height: 22px;
-  color: #757575;
+  color: #FF768A;
   float: right;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -3322,9 +3322,9 @@ span.badge {
 
 span.badge.new {
   font-weight: 300;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #fff;
-  background-color: #26a69a;
+  background-color: #FF768A;
   border-radius: 2px;
 }
 
@@ -4329,16 +4329,19 @@ nav ul li {
 }
 
 nav ul li.active {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: none;
+  border-bottom-color: #FF768A;
+  border-bottom: solid;
+  border-color: #FF768A;
 }
 
 nav ul a {
   -webkit-transition: background-color .3s;
   transition: background-color .3s;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #fff;
   display: block;
-  padding: 0 15px;
+  padding: 0 10px;
   cursor: pointer;
 }
 
@@ -4354,7 +4357,10 @@ nav ul a.btn > .material-icons, nav ul a.btn-large > .material-icons, nav ul a.b
 }
 
 nav ul a:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color:none ;
+  border-bottom-color: #FF768A;
+  border-bottom: solid;
+  border-color: #FF768A;
 }
 
 nav ul.left {
@@ -5440,7 +5446,7 @@ button.btn-floating {
   background-color: #fff;
   margin: 0;
   display: none;
-  min-width: 100px;
+  min-width: 200px;
   max-height: 650px;
   overflow-y: auto;
   opacity: 0;
@@ -5454,6 +5460,7 @@ button.btn-floating {
   color: rgba(0, 0, 0, 0.87);
   cursor: pointer;
   min-height: 50px;
+  margin-top: 20px;
   line-height: 1.5rem;
   width: 100%;
   text-align: left;
@@ -5461,7 +5468,14 @@ button.btn-floating {
 }
 
 .dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected {
-  background-color: #eee;
+  background-color: #FF768A;
+  color: white;
+}
+.dropdown-content li > a:hover{
+  color:white;
+}
+.wink:hover{
+  color:white;
 }
 
 .dropdown-content li.active.selected {
@@ -5475,10 +5489,10 @@ button.btn-floating {
 
 .dropdown-content li > a, .dropdown-content li > span {
   font-size: 16px;
-  color: #26a69a;
+  color: black;
   display: block;
   line-height: 22px;
-  padding: 14px 16px;
+  /*padding: 14px 16px;*/
 }
 
 .dropdown-content li > span > label {
@@ -7348,7 +7362,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .side-nav {
   position: fixed;
-  width: 300px;
+  width: 270px;
   left: 0;
   top: 0;
   margin: 0;
@@ -7387,7 +7401,11 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .side-nav li.active {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #FF768A;
+  color:white;
+}
+.side-nav li.active > a{
+  color:white;
 }
 
 .side-nav li > a {
@@ -7395,14 +7413,20 @@ input[type=range]:focus::-ms-fill-upper {
   display: block;
   font-size: 14px;
   font-weight: 500;
-  height: 48px;
-  line-height: 48px;
+  height: 55px;
+  line-height: 55px;
   padding: 0 32px;
+  margin-bottom: 10px;
 }
 
 .side-nav li > a:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #FF768A;
+  color:white;
 }
+/*.side-nav li:active{
+  background-color: #FF768A;
+  color:white;
+}*/
 
 .side-nav li > a.btn, .side-nav li > a.btn-large, .side-nav li > a.btn-large, .side-nav li > a.btn-flat, .side-nav li > a.btn-floating {
   margin: 10px 15px;

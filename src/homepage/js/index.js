@@ -4,21 +4,26 @@ var data = JSON.parse(sessionStorage.getItem("userData"));
 var user = data.userData;
 var matchObj = {};
 var winkId;
-var winkData = {};
+var winkData = [];
+var openedWinkId;
+var numOfWinks=0;
+
 $(document).ready(function(){
 	showLoader();
 	$("#nameLink").text(user.name);
 	$("#signOut").on("click", function(){ signOut(); })
+	$("#closeWink").on("click", function(){ $("#modal1").modal('close');});
+	$("#sendWink").hide();
+	$("#deleteWink").hide();
 	getMatches(user);
-	console.log(JSON.parse(sessionStorage.getItem("matchData")));
-
+ 	
 
 });
 function getMatches(myInfo){
-	db.collection("users").where("userData.gender", "==", parseInt(myInfo.seeking)).where("userData.seeking", "==", parseInt(myInfo.gender)).limit(100)
+	db.collection("users").where("userData.gender", "==", parseInt(myInfo.seeking))
+	.where("userData.seeking", "==", parseInt(myInfo.gender)).limit(100)
 		.get().then(function(querySnapshot) {
 	    querySnapshot.forEach(function(doc) {
-	    	console.log(doc.data());
 	    	matchObj[doc.data().userData.uid.replace("-", "")] = doc.data();
 	        populateMatches(doc.data());
 	        populateChat(doc.data());
@@ -26,50 +31,44 @@ function getMatches(myInfo){
 	       
 	    });
 	    $(".user-more .wink").on("click", function(){
+			$("#sendWink").show();
     		var user = matchObj[$(this).attr("id").replace("-", "")].userData;
-
+    		$("#winkText").val('');
 			winkId = $(this).attr("id").replace("-", "");
 	   		$("#winkText").attr("disabled",false); 
-	   		$("#winkHeader").html('Send Wink To:<br><span style="font-size:14px;color:white" id="modalHeader"></span>');
+	   		$("#winkText").css({"background":"white", "color":"black"});
+	   		$("#winkText").addClass("center-align");
+
+	   		$("#winkHeader").html('&nbsp;&nbsp;Send Wink To:<br><span style="font-size:14px;color:white" id="modalHeader"></span>');
 			openModal(user.name, user.photoURL, '');
+
 
 
        });
 	   $("#sendWink").on("click", function(){
 	   		var winkText = $("#winkText").val();
-	   		if(winkText=="")
-	   			alert("Please type a proper message");
-	   		else{
-	   			sendWink(winkText);
-	   		}
+	   		if(winkText=="") alert("Please type a proper message");
+	   		else sendWink(winkText);
 	   });
-
 		loadRecievedWinks();
-		$("#dropdown1").on("click", function(){
-			var id = $("#dropdown1 li").attr("id");
-			var user = matchObj[id].userData;
-	   		$("#winkHeader").html('&nbsp;&nbsp;Wink Sent By:<br><span style="font-size:14px;color:white" id="modalHeader"></span>');
-	   		$("#winkText").attr("disabled",true); 
-			openModal(winkData[id].name, winkData[id].photoUrl, winkData[id].text);
-			//$('#modal1').modal('open');
-
+		$("#deleteWink").on("click", function(){
+			deleteWink();
 		});
-
+		
 		storeMatches(matchObj)
 
 	});
 }
 
 function openModal(name, photo, text){
-	$('.modal').modal({
-		complete: function(){ }
-	});
+	$(".modal").modal();
 	$('#modal1').modal('open');
-	$(".modal").css({"max-height":"320px"});
+	$(".modal").css({"max-height":"320px", "max-width":"400px"});
 	$("#modalHeader").text(name);
 	$("#winkImage").attr("src", photo);
 	if(text!=="undefined")
 		$("#winkText").text(text);
+	
 }
 
 function clearTextArea(){
@@ -84,9 +83,9 @@ function loadRecievedWinks(){
   	}
   	var setMessage = function(data){
     var val = data.val();
-    winkData[val.fromId] = val;
     displayMessage(data.key, val.fromId, val.name, val.text, val.photoUrl, val.imageUrl);
-
+    winkData[data.key] = val;
+    $("#badge").text(++numOfWinks);
   }.bind(this);
   	winksRefToMe.limitToLast(12).on('child_added', setMessage);
   	winksRefToMe.limitToLast(12).on('child_changed', setMessage);
@@ -99,8 +98,27 @@ function displayMessage(key, fromId, name, text, photoUrl, imageUrl){
 	if(key!=null || key!="undefined")
 		//$("#navHeart").css({"animation-name":"pulse_animation","animation-duration":"4s","animation-iteration-count":"infinite"});
 	$("#dropdown1").append('\
-		<li id="'+fromId+'"><p class="wink" id="'+fromId+'" style="color:#F61251;align:center" href="#!">From:<br>'+name+'</p></li>');
+		<li id="winkList">\
+			<a id="'+key+'" class="wink" onclick="openWink(this.id)" style="margin-top:10px;align:center">\
+			<img src="'+photoUrl+'" style="margin-right:5px;width:30px;min-height:30px;height30px;border-radius:50%"/>'+name+'</a>\
+		</li>');
 }
+
+function openWink(id){
+	openedWinkId = id;
+	//$("#sendWink").css({"display":"none"});
+	//$("#deleteWink").css({"display":"block"});
+	$("#sendWink").hide();
+	$("#deleteWink").show();
+	$("#winkText").val(winkData[id].text);
+	$("#winkText").css({"background":"transparent", "color":"white", "border":"none"});
+	$("#winkHeader").html('&nbsp;&nbsp;Wink Sent By:<br><span style="font-size:14px;color:white" id="modalHeader"></span>');
+	$("#winkText").attr("disabled",true); 
+	$('.modal').modal();
+	openModal(winkData[id].name, winkData[id].photoUrl, winkData[id].text);
+	return;
+}
+
 
 function sendWink(winkText){
 	var winksFromMe = user.uid+"_"+winkId;
@@ -112,8 +130,21 @@ function sendWink(winkText){
       photoUrl: user.photoURL || '/images/profile_placeholder.png'
     }).then(function(){
 		$('#modal1').modal('close');
-		Materialize.toast('Wink Sent!', 3000, 'rounded');
+		$("#winkText").val('');
+		Materialize.toast('Wink Sent!', 2000, 'rounded');
 	});
+}
+
+function deleteWink(){
+	//alert(openedWinkId);
+	var deleteWinkRef = firebase.database().ref('winks/'+user.uid+'/'+openedWinkId+'/');
+	deleteWinkRef.remove().then(function(){
+		$("#"+openedWinkId).parent().remove();
+		$('#modal1').modal('close');
+    	$("#badge").text(--numOfWinks);
+		Materialize.toast('Wink Removed!', 2000, 'rounded');
+	});
+
 }
 
 function storeMatches(matchData){
@@ -122,20 +153,25 @@ function storeMatches(matchData){
 
 function populateMatches(matchData){
 	var userData = matchData.userData;
-	$("#flex-grid").append('<div class="palette" id="01"><div class="wrapper"><div class="colors"><div class="user">\
-        <img src="'+userData.photoURL+'" alt="" class="circle responsive-img" style="width:90px; height:90px;"">\
-        <p class="user-info">'+parseGender(userData.gender)+" "+getAgeFromDob(userData.birthday)+'</p>\
-        <p class="user-name">'+userData.name+'</p>\
-        <p class="user-location">'+userData.city+", "+userData.state+'</p></div>\
-         <div layout="row" class="user-more">\
-                <a href="../member/member.html?match='+userData.uid.replace("-", "")+'">\
-                <i class="small material-icons" id="person">person_outline</i></a>\
-                <a data-target="modal1" style="background:none;border:none;border-shadow:none;cursor:pointer;cursor:hand;color:#FC747C" class="wink modal-trigger" id="'+userData.uid.replace("-", "")+'">\
-                <i name="wink" class="small material-icons">mood</i></a>\
-         </div>\
-         </div>\
-         </div>\
-         </div>');
+	if(userData.uid!==user.uid){
+		$("#flex-grid").append('\
+			<div class="palette" id="01"><div class="wrapper">\
+				<div class="colors">\
+					<div class="user">\
+	        			<img src="'+userData.photoURL+'" alt="" class="circle responsive-img" style="width:90px; height:90px;"">\
+	        			<p class="user-info">'+parseGender(userData.gender)+" "+getAgeFromDob(userData.birthday)+'</p>\
+				        <p class="user-name">'+userData.name+'</p>\
+				        <p class="user-location">'+userData.city+", "+userData.state+'</p>\
+				    </div>\
+	         		<div layout="row" class="user-more">\
+	                	<a href="../member/member.html?match='+userData.uid.replace("-", "")+'">\
+	                	<i class="small material-icons" id="person">person_outline</i></a>\
+	                	<a data-target="modal1" style="background:none;border:none;border-shadow:none;cursor:pointer;cursor:hand;color:#FC747C" class="wink modal-trigger" id="'+userData.uid.replace("-", "")+'">\
+	                	<i name="wink" class="small material-icons">favorite_border</i></a>\
+	         		</div>\
+	         	</div>\
+	         </div>');
+	}
 }
 
 function populateChat(matchData){
