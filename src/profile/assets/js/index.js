@@ -3,9 +3,7 @@ var data;
 var imageUploads = [];
 
 $(document).ready(function(){
-	$("#signOutButton").click(function(){ signOut(); });
-	$("#editPhotos").on("click",function(){ openModal(); });
-	$("#modalClose").on("click", function(){ $(".modal").modal('close');});
+	$("#signOutBtn").click(function(){ signOut(); });
 	showLoader();
 	getUserData();
 

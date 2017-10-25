@@ -1,36 +1,31 @@
- var config = {
-    apiKey: "AIzaSyDXjq1Or10iD_J229t3qxyWxskmDBxjJ3s",
-    authDomain: "ptoapp-90ad1.firebaseapp.com",
-    databaseURL: "https://ptoapp-90ad1.firebaseio.com",
-    projectId: "ptoapp-90ad1",
-    storageBucket: "ptoapp-90ad1.appspot.com",
-    messagingSenderId: "101372763303"
-  };
-  firebase.initializeApp(config);
 
  $(document).ready(function(){
  	sessionStorage.clear();
- 	$("#registerBtn").click(function(){
+ 	$("#registerBtn").on("click", function(){
 	 	var email = $("#email").val();
 	 	var pass  = $("#password").val();
-		signUpWithEmail(email, pass);
+	 	var name  = $("#name").val();
+		signUpWithEmail(email, pass, name);
  	});
 
- 	$("#fbLogin").click(function(){
+ 	$("#fbSignup").click(function(){
  		signUpWithFb();
  	});
 
- 	$("#googleLogin").click(function(){
+ 	$("#googleSignup").click(function(){
  		signUpWithGoogle();
  	});
  });
 
- function signUpWithEmail(email, pass){
+ function signUpWithEmail(email, pass, name){
  	var response='';
  	firebase.auth().createUserWithEmailAndPassword(email, pass)
  	.then(function(user){
- 		if(user!=null)
+ 		if(user!=null){
+ 			user.displayName = name;
+ 			console.log(user);
  			saveUserData(user);
+ 		}
  	})
  	.catch(function(error){
  		var errorCode = error.code;
@@ -45,9 +40,8 @@
  	provider.addScope('user_about_me');
  	provider.setCustomParameters({ 'display': 'popup' });
  	firebase.auth().signInWithPopup(provider).then(function(result){
- 		if(result.user != null){
- 			saveUserData(result);
- 		}
+ 		if(result.user != null)
+	 		checkIfuserExists(result);
  	}).catch(function(error){
  		var errorCode = error.code;
  		var errorMsg  = error.message;
@@ -55,12 +49,13 @@
  	});
  }
 
+
+
  function signUpWithGoogle(){
  	var provider = new firebase.auth.GoogleAuthProvider();
  	firebase.auth().signInWithPopup(provider).then(function(result){
- 		if(result.user != null){
- 			saveUserData(result);
- 		}
+ 		if(result.user != null)
+ 			checkIfuserExists(result);
  	}).catch(function(error){
  		var errorCode = error.code;
  		var errorMsg  = error.message;
@@ -71,28 +66,22 @@
  function saveUserData(result){
  	sessionStorage.setItem('userData', JSON.stringify(result));
 	window.location.href='../basicinfo';
-
- }
- function getUserData(){
- 	database.ref('users/'+userId).once('value').then(function(snapshot){
- 		
- 	});
-
- }
-
-
-
- function writeUserData(result) {
- 	console.log(result);
-	/*firebase.database().ref('users/' + userId).set({
-		username: name,
-		email: email,å
-		profile_picture : imageUrl
-		profile_status : 0
-	}).catch(function(error){
-		alert(error.message);
-	});*/
 }
+
+
+ function checkIfuserExists(result){
+ 	 firebase.firestore().collection('users').doc(result.user.uid)
+    .get().then(function(doc){
+    	if(doc.exists)
+    		goToProfile(doc.data());
+    	else saveUserData(result);
+    });
+ }
+
+ function goToProfile(result){
+ 	sessionStorage.setItem('userData', JSON.stringify(result));
+ 	window.location.href='../profile';
+ }
 
 
 

@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html style="background-repeat:no-repeat;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">signin</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="manifest" href="/manifest.json">
+
+</head>
+
+<body style=" 
+    background: #febbbb;
+    background: -moz-linear-gradient(-45deg, #febbbb 0%, #fe9090 45%, #ff5c5c 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#febbbb', endColorstr='#ff5c5c',GradientType=1);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;">
+    
+    <div class="login-clean" style="background-color:transparent;padding-top:45px;">
+        <form  id="signinForm" name="signinFrom"  style="background-color:transparent;padding-left:0px;padding-right:0px;padding-top:15px;width:auto;">
+            <h1 class="text-center" style="margin-left:107px;color:rgb(240,245,251);margin-bottom:20px;font-family:Dosis, sans-serif;margin-right:99px;padding-left:1px; margin-top:50px;margin-left:50px;">Sign In</h1>
+            <h2 class="sr-only">Login Form</h2>
+            <div class="form-group">
+                <input id="email" class="form-control" type="email" name="email" required="" oninvalid="this.setCustomValidity('Please Enter valid email')"
+                    oninput="setCustomValidity('')" placeholder="Email" autofocus="" data-bs-hover-animate="pulse" style="background-color:rgba(248,248,248,0.02);height:65px;width:400px;font-size:18px;color:#ffffff;">
+            </div>
+            <div class="form-group">
+                <input id="pw" class="form-control" type="password" name="password" required="" oninvalid="this.setCustomValidity('Please Enter valid password')"
+                oninput="setCustomValidity('')" placeholder="Password" maxlength="12" minlength="5" data-bs-hover-animate="pulse" style="background-color:rgba(248,248,248,0.02);height:65px;width:400px;font-size:18px;color:#ffffff;">
+            </div>
+            <div class="form-group">
+                <button id="signInButton" type="button" class="btn btn-primary btn-block" data-bs-hover-animate="pulse" style="width:390px;height:56px;">SIGN IN</button>
+            </div><span style="color:white;font-size:22px;margin:0px;margin-left:180px  ;padding-top:0px;">OR </span>
+           <div class="row" style="margin-left:20px;margin-right:0px;padding-left:0px;padding-top:0px;margin-top:0px;height:auto;width:400px;">
+                <div class="col-md-12" style="padding-left:0px;padding-right:0px;height:auto;margin-right:0px;margin-left:0px;width:420px;margin-top:18px;">
+                    <button id="fbLogin" type="button" data-bs-hover-animate="pulse" style=" background:transparent; width:153px;font-size:30px;padding-top:-10px;margin-top:0px;height:auto;padding-bottom:0px;margin-right:25px;padding-right:25px;padding-left:25px;border: none">
+                    <i class="fa fa-facebook-f" style="font-size:30px;height:0px;"></i><span style="font-size:18px;color:white;"> Facebook </span></button>
+                    <button id="googleLogin" type="button" data-bs-hover-animate="pulse" style="width:153px;font-size:30px;height:auto;padding-top:0px;margin-left:25px;background:transparent;padding-right:25px;padding-bottom:0px;padding-left:25px;border: none">
+                    <i class="fa fa-google" style="font-size:30px;color:rgb(235, 59, 36);"></i><span style="font-size:18px;color:white;"> Gmail </span></button>
+                </div>
+    
+            </div>
+        </form>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <!--script src="../../util/md5.min.js"></script-->
+    <!--script src="../../util/verify.js"></script-->
+    <!--script src="../../../facebook/fb.js"></script-->
+   <script src="/__/firebase/4.5.0/firebase-app.js"></script>
+  <script src="/__/firebase/4.5.0/firebase-auth.js"></script>
+  <script src="/__/firebase/4.5.0/firebase-database.js"></script>
+  <script src="/__/firebase/4.5.0/firebase-messaging.js"></script>
+  <script src="/__/firebase/4.5.0/firebase-storage.js"></script>
+  <script src="/__/firebase/4.5.0/firebase-firestore.js"></script>
+  <script src="/__/firebase/init.js"></script>
+    <script src="assets/js/index.js"></script> 
+    <!--script src="../profile/assets/js/profile.js"></script-->
+    <!--script src="../../../google/google.js"></script-->
+    <!--script onload="handleClientLoad()" src="https://apis.google.com/js/platform.js"></script!-->
+
+</body>
+
+</html>

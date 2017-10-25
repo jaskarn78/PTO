@@ -19,6 +19,10 @@ $(document).ready(function(){
  	
 
 });
+function goToProfile(id){
+	window.location.href='../member/member.html?match='+id;
+	//alert(id);
+}
 function getMatches(myInfo){
 	db.collection("users").where("userData.gender", "==", parseInt(myInfo.seeking))
 	.where("userData.seeking", "==", parseInt(myInfo.gender)).limit(100)
@@ -32,6 +36,7 @@ function getMatches(myInfo){
 	    });
 	    $(".user-more .wink").on("click", function(){
 			$("#sendWink").show();
+			$("#deleteWink").hide();
     		var user = matchObj[$(this).attr("id").replace("-", "")].userData;
     		$("#winkText").val('');
 			winkId = $(this).attr("id").replace("-", "");
@@ -39,12 +44,13 @@ function getMatches(myInfo){
 	   		$("#winkText").css({"background":"white", "color":"black"});
 	   		$("#winkText").addClass("center-align");
 
-	   		$("#winkHeader").html('&nbsp;&nbsp;Send Wink To:<br><span style="font-size:14px;color:white" id="modalHeader"></span>');
+	   		$("#winkHeader").html('Send Wink To:<br><a onclick="goToProfile(winkId)" style="cursor:pointer;cursor:hand;"><span style="font-size:14px;color:white" id="modalHeader"></span></a>');
 			openModal(user.name, user.photoURL, '');
 
 
 
        });
+
 	   $("#sendWink").on("click", function(){
 	   		var winkText = $("#winkText").val();
 	   		if(winkText=="") alert("Please type a proper message");
@@ -63,7 +69,7 @@ function getMatches(myInfo){
 function openModal(name, photo, text){
 	$(".modal").modal();
 	$('#modal1').modal('open');
-	$(".modal").css({"max-height":"320px", "max-width":"400px"});
+	$(".modal").css({"max-height":"320px", "max-width":"420px"});
 	$("#modalHeader").text(name);
 	$("#winkImage").attr("src", photo);
 	if(text!=="undefined")
@@ -112,7 +118,9 @@ function openWink(id){
 	$("#deleteWink").show();
 	$("#winkText").val(winkData[id].text);
 	$("#winkText").css({"background":"transparent", "color":"white", "border":"none"});
-	$("#winkHeader").html('&nbsp;&nbsp;Wink Sent By:<br><span style="font-size:14px;color:white" id="modalHeader"></span>');
+	$("#winkHeader").html('Wink Sent By:<br><a onclick="goToProfile(id)" \
+		style="cursor:pointer;cursor:hand;style="font-size:14px;color:white;">\
+		<span id="modalHeader" style="color:white;"></span></a>');
 	$("#winkText").attr("disabled",true); 
 	$('.modal').modal();
 	openModal(winkData[id].name, winkData[id].photoUrl, winkData[id].text);
