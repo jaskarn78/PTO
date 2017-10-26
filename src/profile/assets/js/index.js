@@ -1,132 +1,133 @@
-var db = firebase.firestore();
-var data;
+var user;
 var imageUploads = [];
 
 $(document).ready(function(){
-	$("#signOutBtn").click(function(){ signOut(); });
 	showLoader();
-	getUserData();
-
+	setupDropZone();
+	$("#signOutBtn").on("click", function(){ signOut(); });
+	if(sessionStorage.getItem("userData")==null)
+		getUserDataFromDb();
+	else getUserDataFromSession();
 });
 
 
-function queryUserData(){
+function getUserDataFromDb(){
+	console.log('db');
+}
+
+function getUserDataFromSession(){
+	user = JSON.parse(sessionStorage.getItem("userData"));
+	console.log(user);
+	setupProfile(user);
+	getImageFromSession(user);
+	hideLoader();
+}
+function getUserDataFromDb(){
 	firebase.auth().onAuthStateChanged(function(user){
 		firebase.firestore().collection("users").doc(user.uid).get().then(function(doc){
-		if(doc.exists){
-			hideLoader();
-			data = doc.data();
-			sessionStorage.setItem("userData", JSON.stringify(data));
-			setProfileImage(data.userData.photoURL);
-			setName(data.userData.name);
-			setAddr(data.userData);
-			setBasicOverview(data);
-			setupImageUploads();
-			getImageFromDb();
+			if(doc.exists){
+				//hideLoader();
+				user = doc.data();
+				sessionStorage.setItem("userData", JSON.stringify(user));
+				setupProfile(user);
+				getImageFromSession(user);
+				hideLoader();
+			}
+		});
+	});
+}
+
+function setupProfile(user){
+	var userInfo = user.userData;
+	var profile = user.profile;
+	$("#navbar-name").text(userInfo.name);
+	$("#profile-page-name").text(userInfo.name);
+	$("#userLocation").text(userInfo.city+", "+userInfo.state);
+	$("#userImage").attr("src", userInfo.photoURL);
+	$("#profilePicture").attr("src", userInfo.photoURL);
+
+	$("#genderAge").text(parseGender(userInfo.gender)+", "+userInfo.age);
+	$("#description").text(userInfo.description);
+	//$("#edDiv span").text(profile.school);
+	$("#jobDib span").text(profile.job_title);
+	$("#ethnicityDiv span").text(profile.ehtnicity);
+	$("#homeTownDiv span").text(profile.home_city+", "+profile.home_state);
+	$("#drinkerDiv span").text(parseDrinker(profile.drinker));
+	$("#smokerDiv span").text(parseSmoker(profile.smoker));
+	$("#languageDiv span").text(parseLanguages(profile.languages));
+	$("#drop1").attr("src", $("#profilePicture").attr("src"));
+	$("#drop2").attr("src", $("#userImage1").attr("src"));
+	$("#drop3").attr("src", $("#userImage2").attr("src"));
+	$("#drop4").attr("src", $("#userImage3").attr("src"));
+	$("#drop5").attr("src", $("#userImage4").attr("src"));
+}
+
+function setupDropZone(){	
+	Dropzone.options.dropimage1 = {
+		url:".",
+		paramName: "file",
+	    dictDefaultMessage: "",
+		accept: function(file, done){
+			assignImage(this, file, "#drop1", "#profilePicture");
 		}
-		});
-	});
-}
-function getUserData(){
-	if(sessionStorage.getItem("userData")!==null){
-		hideLoader();
-		data = JSON.parse(sessionStorage.getItem("userData"));
-		setProfileImage(data.userData.photoURL);
-		setName(data.userData.name);
-		console.log(data.userData);
-		setAddr(data.userData);
-		setBasicOverview(data);
-		setupImageUploads();
-		getImageFromDb();
-	}else
-		queryUserData();
-}
+	}
+	Dropzone.options.dropimage2 = {
+		url:".",
+		paramName: "file",
+	    dictDefaultMessage: "",
+		accept: function(file, done){
+			assignImage(this, file, "#drop2", "#userImage1");
+		}
+	}
+	Dropzone.options.dropimage3 = {
+		url:".",
+		paramName: "file",
+	    dictDefaultMessage: "",
 
-
-function signOut(){
-	firebase.auth().signOut().then(function() {
-		window.location.href='../signin';
-	}, function(error) {
-		console.error('Sign Out Error', error);
-	});
-}
-
-function setProfileImage(imageURL){
-	$("#user_img").attr("src", imageURL);
-	$("#profile_img").attr("src", imageURL);
-	$("#image1").attr("src", imageURL);
-}
-
-function setName(name){
-	$("#nameLink").text(name);
-	$("#name").text(name);
-}
-
-function setAddr(addr){
-	var city = addr.city;
-	var state = addr.state;
-	$("#addr").text(city+", "+state);
+		accept: function(file, done){
+			assignImage(this, file, "#drop3", "#userImage2");
+		}
+	}
+	Dropzone.options.dropimage4 = {
+		url:".",
+		paramName: "file",
+		dictDefaultMessage: "",
+		accept: function(file, done){
+			assignImage(this, file, "#drop4", "#userImage3");
+			
+		}
+	}
+	Dropzone.options.dropimage5 = {
+		url:".",
+		paramName: "file",
+		dictDefaultMessage: "",
+		accept: function(file, done){
+			assignImage(this, file, "#drop5", "#userImage4");
+			
+		}
+	}
 }
 
-function setBasicOverview(data){
-	var userData = data.userData;
-	var profileData = data.profile;
-	$("#school").text(profileData.school);
-	$("#job_title").text(profileData.job_title);
-	$("#ethnicity").text(profileData.ethnicity);
-	$("#drinker").text(parseDrinker(profileData.drinker));
-	$("#home_town").text(profileData.home_city+", "+profileData.home_state);
-	$("#smoker").text(parseSmoker(profileData.smoker));
-	$("#languages").text(parseLanguages(profileData.languages));
-	$("#description").text(userData.description);
-
+function assignImage(cur, file, holder, id){
+	cur.removeFile(file);
+	var image = URL.createObjectURL(file);
+	console.log(file.name);
+	$(holder).attr("src", image);
+	$(id).attr("src", image);
+	uploadImage(file, id);
 }
 
-function setupImageUploads(){
-	$("#image2").click(function(){
-		var id = this.id;
-		$("#file-input2").on("change", function(event){
-			loadImage(event, id);
-		});
-	});
-	$("#image3").click(function(){
-		var id = this.id;
-		$("#file-input3").on("change", function(event){
-			loadImage(event, id);
-		});
-	});
-	$("#image4").click(function(){
-		var id = this.id;
-		$("#file-input4").on("change", function(event){
-			loadImage(event, id);
-		});
-	});
-	$("#image5").click(function(){
-		var id = this.id;
-		$("#file-input5").on("change", function(event){
-			loadImage(event, id);
-		});
-	});
-}
-
-function loadImage(event, id){
-	event.stopPropagation();
-	event.preventDefault();
-	var image =event.target.files[0];
-	$("#"+id).attr("src", URL.createObjectURL(image));
-	uploadImage(id, image);
-}
-
-function uploadImage(id, image){
+function uploadImage(image, id){
+	var imageName = id.substring(1, id.length);
 	var metadata   = {"contentType":image.type};
-    var storageRef = firebase.storage().ref('images/user/'+data.userData.uid+'/'+image.name);
+    var storageRef = firebase.storage().ref('images/user/'+user.userData.uid+'/'+imageName);
     storageRef.put(image, metadata).then(function(snapshot){
-    console.log(snapshot.metadata);
     var url = snapshot.downloadURL;
-    imageUploads[id] = { [id]:url };
-    data.images = imageUploads;
-    sessionStorage.setItem("userData", data);
-    storeImageUrl(id, url);
+    imageUploads[imageName] = { [imageName]:url };
+    user.images[imageName] = url;
+    sessionStorage.setItem("userData", JSON.stringify(user));
+    console.log(JSON.parse(sessionStorage.getItem("userData")));
+    storeImageUrl(imageName, url);
     console.log('File available at', url);
   }).catch(function(error) {
   	console.error('Upload failed:', error);
@@ -135,27 +136,46 @@ function uploadImage(id, image){
 
 function storeImageUrl(id, url){
 	var image = { [id]:url };
-	db.collection("users").doc(data.userData.uid).set({
+	firebase.firestore().collection("users").doc(user.userData.uid).set({
 		images: image
-	}, {merge: true});
+	}, {merge: true})
+	.then(function(){
+		console.log("Complete");
+	});
 }
 
-function getImageFromDb(){
-	if(typeof(data.images)!=='undefined'){
-		var images = data.images;
-		if(typeof(images.image2)!=='undefined'){
-			$("#image2").attr("src", images.image2);
+function getImageFromSession(user){
+	console.log(JSON.parse(sessionStorage.getItem("userData")));
+	if(typeof(user.images)!=='undefined'){
+		var images = user.images;
+		if(typeof(images.userImage1)!=='undefined'){
+			$("#userImage1").attr("src", images.userImage1);
+			$("#drop2").attr("src", images.userImage1);
 		}
-		if(typeof(images.image3)!=='undefined'){
-			$("#image3").attr("src", images.image3);
+		if(typeof(images.userImage2)!=='undefined'){
+			$("#userImage2").attr("src", images.userImage2);
+			$("#drop3").attr("src", images.userImage2);
+
 		}
-		if(typeof(images.image3)!=='undefined'){
-			$("#image4").attr("src", images.image4);
+		if(typeof(images.userImage3)!=='undefined'){
+			$("#userImage3").attr("src", images.userImage3);
+			$("#drop4").attr("src", images.userImage3);
+
 		}
-		if(typeof(images.image5)!=='undefined'){
-			$("#image5").attr("src", images.image5);
+		if(typeof(images.userImage4)!=='undefined'){
+			$("#userImage4").attr("src", images.userImage4);
+			$("#drop5").attr("src", images.userImage4);
+
 		}
 	}
+}
+
+function signOut(){
+	firebase.auth().signOut().then(function() {
+		window.location.href='../signin';
+	}, function(error) {
+		console.error('Sign Out Error', error);
+	});
 }
 
 
