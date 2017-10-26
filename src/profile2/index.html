@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Profile Page</title>
+    <!-- Favicons-->
+    <link rel="icon" href="/pt-heart.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <link href="../homepage/materialize/css/materialize.css" type="text/css" rel="stylesheet">
+    <link href="../util/css/dropzone.css">
+  </head>
+  <body style="background-color:rgba(238,238,238,0.75);">
+    <!-- Start Page Loading -->
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+    </div>
+    <div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper" style="background-color:white">
+          <a href="#" class="brand-logo left" style="margin-left:30px;margin-top:15px;" >
+            <img style="margin-top:0px;height:40px;" src="../homepage/images/brand/PressToOpen_Final_TrademarkReady2.png"/>
+          </a> 
+          <ul id="nav-mobile" class="right hide-on-small-and-down">
+            <li>
+              <a class='dropdown-button ' href='#' data-activates='dropdown1'>
+                <img id="navHeart" style="margin-top:0px;height:25px;" src="/pt-heart.png">
+                <span id="badge" style="font-size:14px;" class="new badge">0</span>
+              </a>
+            </li>
+
+             <ul style="margin-top:10px;" id='dropdown1' class='dropdown-content'>
+            </ul>
+            <li class="active"><a id="navbar-name" style="font-size:12px;color:black;" href="#">Name Here</a></li>
+            <li><a id="signOutBrn" style="font-size:14px;color:black;">Sign Out</a></li>
+              <!-- Dropdown Structure -->
+             
+          </ul>
+           <ul class="left hide-on-med-and-down" style="margin-left:20%;">
+              <li><a style="color:black;font-size:14px;" href="../homepage/search.html">Members</a></li>
+              <li><a style="color:black;font-size:14px;" href="../messages">Messages</a></li>
+              <li><a style="color:black;font-size:14px;" href=#join>Winks</a></li>
+            </ul>
+          </div>
+      </nav>
+    </div>
+    
+    <!-- START MAIN -->
+    <div id="main">
+      <!-- START WRAPPER -->
+      <div class="wrapper">
+        <section id="content">
+          <!--start container-->
+          <div class="container">
+            <div id="profile-page" class="section">
+              <!-- profile-page-header -->
+              <div id="profile-page-header" class="card">
+                <div class="card-content">
+                  <div class="row pt-2">
+                    <div class="col s12 m3 offset-m1">
+                      <img id="userImage" src="../member/assets/img/person.png" style="width:100px;height:100px;" class="circle z-depth-2 responsive-img activator gradient-45deg-light-blue-cyan gradient-shadow">                    
+                    </div>
+                    <div class="col s4 pull-m1">
+                      <h4 id="profile-page-name" class="card-title grey-text text-darken-4">Name Here</h4>
+                      <p id="genderAge" class="medium-small grey-text">Gender, Age</p>
+                      <p id="userLocation" class="medium-small grey-text">City, State</p>
+                    </div>
+              
+                  
+                   
+                  </div>
+                </div>
+               
+              </div>
+              <!--/ profile-page-header -->
+              <!-- profile-page-content -->
+              <div id="profile-page-content" class="row">
+                <!-- profile-page-sidebar-->
+                <div id="profile-page-sidebar" class="col s12 m4">
+                  <!-- Profile About  -->
+                  <div class="card" style="background-color:#FF758A">
+                    <div class="card-content white-text">
+                      <span class="card-title">About Me!</span>
+                      <p id="description"></p>
+                    </div>
+                  </div>
+                  <!-- Profile About  -->
+                  <!-- Profile About Details  -->
+                  <ul class="collection z-depth-1">
+                    <li class="collection-item">
+                      <div class="row">
+                        <div id="edDiv" class="col s7">Education<br>
+                          <span id="education">CSU Sacramento</span>
+                        </div>
+                        <div id="jobDiv" class="col s5 right-align">Job Title<br>
+                          <span id="job_type">test</span>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="collection-item">
+                      <div class="row">
+                        <div id="ethnicityDiv" class="col s5">Ethnicity<br>
+                          <span id="ethnicity">test</span>
+                        </div>
+                        <div id="homeTownDiv" class="col s7 right-align">Hometown<br>
+                          <span id="homeTown">test</span>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="collection-item">
+                      <div class="row">
+                        <div id="drinkerDiv" class="col s5">Drinker<br>
+                          <span id="drinker">test</span>
+                        </div>
+                        <div id="smokerDiv" class="col s7 right-align">Smoker<br><span id="smoker">test
+                          
+                        </span></div>
+                      </div>
+                    </li>
+                    <li class="collection-item">
+                      <div class="row">
+                        <div id="languageDiv" class="col s12">Languages<br>
+                          <span id="languages"></span>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <!--/ Profile About Details  -->
+                  
+                  <!-- Profile About  -->
+                  <!-- Profile feed  -->
+                  <ul id="profile-page-about-feed" class="collection z-depth-1">
+                    <li class="collection-item avatar">
+                      <img class="circle deep-orange accent-2">
+                      <span class="title">Project Title</span>
+                    </li>
+                    <li class="collection-item avatar">
+                      <i class="material-icons circle teal accent-4"></i>
+                      <span class="title">New Project</span>
+                    </li>
+                    
+                  </ul>
+                </div>
+              
+                <!-- profile-page-sidebar-->
+                <!-- profile-page-wall -->
+                <div id="profile-page-wall" class="col s12 m8">
+                  <!-- profile-page-wall-share -->
+                  <div id="profile-page-wall-share" class="row">
+                    <div class="col s12">
+                      <ul class="tabs tab-profile z-depth-1">
+                        <li class="tab col s6">
+                          <a class="black-text waves-effect waves-light active" href="#viewPhotos">My Photos</a>
+                        </li>
+                        <li class="tab col s6">
+                          <a class="black-text waves-effect waves-light" href="#editPhotos">Edit Photos</a>
+                        </li>
+                        
+                      </ul>
+                      <!-- UpdateStatus-->
+                      <div id="viewPhotos" class="tab-content col s12" style="background-color: white;">
+                        <div class="row">
+                           <div id="imageUpload" class="row" style="margin-left:10px;margin-top:25px;">
+                              <div class="col s2">
+                                  <img id="profilePicture" class="materialboxed" style="width:85px; height:px;">
+                              </div>
+                              <div class="col s2" style="margin-left:8px;margin-right:8px;">
+                                <img id="userImage1" class="materialboxed userImages" src="assets/images/person.png" data-dz-thumbnail style="width:85px; height:85px;">
+                              <input id="file-input1" name="file-input1" type="file" accept="image/*" style="display:none;"/>
+
+                              </div>
+                              <div class="col s2" style="margin-left:8px;margin-right:8px;">
+                                 <img id="userImage2" class="materialboxed userImages" src="assets/images/person.png" data-dz-thumbnail style="width:85px; height:85px;">
+                                 <input id="file-input2" name="file-input2" type="file" accept="image/*" style="display:none;"/>
+                              </div>
+                              <div class="col s2" style="margin-left:8px;margin-right:8px;">
+                                 <img id="userImage3" class="materialboxed userImages" src="assets/images/person.png" data-dz-thumbnail style="width:85px; height:85px;">
+                                 <input id="file-input3" name="file-input3" type="file" accept="image/*" style="display:none;"/>
+
+                              </div>
+                              <div class="col s2" style="margin-left:8px;margin-right:8px;">
+                                <img id="userImage4" class="materialboxed userImages" src="assets/images/person.png" data-dz-thumbnail style="width:85px; height:85px;">
+                                <input id="file-input4" name="file-input4" type="file" accept="image/*" style="display:none;"/>
+
+                              </div>                    
+                        </div>              
+                          
+                        </div>
+                       
+                      </div>
+                      <!-- AddPhotos -->
+                  <div id="editPhotos" class="tab-content col s12"  style="height: 200px;margin-bottom:30px;background:white;">
+                    <div class="rows" style="margin-top:20px;">
+                      <div id="dropimage1" class="col s1 dropzone" style="margin-left:10px;margin-right:10px;height:85px; width:85px;background-color:background-color:rgba(238,238,238,0.75);">
+                        <img id="drop1" style="margin-left:10px;margin-right:10px;height:85px; width:85px;"/>
+                      </div>
+                      <div id="dropimage2" class="col s1 dropzone" style="margin-left:10px;margin-right:10px;height:85px; width:85px;background-color:background-color:rgba(238,238,238,0.75);">
+                        <img id="drop2" style="margin-left:10px;margin-right:10px;height:85px; width:85px;"/>
+                      </div>
+                      <div id="dropimage3" class="col s1 dropzone" style="margin-left:10px;margin-right:10px;height:85px;width:85px;background-color:background-color:rgba(238,238,238,0.75);">
+                        <img id="drop3" style="margin-left:10px;margin-right:10px;height:85px; width:85px;"/>
+                      </div>
+                      <div id="dropimage4" class="col s1 dropzone" style="margin-left:10px;margin-right:10px;height:85px;width:85px;background-color:background-color:rgba(238,238,238,0.75);">
+                        <img id="drop4" style="margin-left:10px;margin-right:10px;height:85px; width:85px;"/>
+                      </div>
+                      <div id="dropimage5" class="col s1 dropzone" style="margin-left:10px;margin-right:10px;height:85px;width:85px;background-color:background-color:rgba(238,238,238,0.75);">
+                        <img id="drop5" style="margin-left:10px;margin-right:10px;height:85px; width:85px;"/>
+                      </div>
+                      <div id="message" style="margin-top:20px;" class="center-align col s12">Drag and drop images</div>
+                    </div>
+                  </div>
+                  <div id="profile-page-wall-share" class="row">
+                    <div class="col s12">
+                      <ul class="tabs tab-profile z-depth-1">
+                        <li class="tab col s4">
+                          <a class="black-text waves-effect waves-light active" href="#question1">Question 1</a>
+                        </li>
+                        <li class="tab col s4">
+                          <a class="black-text waves-effect waves-light" href="#question2">Question 2</a>
+                        </li>
+                        <li class="tab col s4">
+                          <a class="black-text waves-effect waves-light" href="#question3">Question 3</a>
+                        </li>
+                      </ul>
+
+                      <!-- UpdateStatus-->
+                      <div id="question1" class="tab-content col s12" style="height:200px;background-color: white;">
+                        <div class="row">
+                           <p class="col s1" style="margin-left:10px;">1</p>
+                           <p class="col s10" id="q1">Why are you seeking a part-time relationship?<br>
+                            <span id="response1"></span></p>
+                           
+                         </div>
+                      </div>
+                      <!-- AddPhotos -->
+                      <div id="question2" class="tab-content col s12" style="height:200px;background-color: white;">
+                        <div class="row">
+                          <p class="col s1" style="margin-left:10px;">2</p>
+                          <p class="col s10" id="q2">What are your top three deal breakers (reasons you would not date someone)?<br>
+                            <span id="response2"></span></p>
+                          
+                        </div>
+                      </div>
+                      <div id="question3" class="tab-content col s12" style="height:200px;background-color: white;">
+                        <div class="row">
+                          <p class="col s1" style="margin-left:10px;">3</p>
+                          <p class="col s10" id="q3">What are the top three qualities you look for in a partner?<br>
+                            <span id="response3"></span></p>
+                        </div>
+                      </div>
+               
+                    </div>
+                  </div>
+
+                    </div> <!--/profile-page-wall-->
+                  </div><!--/profile-page-content-->
+                </div><!--/profile-page-->
+              </div><!--container-->
+            </section><!--section-->
+          </div><!--wrapper-->
+    </div><!--main-->
+    <!-- END MAIN -->
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+    <script src="../homepage/js/jquery.min.js"></script>
+    <script src="../homepage/materialize/js/materialize.js"></script>
+
+    <script src="/__/firebase/4.5.0/firebase-app.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-auth.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-database.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-storage.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.4/holder.js"></script>
+    <script src="../util/js/dropzone.js"></script>
+
+    <script src="assets/js/index.js"></script>
+   
+  </body>
+</html>

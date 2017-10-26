@@ -5,7 +5,10 @@
 	 	var email = $("#email").val();
 	 	var pass  = $("#password").val();
 	 	var name  = $("#name").val();
-		signUpWithEmail(email, pass, name);
+        if($("#name").val()=='')
+            alert("Please enter your name");
+        else
+		  signUpWithEmail(email, pass, name);
  	});
 
  	$("#fbSignup").click(function(){

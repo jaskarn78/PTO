@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://localhost:8085/src/profile2/# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Profile Page</title>
+    <!-- Favicons-->
+    <link rel="icon" href="./Profile Page_files/pt-heart.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <link href="./Profile Page_files/materialize.css" type="text/css" rel="stylesheet">
+    <link href="http://localhost:8085/src/util/css/dropzone.css">
+  </head>
+  <body style="background-color:rgba(238,238,238,0.75);">
+    <!-- Start Page Loading -->
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+    </div>
+    <div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper" style="background-color:white">
+          <a href="http://localhost:8085/src/profile2/#" class="brand-logo left" style="margin-left:30px;margin-top:15px;">
+            <img style="margin-top:0px;height:40px;" src="./Profile Page_files/PressToOpen_Final_TrademarkReady2.png">
+          </a> 
+          <ul id="nav-mobile" class="right hide-on-small-and-down">
+            <li>
+              <a class="dropdown-button " href="http://localhost:8085/src/profile2/#" data-activates="dropdown1">
+                <img id="navHeart" style="margin-top:0px;height:25px;" src="./Profile Page_files/pt-heart.png">
+                <span id="badge" style="font-size:14px;" class="new badge">0</span>
+              </a><ul style="margin-top:10px;" id="dropdown1" class="dropdown-content">
+            </ul>
+            </li>
+
+             
+            <li class="active"><a id="navbar-name" style="font-size:12px;color:black;" href="http://localhost:8085/src/profile2/#">Jaskarn Jagpal</a></li>
+            <li><a id="signOutBrn" style="font-size:14px;color:black;">Sign Out</a></li>
+              <!-- Dropdown Structure -->
+             
+          </ul>
+           <ul class="left hide-on-med-and-down" style="margin-left:20%;">
+              <li><a style="color:black;font-size:14px;" href="http://localhost:8085/src/homepage/search.html">Members</a></li>
+              <li><a style="color:black;font-size:14px;" href="http://localhost:8085/src/messages">Messages</a></li>
+              <li><a style="color:black;font-size:14px;" href="http://localhost:8085/src/profile2/#join">Winks</a></li>
+            </ul>
+          </div>
+      </nav>
+    </div>
+    
+    <!-- START MAIN -->
+    <div id="main">
+      <!-- START WRAPPER -->
+      <div class="wrapper">
+        <section id="content">
+          <!--start container-->
+          <div class="container">
+            <div id="profile-page" class="section">
+              <!-- profile-page-header -->
+              <div id="profile-page-header" class="card">
+                <div class="card-content">
+                  <div class="row pt-2">
+                    <div class="col s12 m3 offset-m1">
+                      <img id="userImage" src="./Profile Page_files/22366730_1929072973774619_1629569664373840748_n.jpg" style="width:100px;height:100px;" class="circle z-depth-2 responsive-img activator gradient-45deg-light-blue-cyan gradient-shadow">                    
+                    </div>
+                    <div class="col s4 pull-m1">
+                      <h4 id="profile-page-name" class="card-title grey-text text-darken-4">Jaskarn Jagpal</h4>
+                      <p id="genderAge" class="medium-small grey-text">Male (Cis), 25</p>
+                      <p id="userLocation" class="medium-small grey-text">Yuba City, CA</p>
+                    </div>
+              
+                  
+                   
+                  </div>
+                </div>
+               
+              </div>
+              <!--/ profile-page-header -->
+              <!-- profile-page-content -->
+              <div id="profile-page-content" class="row">
+                <!-- profile-page-sidebar-->
+                <div id="profile-page-sidebar" class="col s12 m4">
+                  <!-- Profile About  -->
+                  <div class="card" style="background-color:#FF758A">
+                    <div class="card-content white-text">
+                      <span class="card-title">About Me!</span>
+                      <p id="description">I bring over 4 years of experience developing software for multiple clients in
+various environments. I possess solid knowledge of software development.</p>
+                    </div>
+                  </div>
+                  <!-- Profile About  -->
+                  <!-- Profile About Details  -->
+                  <ul class="collection z-depth-1">
+                    <li class="collection-item">
+                      <div class="row">
+                        <div class="col s5">Project</div>
+                        <div class="col s7 right-align">ABC Name</div>
+                      </div>
+                    </li>
+                    <li class="collection-item">
+                      <div class="row">
+                        <div class="col s5">Skills</div>
+                        <div class="col s7 right-align">HTML, CSS</div>
+                      </div>
+                    </li>
+                    <li class="collection-item">
+                      <div class="row">
+                        <div class="col s5">Lives in</div>
+                        <div class="col s7 right-align">NY, USA</div>
+                      </div>
+                    </li>
+                    <li class="collection-item">
+                      <div class="row">
+                        <div class="col s5">Birth date</div>
+                        <div class="col s7 right-align">18th June, 1991</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <!--/ Profile About Details  -->
+                  
+                  <!-- Profile About  -->
+                  <!-- Profile feed  -->
+                  <ul id="profile-page-about-feed" class="collection z-depth-1">
+                    <li class="collection-item avatar">
+                      <img class="circle deep-orange accent-2">
+                      <span class="title">Project Title</span>
+                    </li>
+                    <li class="collection-item avatar">
+                      <i class="material-icons circle teal accent-4"></i>
+                      <span class="title">New Project</span>
+                    </li>
+                    
+                  </ul>
+                </div>
+              
+                <!-- profile-page-sidebar-->
+                <!-- profile-page-wall -->
+                <div id="profile-page-wall" class="col s12 m8">
+                  <!-- profile-page-wall-share -->
+                  <div id="profile-page-wall-share" class="row">
+                    <div class="col s12">
+                      <ul class="tabs tab-profile z-depth-1">
+                        <li class="tab col s6">
+                          <a class="black-text waves-effect waves-light" href="http://localhost:8085/src/profile2/#viewPhotos">My Photos</a>
+                        </li>
+                        <li class="tab col s6">
+                          <a class="black-text waves-effect waves-light active" href="http://localhost:8085/src/profile2/#editPhotos">Edit Photos</a>
+                        </li>
+                        
+                      <li class="indicator" style="right: 0px; left: 264px;"></li></ul>
+                      <!-- UpdateStatus-->
+                      <div id="viewPhotos" class="tab-content col s12" style="background-color: white; display: none;">
+                        <div class="row">
+                           <div id="imageUpload" class="row" style="margin-left:10px;margin-top:25px;">
+                              <div class="col s2">
+                                  <div class="material-placeholder"><img id="profilePicture" class="materialboxed initialized" style="width:85px; height:px;" src="./Profile Page_files/22366730_1929072973774619_1629569664373840748_n.jpg"></div>
+                              </div>
+                              <div class="col s2" style="margin-left:8px;margin-right:8px;">
+                                <div class="material-placeholder"><img id="userImage1" class="materialboxed userImages initialized" src="./Profile Page_files/person.png" data-dz-thumbnail="" style="width:85px; height:85px;"></div>
+                              <input id="file-input1" name="file-input1" type="file" accept="image/*" style="display:none;">
+
+                              </div>
+                              <div class="col s2" style="margin-left:8px;margin-right:8px;">
+                                 <div class="material-placeholder"><img id="userImage2" class="materialboxed userImages initialized" src="./Profile Page_files/person.png" data-dz-thumbnail="" style="width:85px; height:85px;"></div>
+                                 <input id="file-input2" name="file-input2" type="file" accept="image/*" style="display:none;">
+                              </div>
+                              <div class="col s2" style="margin-left:8px;margin-right:8px;">
+                                 <div class="material-placeholder"><img id="userImage3" class="materialboxed userImages initialized" src="./Profile Page_files/person.png" data-dz-thumbnail="" style="width:85px; height:85px;"></div>
+                                 <input id="file-input3" name="file-input3" type="file" accept="image/*" style="display:none;">
+
+                              </div>
+                              <div class="col s2" style="margin-left:8px;margin-right:8px;">
+                                <div class="material-placeholder"><img id="userImage4" class="materialboxed userImages initialized" src="./Profile Page_files/person.png" data-dz-thumbnail="" style="width:85px; height:85px;"></div>
+                                <input id="file-input4" name="file-input4" type="file" accept="image/*" style="display:none;">
+
+                              </div>                    
+                        </div>              
+                          
+                        </div>
+                       
+                      </div>
+                      <!-- AddPhotos -->
+                  <div id="editPhotos" class="tab-content col s12 dropzone dz-clickable active" style="border: dashed; height: 200px; display: block;">
+                      <div class="right-align">
+                        <a id="uploadImage" class="waves-effect waves-red btn-flat">Upload</a>
+                    </div>
+                  <div class="dz-default dz-message"><span>Drop files here to upload</span></div></div>
+                  <div hidden="" id="profile-page-wall-share" class="row">
+                    <div class="col s12">
+                      <ul class="tabs tab-profile z-depth-1">
+                        <li class="tab col s4">
+                          <a class="black-text waves-effect waves-light active" href="http://localhost:8085/src/profile2/#question1">Question 1</a>
+                        </li>
+                        <li class="tab col s4">
+                          <a class="black-text waves-effect waves-light" href="http://localhost:8085/src/profile2/#question2">Question 2</a>
+                        </li>
+                        <li class="tab col s4">
+                          <a class="black-text waves-effect waves-light" href="http://localhost:8085/src/profile2/#question3">Question 3</a>
+                        </li>
+                      <li class="indicator"></li></ul>
+
+                      <!-- UpdateStatus-->
+                      <div id="question1" class="tab-content col s12 active" style="background-color: white;">
+                        <div class="row">
+                           
+                      </div>
+
+                      <!-- AddPhotos -->
+                      <div id="question2" class="tab-content col s12" style="background-color: white; display: none;">
+                        <div class="row">
+                          <div class="col s3"></div>
+                          <div class="input-field col s10"></div>
+                        </div>
+                        <div class="row"></div>
+                      </div>
+                      <div id="question3" class="tab-content col s12" style="background-color: white; display: none;">
+                        <div class="row">
+                          <div class="col s2"></div>
+                          <div class="input-field col s10"></div>
+                        </div>
+                        <div class="row"></div>
+                      </div>
+               
+                    </div>
+                  </div>
+
+                    </div> <!--/profile-page-wall-->
+                  </div><!--/profile-page-content-->
+                </div><!--/profile-page-->
+              </div><!--container-->
+            </div></div></div></section><!--section-->
+          </div><!--wrapper-->
+    </div><!--main-->
+    <!-- END MAIN -->
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+    <script src="./Profile Page_files/jquery.min.js"></script>
+    <script src="./Profile Page_files/materialize.js"></script>
+
+    <script src="./Profile Page_files/firebase-app.js"></script>
+    <script src="./Profile Page_files/firebase-auth.js"></script>
+    <script src="./Profile Page_files/firebase-database.js"></script>
+    <script src="./Profile Page_files/firebase-storage.js"></script>
+    <script src="./Profile Page_files/firebase-firestore.js"></script>
+    <script src="./Profile Page_files/init.js"></script>
+    <script src="./Profile Page_files/holder.js"></script>
+    <script src="./Profile Page_files/dropzone.js"></script>
+
+    <script src="./Profile Page_files/index.js"></script>
+   
+  
+<div class="hiddendiv common"></div><input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;"></body></html>

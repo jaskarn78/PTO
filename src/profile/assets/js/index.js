@@ -13,17 +13,17 @@ $(document).ready(function(){
 function queryUserData(){
 	firebase.auth().onAuthStateChanged(function(user){
 		firebase.firestore().collection("users").doc(user.uid).get().then(function(doc){
-			if(doc.exists){
-				hideLoader();
-				data = doc.data();
-				sessionStorage.setItem("userData", JSON.stringify(data));
-				setProfileImage(data.userData.photoURL);
-				setName(data.userData.name);
-				setAddr(data.userData);
-				setBasicOverview(data);
-				setupImageUploads();
-				getImageFromDb();
-			}
+		if(doc.exists){
+			hideLoader();
+			data = doc.data();
+			sessionStorage.setItem("userData", JSON.stringify(data));
+			setProfileImage(data.userData.photoURL);
+			setName(data.userData.name);
+			setAddr(data.userData);
+			setBasicOverview(data);
+			setupImageUploads();
+			getImageFromDb();
+		}
 		});
 	});
 }
