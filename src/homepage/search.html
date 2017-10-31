@@ -2,49 +2,110 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title id="title">Members</title>
-    <meta name="description" content="">
-    <meta name="manifest" src="/manifest.json">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="materialize/css/materialize.css">
-    <link rel="stylesheet" type="text/css" href="css/results.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="../util/css/loader.css">
-      <link rel="manifest" href="/manifest.json">
-
-
-
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title id="title">Members</title>
+  <meta name="description" content="">
+  <meta name="manifest" src="/manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="materialize/css/materialize.css">
+  <link rel="stylesheet" type="text/css" href="css/nouislider.css">
+  <link rel="stylesheet" type="text/css" href="css/results.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../util/css/loader.css">
+  <link rel="manifest" href="/manifest.json">
     
   </head>
 
   <body>
-
+  <div class="navbar-fixed">
     <nav>
-    <div class="nav-wrapper" style="background-color:white">
-      <a href="#" class="brand-logo left"><img style="margin-left:10px;margin-top:10px;height:40px;" src="images/brand/PressToOpen_Final_TrademarkReady2.png"/></a> 
-      <ul id="nav-mobile" class="right hide-on-small-and-down">
-        <li><a class='dropdown-button ' href='#' data-activates='dropdown1'><img id="navHeart" style="margin-top:0px;height:25px;" src="/pt-heart.png"/>
-        <span id="badge" style="font-size:14px;" class="new badge">0</span></a><li>
-
-         <ul style="margin-top:10px;" id='dropdown1' class='dropdown-content'>
+      <div class="nav-wrapper" style="background-color:white">
+        <a href="#" class="brand-logo left">
+          <img style="margin-left:10px;margin-top:10px;height:40px;" src="images/brand/PressToOpen_Final_TrademarkReady2.png"/>
+        </a> 
+        <ul id="nav-mobile" class="right hide-on-small-and-down">
+          <li><a class='dropdown-button ' href='#' data-activates='dropdown1'><img id="navHeart" style="margin-top:0px;height:25px;" src="/pt-heart.png"/>
+          <span id="badge" style="font-size:14px;" class="new badge">0</span></a><li>
+           <ul style="margin-top:10px;" id='dropdown1' class='dropdown-content'>
+          </ul>
+          <li><a id="nameLink" style="font-size:12px;color:black;" href="../profile"></a></li>
+          <li><a id="signOut" style="font-size:12px;color:black;">Sign Out</a></li>
         </ul>
-        <li><a id="nameLink" style="font-size:12px;color:black;" href="../profile"></a></li>
-        <li><a id="signOut" style="font-size:12px;color:black;">Sign Out</a></li>4
-          <!-- Dropdown Structure -->
-         
-      </ul>
-       <ul class="left hide-on-med-and-down" style="margin-left:20%;">
-          <li class="active"><a style="color:black;" href="#home">Members</a></li>
-          <li><a style="color:black;" href="../messages">Messages</a></li>
-          <li><a style="color:black;" href=#join>Winks</a></li>
-        </ul>
+         <ul class="left hide-on-med-and-down" style="margin-left:20%;">
+            <li class="active"><a style="color:black;" href="#home">Members</a></li>
+            <li><a style="color:black;" href="../messages">Messages</a></li>
+            <li><a style="color:black;" href=#join>Winks</a></li>
+          </ul>
       </div>
-  </nav>
+    </nav>
+  </div>
 
+  <div id="slide-out" class="side-nav fixed" style="margin-top: 80px;">
+    <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header">
+        <i class="material-icons">filter_drama</i>Age Range
+      </div>
+      <div class="collapsible-body">
+        <div class="row">
+          <p class="col s12 offset-s1" style="color:black;">Select min and max age</p>
+          <div class="col s12 offset-s1 slider" id="age-slider" style="margin-bottom:10px;width:180px;"></div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header">
+        <i class="material-icons">place</i>Activity Level
+      </div>
+      <div class="collapsible-body">
+        <div class="row">
+          <p class="col s12 offset-s1" style="color:black;">Choose activity level</p>
+          
+          <p class="col s12 offset-s1">
+            <input class="with-gap" name="activity" value=0 type="radio" id="veryActive" />
+            <label for="veryActive">Very Active</label>
+          </p>
+          <p class="col s12 offset-s1">
+            <input class="with-gap" name="activity" value=1 type="radio" id="moderatelyActive" />
+            <label for="moderatelyActive">Moderately Active</label>
+          </p>
+          <p class="col s12 offset-s1">
+            <input class="with-gap" name="activity" value=2 type="radio" id="lessActive"  />
+            <label for="lessActive">Less Active</label>
+          </p>
+          <p class="col s12 offset-s1">
+            <input class="with-gap" name="activity" value=-1  checked type="radio" id="showAllActivity" />
+            <label for="showAllActivity">All</label>
+          </p>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Height</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Weight</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Hair Color</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Eye Color</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul>
+  </div>
+      
+
+ 
 
  <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer" style="max-height:320px;overflow: hidden;">
@@ -83,7 +144,7 @@
   <div class="loader" id="loader" style="margin-left:50px"></div>
 
   <div id="myDiv" class="animate-bottom">
-     <div class="col s9">
+     <div class="col s9" style="padding-left:250px;">
         <div id="flex-grid" class="flex-grid">
         </div>
       </div>
@@ -102,7 +163,9 @@
   </div-->
   
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="js/nouislider.min.js"></script>
+  <script src="js/wNumb.js"></script>
 
   <!--script src="../php/chat/jquery-1.11.2.min.js" ></script-->
   <!--script src="../chat/jd.js" ></script>

@@ -237,7 +237,7 @@ Chat.prototype.loadMatches = function(){
               'style="width:40px; height:40px;margin-bottom:10px;margin-right:5px; border-radius:50%;">'+match.userData.name+'</a></li>\
                   <li><div class="divider"></div></li>');
     });
-    Materialize.showStaggeredList('#slide-out');
+    //Materialize.showStaggeredList('#slide-out');
     $("#slide-out li a").on("click", function(){
         var toId = $(this).attr("id").replace("-", "");
         $(".matched_userList").removeClass('active');

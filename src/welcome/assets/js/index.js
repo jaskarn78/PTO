@@ -61,7 +61,8 @@ function saveData(data){
 		data.userData.description  = description;
 		data.userData.name 		   = name;
 		sessionStorage.setItem("userData", JSON.stringify(data));
-		writeUserData(data);
+		goToNext();
+		//writeUserData(data);
 	}
 	else
 		alert('Please complete all fields');
@@ -72,21 +73,7 @@ function getDescription(data){
 		$("#description").text(data.userData.description);
 }
 
- function writeUserData(user) {
-	firebase.firestore().collection("users").doc(user.userData.uid).set({
-		userData : {"name":user.userData.name, "email":user.userData.email, "photoURL":user.userData.photoURL, 
-		"birthday":user.userData.bday,"description":user.userData.description, "city":user.userData.city, 
-		"country":user.userData.country,"state":user.userData.state,"zip":user.userData.zip,
-		"lat":user.userData.lat,"lng":user.userData.lng,"provderData":user.userData.providerData,
-		"age":user.userData.age, "uid":user.userData.uid, "gender":parseInt(user.userData.gender),
-		"seeking":parseInt(user.userData.seeking)}
-	}).catch(function(error){
-		alert(error.message);
-	}).then(function(){
-		console.log(user);
-		goToNext();
-	});
-}
+ 
 
 function uploadImage(image, user){
 	var metadata   = {"contentType":image.type};
@@ -108,5 +95,5 @@ function parseGender(genderVal){
 
 
 function goToNext(){
-	window.location.href='../AddImage';
+	window.location.href='../plan';
 }

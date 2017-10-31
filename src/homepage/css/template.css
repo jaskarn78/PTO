@@ -34,7 +34,7 @@ hr {
 }
 /* =============== DEFAULT HTML - LINK STYLES =============== */
 a {
-	text-decoration: none;
+	text-decoration: none; 
 	outline: none;
 	color: #2ec06c;
 	-webkit-transition: all .3s ease-in-out;
