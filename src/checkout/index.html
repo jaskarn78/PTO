@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Choose Plan</title>
+    <!-- Favicons-->
+    <link rel="icon" href="/pt-heart.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <link href="../homepage/materialize/css/materialize.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  </head>
+  <body style="background: #F8F8F8">
+    <!-- Start Page Loading -->
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+    </div>
+    <nav style="background-color: white;">
+      <div class="container" style="background: white;">
+        <div class="nav-wrapper">
+          <div class="row" style="height:40px;">
+            <div class="col s3">
+              <a href="#" class="brand-logo left" style="margin-top:10px;" >
+                <img style="margin-top:0px;height:40px;" src="../homepage/images/brand/PressToOpen_Final_TrademarkReady2.png"/>
+              </a> 
+            </div>
+           
+              <div class="col s4 left hide-on-small-and-down">
+               <ul>
+                  <li><a style="height:60px;color:black;font-size:14px;" href="#">Home</a></li>
+                  <li><a style="height:60px;color:black;font-size:14px;" href="#">About</a></li>
+                  <li><a style="height:60px;color:black;font-size:14px;" href=#>Support</a></li>
+                </ul>
+              </div>
+               <div class="col s4 right hide-on-small-and-down">
+                <ul id="nav-mobile" class="right hide-on-small-and-down">
+                  <li><a class="btn" id="signIn" style="height:30px;margin-bottom:5px;font-size:14px;color:white;">LOGIN</a></li>
+                  <li><a id="signOutBtn" style="height:60px;font-size:14px;color:black;">SIGN UP</a></li>               
+                </ul>
+            </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="loader" id="loader" style="display:none"></div>
+    <div id="main">
+      <!-- START WRAPPER -->
+      <div class="wrapper">
+        <section id="content">
+          <div class="container">
+            <div id="checkout-page" class="section">
+              <div class="row animate-bottom">
+                <div class="col s7 m7 l7">
+                  <div class="left-align" align="center" style="margin-bottom:40px;font-size:26px;color:black;">Checkout</div>
+                  <div class="row" style="padding-bottom:100px;">
+                    <div class="col s11 m11 l11">
+                      <p class="col s6 m6 l6">Credit Card Information</p>
+                      <ul id="paymentIcons" class="hList col s5 m5 l5" style="display:inline">
+                        <li><img src="assets/images/Visa-card-light.png" style="height:20px;"/></li>
+                        <li><img src="assets/images/MasterCard-light.png" style="height:20px;"/></li>
+                        <li><img src="assets/images/AmericanExpress-dark.png" style="height:20px;"/></li>
+                        <li><img src="assets/images/Discover-card-light.png" style="height:20px;"/></li>
+                      </ul>
+                  </div>
+                    <div class="col s12 m12 l12" style="max-width:420px;">
+                      <input class="col s11 m11 l11" style="margin-bottom:20px;height:35px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" placeholder="Card Number" id="cardNum" type="text"/>
+                    </div>
+                    <div class="col s10 m10 l10" style="max-width:420px;">
+                      <input class="col s6 m6 l6" style="height:35px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                      placeholder="Name On Card" id="name" type="text"/>
+                      <input id="expDate" type="text" class="col s2 m2 l2" placeholder="mm/yy" style="margin-left:10px;margin-right:10px;height:35px;
+                      background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;"/>
+                      <input class="col s2 m2 l2" type="text" placeholder="CVV" style="max-width:70px;height:35px;background:white;padding-left:5px;border:solid;border-width:2px;border-color:#D8D8D8;">
+                    </div>
+                    <div class="col s12 m12 l12" style="max-width:420px;">
+                      <p>Billing Address (for the credit card you've provided)</p>
+                      <input class="col s5 m5 l5" placeholder="First Name" id="first_name" style="margin-right:25px;height:35px;
+                      background:white;padding-left:10px;border:solid;max-width:186px;border-width:2px;border-color:#D8D8D8;"/>
+                      <input class="col s5 m5 l5" style="height:30px;max-width:186px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                      placeholder="Last Name" id="last_name" type="text"/>
+                    </div>
+                    <div class="col s12 m12 l12" style="max-width:450px;">
+                       <input class="col s6 m6 l6" style="height:30px;background:white;padding-left:10px;border:solid;margin-right:13px;border-width:2px;border-color:#D8D8D8;"
+                      placeholder="Street Address" id="streetAddress" type="text"/>
+                      <input class="col s3 m3 l3" style="margin-left:10px;height:30px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                      placeholder="Apt/Suite" id="aptnum" type="text"/>
+                    </div>
+                    <div class="col s12 m12 l12" style="max-width:450px;">
+                       <input class="col s4 m4 l4" style="height:30px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                      placeholder="City" id="city" type="text"/>
+                      <input class="col s2 m2 l2" style="margin-left:22px;margin-right:22px;height:30px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                      placeholder="State" id="state" type="text"/>
+                      <input class="col s2 m2 l2" style="height:30px;max-width:100px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                      placeholder="Zip" id="zip" type="text"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="card col s5 m5 l5" style="height:65%;max-width:300px;margin-top:30px;padding-top:8px;padding-left:5px;padding-right:5px;">
+                  <ul class="hList col s12 m12 l12">
+                    <li ><img src="/pt-heart.png" style="vertical-align:middle; height:27px;"/></li>
+                    <li><span style="margin-left:5px;" id="planType">6 Month Subscription</span></li>
+                    <span class="right" style="vertical-align: middle;" id="playCost">$204.00</span>
+                  </ul>
+                  <div class="col s12 m12 l12" style="margin-bottom:10px;">
+                    <input class="col s7 m7 l7" style="margin-right:5px;height:30px;max-width:190px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" placeholder="Enter Discount Code" id="discountCode" type="text"/>
+                    <a class="right btn col s3 m3 l3" id="discountCodeBtn" style="padding-bottom:5px;height:35px;margin-bottom:5px;font-size:15px;color:white;">APPLY</a>
+                  </div>
+                  <ul class="hList col s12 m12 l12" style="height:0px;">
+                    <li ><span style="font-size:12px;">Subtotal</span></li>
+                    <li><span class="right" style="font-size:12px;margin-left:5px;" id="subtotal">$204.00</span></li>
+                  </ul>
+                  <ul class="hList col s12 m12 l12" style="margin-top:5px;margin-bottom:0px;">
+                    <li ><span style="font-size:11px;">Taxes</span></li>
+                    <li><span class="right" style="font-size:11px;margin-left:5px;" id="taxes">$16.32</span></li>
+                  </ul>
+                   <ul class="hList col s12 m12 l12" style="margin-top:0px;margin-bottom:20px;">
+                    <li ><span style="font-size:13px;">TOTAL</span></li>
+                    <li><span class="right" style="font-size:13px;margin-left:5px;" id="total">$220.32</span></li>
+                  </ul>
+                  <p align="left" style="font-size:10px;margin-bottom:20px;" class="col s12 m12 l12">
+                    By checking the box below and entering you full name, you agree that you have read and agree to adhere to the Terms and Conditions, Privacy Policy, Refund Policy, User Agreement, etc.
+                  </p>
+                  <div class="col s12 m12 l12">
+                    <input class="col s10 m10 l10" style="height:30px;background:white;padding-left:10px;border:solid;border-width:1px;border-color:#D8D8D8;" 
+                      placeholder="Enter Your First and Last Name" id="fullName" type="text"/>
+                  </div>
+                  <div class="col s12 m12 l12" style="margin-bottom:15px;">
+                    <a class="right btn col s12 m12 l12" id="completeBtn" style="padding-bottom:5px;height:35px;margin-bottom:5px;font-size:15px;color:white;">APPLY</a>
+
+                  </div>
+
+                </div>
+              </div><!--/profile-page-->
+            </div>
+          </div><!--container-->
+        </section><!--section-->
+
+      </div><!--wrapper-->
+          </div><!--main-->
+
+        <footer class="page-footer" style="background-color:#333333">
+      <div class="footer-copyright">
+          <div class="row">
+            <div class="col l6 s6" ">
+              <img style="margin-top:30px;height:50px;" src="assets/images/pto_white.png"/>
+            
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+  
+    <!-- END MAIN -->
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+    <script src="../homepage/materialize/js/materialize.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-app.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-auth.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+    <script src="../util/util.js"></script>    
+    <script src="assets/js/index.js"></script>
+   
+  </body>
+</html>

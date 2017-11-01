@@ -1,0 +1,35 @@
+.visaicon {
+    background: url('../images/Visa-card-dark@2x.png');
+    height: 20px;
+    width: 20px;
+    /* Other styles here */
+}
+.mcicon {
+    background: url('../images/MasterCard-dark@2x.png');
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+.amexicon {
+    background: url('../images/AmericanExpress-dark.png');
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+.discovericon {
+    background: url('../images/Discover-card-dark@2x.png');
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+
+ul#paymentIcons li {
+	display: inline;
+}
+
+.hList li {
+	display: inline;
+}
