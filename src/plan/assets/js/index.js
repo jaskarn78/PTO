@@ -40,7 +40,7 @@ function writeUserData(user) {
 }
 
 function goToNext(){
-	window.location.href="../AddImage";
+	window.location.href="../checkout";
 }
 
 function getCost(planType){

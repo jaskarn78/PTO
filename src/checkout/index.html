@@ -14,9 +14,12 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../util/css/loader.css">
+
 
   </head>
-  <body style="background: #F8F8F8">
+  <body style="background:#F8F8F8; display:flex;min-height:100vh;flex-direction:column;">
     <!-- Start Page Loading -->
     <div id="loader-wrapper">
       <div id="loader"></div>
@@ -42,7 +45,7 @@
               </div>
                <div class="col s4 right hide-on-small-and-down">
                 <ul id="nav-mobile" class="right hide-on-small-and-down">
-                  <li><a class="btn" id="signIn" style="height:30px;margin-bottom:5px;font-size:14px;color:white;">LOGIN</a></li>
+                  <li><a class="waves-effect btn" id="signIn" style="height:35px;margin-bottom:5px;font-size:14px;color:white;">LOGIN</a></li>
                   <li><a id="signOutBtn" style="height:60px;font-size:14px;color:black;">SIGN UP</a></li>               
                 </ul>
             </div>
@@ -52,18 +55,19 @@
       </nav>
     </div>
 
-    <div class="loader" id="loader" style="display:none"></div>
-    <div id="main">
+    <div class="loader" id="loader" style="margin-top:50px;display:none"></div>
+    <div id="main" style="flex: 1 0 auto;">
       <!-- START WRAPPER -->
       <div class="wrapper">
         <section id="content">
           <div class="container">
             <div id="checkout-page" class="section">
-              <div class="row animate-bottom">
+              <div class="row">
                 <div class="col s7 m7 l7">
                   <div class="left-align" align="center" style="margin-bottom:40px;font-size:26px;color:black;">Checkout</div>
+                  <form id="checkout">
                   <div class="row" style="padding-bottom:100px;">
-                    <div class="col s11 m11 l11">
+                    <div class="col s11 m11 l11" style="max-width:450px;">
                       <p class="col s6 m6 l6">Credit Card Information</p>
                       <ul id="paymentIcons" class="hList col s5 m5 l5" style="display:inline">
                         <li><img src="assets/images/Visa-card-light.png" style="height:20px;"/></li>
@@ -73,35 +77,36 @@
                       </ul>
                   </div>
                     <div class="col s12 m12 l12" style="max-width:420px;">
-                      <input class="col s11 m11 l11" style="margin-bottom:20px;height:35px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" placeholder="Card Number" id="cardNum" type="text"/>
+                      <input class="hosted-field col s11 m11 l11" style="margin-bottom:20px;height:40px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" value="378282246310005" data-braintree-name="number" placeholder="Card Number" id="cardNum" type="text"/>
                     </div>
-                    <div class="col s10 m10 l10" style="max-width:420px;">
-                      <input class="col s6 m6 l6" style="height:35px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
-                      placeholder="Name On Card" id="name" type="text"/>
-                      <input id="expDate" type="text" class="col s2 m2 l2" placeholder="mm/yy" style="margin-left:10px;margin-right:10px;height:35px;
+                    <div class="col s12 m12 l12" style="max-width:420px;">
+                      <input class="col s6 m6 l6" style="height:40px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                      placeholder="Name On Card" id="name" value="Jaskarn Jagpal" type="text"/>
+                      <input id="expDate" value="07/21" data-braintree-name="expiration_date" type="text" class="col s2 m2 l2" placeholder="mm/yy" style="margin-left:10px;margin-right:10px;height:40px;
                       background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;"/>
-                      <input class="col s2 m2 l2" type="text" placeholder="CVV" style="max-width:70px;height:35px;background:white;padding-left:5px;border:solid;border-width:2px;border-color:#D8D8D8;">
+                      <input id="cvv" value="0331" data-braintree-name="cvv" class="col s2 m2 l2" type="text" placeholder="CVV" style="max-width:55px;height:40px;background:white;padding-left:5px;border:solid;border-width:2px;border-color:#D8D8D8;">
                     </div>
                     <div class="col s12 m12 l12" style="max-width:420px;">
                       <p>Billing Address (for the credit card you've provided)</p>
-                      <input class="col s5 m5 l5" placeholder="First Name" id="first_name" style="margin-right:25px;height:35px;
+                      <input type="checkbox"/>
+                      <input class="col s5 m5 l5" placeholder="First Name" value="Jaskarn" id="first_name" style="margin-right:25px;height:40px;
                       background:white;padding-left:10px;border:solid;max-width:186px;border-width:2px;border-color:#D8D8D8;"/>
-                      <input class="col s5 m5 l5" style="height:30px;max-width:186px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
-                      placeholder="Last Name" id="last_name" type="text"/>
+                      <input class="col s5 m5 l5" style="height:40px;max-width:186px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                      placeholder="Last Name" value="Jagpal" id="last_name" type="text"/>
                     </div>
                     <div class="col s12 m12 l12" style="max-width:450px;">
-                       <input class="col s6 m6 l6" style="height:30px;background:white;padding-left:10px;border:solid;margin-right:13px;border-width:2px;border-color:#D8D8D8;"
-                      placeholder="Street Address" id="streetAddress" type="text"/>
-                      <input class="col s3 m3 l3" style="margin-left:10px;height:30px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                       <input class="col s6 m6 l6" style="height:40px;background:white;padding-left:10px;border:solid;margin-right:13px;border-width:2px;border-color:#D8D8D8;"
+                      placeholder="Street Address" value="686 Shanghai Bend Rd." id="streetAddress" type="text"/>
+                      <input class="col s3 m3 l3" style="margin-left:10px;height:40px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
                       placeholder="Apt/Suite" id="aptnum" type="text"/>
                     </div>
                     <div class="col s12 m12 l12" style="max-width:450px;">
-                       <input class="col s4 m4 l4" style="height:30px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
-                      placeholder="City" id="city" type="text"/>
-                      <input class="col s2 m2 l2" style="margin-left:22px;margin-right:22px;height:30px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                       <input class="col s4 m4 l4" style="height:40px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                      placeholder="City" id="city" value="Yuba City" type="text"/>
+                      <input class="col s2 m2 l2" value="Ca" style="margin-left:22px;margin-right:22px;height:40px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
                       placeholder="State" id="state" type="text"/>
-                      <input class="col s2 m2 l2" style="height:30px;max-width:100px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
-                      placeholder="Zip" id="zip" type="text"/>
+                      <input class="col s2 m2 l2" style="height:40px;max-width:100px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                      placeholder="Zip" id="zip" value="95991" data-braintree-name="postal_code" type="text"/>
                     </div>
                   </div>
                 </div>
@@ -109,11 +114,11 @@
                   <ul class="hList col s12 m12 l12">
                     <li ><img src="/pt-heart.png" style="vertical-align:middle; height:27px;"/></li>
                     <li><span style="margin-left:5px;" id="planType">6 Month Subscription</span></li>
-                    <span class="right" style="vertical-align: middle;" id="playCost">$204.00</span>
+                    <span class="right" style="vertical-align: middle;" id="planCost">$204.00</span>
                   </ul>
                   <div class="col s12 m12 l12" style="margin-bottom:10px;">
-                    <input class="col s7 m7 l7" style="margin-right:5px;height:30px;max-width:190px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" placeholder="Enter Discount Code" id="discountCode" type="text"/>
-                    <a class="right btn col s3 m3 l3" id="discountCodeBtn" style="padding-bottom:5px;height:35px;margin-bottom:5px;font-size:15px;color:white;">APPLY</a>
+                    <input class="col s7 m7 l7" style="margin-right:5px;height:35px;max-width:190px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" placeholder="Enter Discount Code" id="discountCode" type="text"/>
+                    <a class="right waves-effect btn col s3 m3 l3" id="discountCodeBtn" style="padding-bottom:5px;height:35px;margin-bottom:5px;font-size:15px;color:white;">APPLY</a>
                   </div>
                   <ul class="hList col s12 m12 l12" style="height:0px;">
                     <li ><span style="font-size:12px;">Subtotal</span></li>
@@ -131,34 +136,36 @@
                     By checking the box below and entering you full name, you agree that you have read and agree to adhere to the Terms and Conditions, Privacy Policy, Refund Policy, User Agreement, etc.
                   </p>
                   <div class="col s12 m12 l12">
-                    <input class="col s10 m10 l10" style="height:30px;background:white;padding-left:10px;border:solid;border-width:1px;border-color:#D8D8D8;" 
+                    <input class="col s11 m11 l11" style="height:30px;background:white;padding-left:5px;padding-right:10px;border:solid;border-width:1px;border-color:#D8D8D8;" 
                       placeholder="Enter Your First and Last Name" id="fullName" type="text"/>
                   </div>
-                  <div class="col s12 m12 l12" style="margin-bottom:15px;">
-                    <a class="right btn col s12 m12 l12" id="completeBtn" style="padding-bottom:5px;height:35px;margin-bottom:5px;font-size:15px;color:white;">APPLY</a>
-
+                  <div class="col s12 m12 l12" style="margin-bottom:10px;">
+                    <button class="right waves-effect btn col s12 m12 l12" type="submit" id="completeBtn" style="padding-bottom:5px;height:35px;margin-bottom:5px;font-size:15px;color:white;">COMPLETE ORDER</button>
                   </div>
-
                 </div>
+              </form>
               </div><!--/profile-page-->
             </div>
           </div><!--container-->
         </section><!--section-->
 
       </div><!--wrapper-->
-          </div><!--main-->
+    </div><!--main-->
 
-        <footer class="page-footer" style="background-color:#333333">
+    <footer class="page-footer" style="background-color:#333333">
       <div class="footer-copyright">
+        <div class="container" style="margin-top:20px;">
           <div class="row">
-            <div class="col l6 s6" ">
-              <img style="margin-top:30px;height:50px;" src="assets/images/pto_white.png"/>
-            
+            <div class="col l6 s12" ">
+              <img style="margin-top:0px;height:40px;" src="assets/images/pto_white.png"/>
+            </div>
+            <div style="padding-top:20px;font-size:12px;" class="right-align container">
+            © 2017 Press To Open, Inc. Site by <span style="font-size:12px;color:#BE466D">Dk Web Design</span>
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
-
+        </div>
+      </footer>
 
   
     <!-- END MAIN -->
@@ -171,7 +178,6 @@
     <script src="/__/firebase/4.5.0/firebase-auth.js"></script>
     <script src="/__/firebase/4.5.0/firebase-firestore.js"></script>
     <script src="/__/firebase/init.js"></script>
-
     <script src="../util/util.js"></script>    
     <script src="assets/js/index.js"></script>
    
