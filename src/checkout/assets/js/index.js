@@ -1,8 +1,11 @@
+getToken();
 var data = getUserData();
-getToken(data);
+
 var code = "DkWeb25";
 var formComplete = false;
 var totalCost;
+ var placeSearch, autocomplete;
+
 $(document).ready(function(){
 	$("#completeBtn").attr("disabled", true);
 	validateInput();
@@ -31,7 +34,8 @@ function validateInput(){
 function getUserData(){
 	if(sessionStorage.getItem("userData") != null){
 		var data = JSON.parse(sessionStorage.getItem("userData"));
-		setKnownData(data);
+		if(data.userData.plan != null)
+			setKnownData(data);
 		setCheckBoxListener(data);
 		return data;
 	}
@@ -39,6 +43,7 @@ function getUserData(){
 }
 
 function setKnownData(data){
+	console.log(data);
 	$("#planType").text(parsePlans(data.userData.plan.type));
 
 	var planCost = data.userData.plan.cost;
@@ -135,10 +140,10 @@ function sendData(nonce, totalCost){
 
 function getToken(userData){
 	$.ajax({ type: "GET", url: "/checkout"
-	}).done(function(data){ setupPayment(data, userData); });
+	}).done(function(data){ setupPayment(data); });
 }
 
-function setupPayment(token, data){
+function setupPayment(token){
 	var userData = data.userData;
 	braintree.setup(token, "custom", 
 	{
@@ -179,6 +184,42 @@ function sendVerificationEmail(){
 	}).catch(function(error){
 		//Error occured
 	});
+}
+function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete((document.getElementById('streetAddress')),
+    {types: ['geocode']});
+
+	// When the user selects an address from the dropdown, populate the address
+	// fields in the form.
+	autocomplete.addListener('place_changed', fillInAddress);
+}
+
+function fillInAddress() {
+	// Get the place details from the autocomplete object.
+	var place = autocomplete.getPlace().address_components;
+	$("#streetAddress").val(place[0].long_name+" "+place[1].long_name);
+	$("#city").val(place[2].long_name);
+	$("#state").val(place[4].short_name);
+	$("#zip").val(place[6].long_name);
+	
+}
+
+function geolocate() {
+	if (navigator.geolocation) {
+	  navigator.geolocation.getCurrentPosition(function(position) {
+	    var geolocation = {
+	      lat: position.coords.latitude,
+	      lng: position.coords.longitude
+	    };
+	    var circle = new google.maps.Circle({
+	      center: geolocation,
+	      radius: position.coords.accuracy
+	    });
+	    autocomplete.setBounds(circle.getBounds());
+	  });
+	}
 }
 
 function goToNext(){

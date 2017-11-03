@@ -4,11 +4,7 @@
  	$("#registerBtn").on("click", function(){
 	 	var email = $("#email").val();
 	 	var pass  = $("#password").val();
-	 	var name  = $("#name").val();
-        if($("#name").val()=='')
-            alert("Please enter your name");
-        else
-		  signUpWithEmail(email, pass, name);
+	  signUpWithEmail(email, pass);
  	});
 
  	$("#fbSignup").click(function(){
@@ -20,12 +16,11 @@
  	});
  });
 
- function signUpWithEmail(email, pass, name){
+ function signUpWithEmail(email, pass){
  	var response='';
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(function() {
       return firebase.auth().createUserWithEmailAndPassword(email, pass).then(function(user){
  		if(user!=null){
- 			user.displayName = name;
  			saveUserData(user);
  		}
  	}).catch(function(error){

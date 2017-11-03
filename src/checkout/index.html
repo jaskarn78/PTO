@@ -100,7 +100,7 @@
                     </div>
                     <div class="col s12 m12 l12" style="max-width:450px;">
                        <input class="col s6 m6 l6" style="height:40px;background:white;padding-left:10px;border:solid;margin-right:13px;border-width:2px;border-color:#D8D8D8;"
-                      placeholder="Street Address" id="streetAddress" type="text"/>
+                      placeholder="Street Address" id="streetAddress" onfocus="geolocate()" type="text"/>
                       <input class="col s3 m3 l3" style="margin-left:10px;height:40px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
                       placeholder="Apt/Suite" id="aptnum" type="text"/>
                     </div>
@@ -191,6 +191,7 @@
     <script src="/__/firebase/4.5.0/firebase-auth.js"></script>
     <script src="/__/firebase/4.5.0/firebase-firestore.js"></script>
     <script src="/__/firebase/init.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFkCxV_3OOisXaIwa3SKd4VkXQPDqTS3k&libraries=places&callback=initAutocomplete" async defer></script>
     <script src="../util/util.js"></script>    
     <script src="assets/js/index.js"></script>
    
