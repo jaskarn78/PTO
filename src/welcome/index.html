@@ -1,78 +1,143 @@
-<?php
 
-?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Welcome</title>
+    <!-- Favicons-->
+    <link rel="icon" href="/pt-heart.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <link href="../homepage/materialize/css/materialize.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/styles.css" type="text/css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="title">Welcome</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans">
-    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
-    <link rel="stylesheet" href="assets/css/nav-start.css">
-    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
 
-<body style="height:100%;background-color:#29a1f2;">
-    <div style="padding-right:40px;padding-bottom:0px;padding-left:40px;padding-top:5px;width:100%;height:90%;">
-        <nav class="navbar navbar-default navigation-clean-button">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand navbar-link" href="#"> </a>
-                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                </div>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav"></ul>
-                    <p class="navbar-text navbar-right actions" style="font-size:23px;"><span style="color:rgb(248,248,248);font-size:20px;font-family:Dosis, sans-serif;">Back To Homepage </span> <img class="img-circle" src="assets/img/52084.png" style="height:45px;color:rgba(245,245,245,0);background-color:rgba(255,255,255,0);width:45px;margin-left:0px;margin-right:34px;padding-bottom:0px;margin-bottom:0px;"></p>
-                </div>
+  </head>
+  <body 
+      style="background: #00b8fb; /* Old Browsers */
+      background: -webkit-linear-gradient(top right,#00b8fb,#7cdffd); /*Safari 5.1-6*/
+      background: -o-linear-gradient(top right,#00b8fb,#7cdffd); /*Opera 11.1-12*/
+      background: -moz-linear-gradient(top right,#00b8fb,#7cdffd); /*Fx 3.6-15*/
+      background: linear-gradient(top right, #00b8fb, #7cdffd); /*Standard*/
+      display:flex;min-height:100vh;flex-direction:column;">
+    <!-- Start Page Loading -->
+
+    <nav hidden style="background-color: white;height:60px;">
+      <div class="container" style="background: white;">
+        <div class="nav-wrapper">
+          <div class="row" style="height:35px;">
+            <div class="col s3">
+              <a href="#" class="brand-logo left" style="margin-top:10px;" >
+                <img style="margin-top:0px;height:35px;" src="../homepage/images/brand/PressToOpen_Final_TrademarkReady2.png"/>
+              </a> 
             </div>
-        </nav>
-    </div>
-    <div class="register-photo" style="padding-bottom:0px;padding-top:60px;background-color:transparent;">
-        <div class="form-container" style="width:555px;height:0px;background-color:rgba(255,255,255,0.11);padding-bottom:80px;padding-top:0px;padding-right:30px;padding-left:30px;">
-            <div class="col-md-12" style="width:665px;height:360px;background-color:transparent;padding-top:21px;"><img src="assets/img/pt-heart.png" style="width:50px;margin-right:0px;margin-left:307px;height:50px;">
-                <form id="form" style="padding-bottom:0px;width:650px;background-color:transparent;height:300px;padding-left:50px;padding-right:50px;">
-                    <h2 class="text-center" style="margin-top:-36px;color:white;font-family:'PT Sans', sans-serif;margin-left:0px;font-size:32px;margin-right:-35px;">Welcome to Part-time Relationships!</h2>
-                    <div style="height:0px;margin-right:40px;max-width:120px;">
-                        <div class="col-md-12" style="width:120px;height:120px;padding-right:0px;padding-left:0px;background-color:rgba(255,255,255,0.25);"><img class="img-circle" id="profile" style="width:120px;padding-top:0px;padding-right:0px;padding-left:0px;height:120px;margin-left:0px;margin-top:-4px;" style="width:115px; padding-top:0px;padding-right:0px;padding-left:0px;height:115px;margin-left:19px;margin-top:12px;">
-                            <button class="btn btn-default active" id="profileImageBtn" name="profileImageBtn" type="button" value="Select Files" style="padding-right:6px;padding-bottom:8px;padding-left:8px;background-color:rgb(221,123,199);color:white;font-size:27px;border-radius:50%;padding-top:0px;width:50px;height:50px; margin-top:-20px;border-color:transparent;">+</button>
-                            <input type="file" name="my_file" id="my_file" accept="image/*" style="display: none;">
-
-                            <p style="color:white;width:auto;padding-left:30px;margin-bottom:0px;font-size:14px;" name="genderAge" id="genderAge"></p>
-                            <p style="color:white;padding-left:32px;font-size:12px;" name="location" id="location"></p>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="width:380px;margin-left:30px;height:220px;margin-top:-10px;">
-                        <div class="form-group"><span style="color:white;">What's your name?</span>
-                            <input class="form-control" type="text" name="name" id="name" placeholder="First Last" style="height:50px;background-color:rgba(247,249,252,0.41);font-size:18px;color:white;">
-                        </div>
-                        <div class="form-group"><span style="color:white;">Tell us about yourself!</span>
-                            <textarea class="form-control" name="description" id="description" placeholder="Minimum: 300 Characters | Maximum: 1200 Characters" style="height:112px;width:350px;background-color:rgba(247,249,252,0.41);font-size:16px;color: white;"></textarea>
-                        </div>
-                        <div class="form-group" style="width:218px;margin-right:0px;margin-left:25px;padding-right:64px;">
-                            <button class="btn btn-default" type="button" id="welcomeBtn" style="width:127px;padding-right:0px;padding-left:0px;font-family:'PT Sans', sans-serif;margin-top:9px;height:45px;">SELECT A PLAN</button>
-                        </div>
-                    </div>
-                </form>
+           
+              <div class="col s4 left hide-on-small-and-down">
+               <ul>
+                  <li><a style="height:60px;color:black;font-size:14px;" href="#">Home</a></li>
+                  <li><a style="height:60px;color:black;font-size:14px;" href="#">About</a></li>
+                  <li><a style="height:60px;color:black;font-size:14px;" href=#>Support</a></li>
+                </ul>
+              </div>
+               <div class="col s4 right hide-on-small-and-down">
+                <ul id="nav-mobile" class="right hide-on-small-and-down">
+                  <li><a id="signIn" style="height:60px;font-size:14px;color:black;">LOGIN</a></li>
+                  <li><a id="signOutBtn" style="height:60px;font-size:14px;color:black;">SIGN UP</a></li>               
+                </ul>
             </div>
+            </div>
+          </div>
         </div>
+      </nav>
+
+    <div class="loader" id="loader" style="display:none"></div>
+    <div id="main" style="flex: 1 0 auto; margin-top:30px;">
+      <!-- START WRAPPER -->
+      <div class="wrapper">
+        <section id="content">
+          <div class="container">
+             <div class="row" style="color:white;width:100%;">
+                <div class="center-align col s12" style="font-size:25px;margin-top:55px;">Sign Up With Press To Open!</div>
+                <div class="center-align col s8 push-s2" style="font-size:14px;font-weight:300;margin-top:15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at dictum tellus. Sed pretium elit risus, eu malesuada lectus porttitor vel. </div>
+              </div>
+            <div id="pricing-page" class="section">
+                <div class="row col s12 animate-bottom">
+                  <div class="center-align col s8 push-s2 card" id="welcomeCard" style="position:relative;padding:20px;">
+                    <div class="left-align col s4" style="margin-top:45px;">
+                      <img class="valign-wrapper col s5" id="photoURL" src="assets/img/person.png" style="background:#C7EDFE; padding:5px;width:130px;height:130px;border-radius:50%">
+                    </div>
+
+                    <div class="left-align valign-wrapper col s8" >
+                      <div class="row" style="width:100%;">
+                      <div style="color:white;font-size:18px;width:100%;max-width:400px;" class="col s12">Your Name
+                        <input class="userinfo" style="width:100%;border:none;background-color:#8CDEFD;height:50px;color:white;font-size:18px;padding-left:10px;" 
+                        id="name" placeholder="First and Last" type="text"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="left-align valign-wrapper col s8" >
+                      <div class="row" style="max-width:400px;">
+                      <div style="color:white;font-size:16px;" class="col s6">Birthday
+                        <input id="bday" class="userinfo" style="background-color:#8CDEFD;margin-right:15px;height:50px;color:white;font-size:18px;padding-left:10px;border:none;" placeholder="MM/DD/YYYY" type="text"/>
+                      </div>
+                        <div style="color:white;font-size:16px;" class="col s6">Zip Code
+                          <input class="userinfo" style="background-color:#8CDEFD;height:50px;color:white;font-size:18px;padding-left:10px;border:none" id="zip" placeholder="Zip Code" type="text"/>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="col s8 push-s4">
+                    <div class="col s12">
+                      <a id="finishBtn" style="width:100%;height:40px;font-size:12px;padding:1px;" class="waves-effect waves-red btn">SELECT A PLAN</a>
+                    </div>
+                  </div>
+                  <div class="col s8 left-align pull-s8" style="height:100px;width:100px;margin-top:-18%;margin-bottom:-25%">
+                    <a id="profileImageBtn" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+                    <input id="my_file" type="file" hidden />
+                  </div>
+
+                </div><!--/profile-page-->
+            
+          </div>
+        </div>
+      </div>
+      </section>
     </div>
-     
-   
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <!--script src="../../util/verify.js"></script-->
+  </div>
+       
+  <footer class="page-footer" style="background-color:#333333">
+        <div class="footer-copyright">
+          <div class="container" style="margin-top:5px;height:30px;">
+            <div class="row">
+              <div class="col l6 s12" ">
+                <img style="margin-top:0px;height:30px;" src="../plan/assets/images/pto_white.png"/>
+              </div>
+              <div style="padding-top:0px;font-size:12px;" class="right-align container">
+              © 2017 Press To Open, Inc. Site by <span style="font-size:12px;color:#BE466D">Dk Web Design</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    <!-- END MAIN -->
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+    <script src="../homepage/materialize/js/materialize.js"></script>
     <script src="/__/firebase/4.5.0/firebase-app.js"></script>
     <script src="/__/firebase/4.5.0/firebase-auth.js"></script>
-    <script src="/__/firebase/4.5.0/firebase-storage.js"></script>
     <script src="/__/firebase/4.5.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-storage.js"></script>
     <script src="/__/firebase/init.js"></script>
 
+    <script src="../util/util.js"></script>    
     <script src="assets/js/index.js"></script>
-
-</body>
-
+   
+  </body>
 </html>

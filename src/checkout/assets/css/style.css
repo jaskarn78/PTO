@@ -33,3 +33,11 @@ ul#paymentIcons li {
 .hList li {
 	display: inline;
 }
+
+#welcomeCard {
+    background: #00b8fb; /* Old Browsers */
+    background: -webkit-linear-gradient(top right,#00b8fb,#7cdffd); /*Safari 5.1-6*/
+    background: -o-linear-gradient(top right,#00b8fb,#7cdffd); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(top right,#00b8fb,#7cdffd); /*Fx 3.6-15*/
+    background: linear-gradient(top right, #00b8fb, #7cdffd);
+}

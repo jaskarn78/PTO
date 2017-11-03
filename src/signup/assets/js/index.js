@@ -22,53 +22,52 @@
 
  function signUpWithEmail(email, pass, name){
  	var response='';
- 	firebase.auth().createUserWithEmailAndPassword(email, pass)
- 	.then(function(user){
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(function() {
+      return firebase.auth().createUserWithEmailAndPassword(email, pass).then(function(user){
  		if(user!=null){
  			user.displayName = name;
- 			console.log(user);
  			saveUserData(user);
  		}
- 	})
- 	.catch(function(error){
+ 	}).catch(function(error){
  		var errorCode = error.code;
  		var errorMsg  = error.message;
  		alert(errorMsg);
  	});
-
- }
+ });
+}
 
  function signUpWithFb(){
  	var provider = new firebase.auth.FacebookAuthProvider();
  	provider.addScope('user_about_me');
  	provider.setCustomParameters({ 'display': 'popup' });
- 	firebase.auth().signInWithPopup(provider).then(function(result){
- 		if(result.user != null)
-	 		checkIfuserExists(result);
- 	}).catch(function(error){
- 		var errorCode = error.code;
- 		var errorMsg  = error.message;
- 		alert (errorMsg);
- 	});
+ 	signUpWithPersistance(provider);
  }
 
 
 
  function signUpWithGoogle(){
  	var provider = new firebase.auth.GoogleAuthProvider();
- 	firebase.auth().signInWithPopup(provider).then(function(result){
- 		if(result.user != null)
- 			checkIfuserExists(result);
- 	}).catch(function(error){
- 		var errorCode = error.code;
- 		var errorMsg  = error.message;
- 		alert(errorMsg);
- 	});
+ 	signUpWithPersistance(provider);
  }
+
+ function signUpWithPersistance(provider){
+     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(function() {
+      return firebase.auth().signInWithPopup(provider).then(function(result){
+        if(result.user !=null)
+            checkIfuserExists(result);
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(errorCode);
+    })
+ });
+}
 
  function saveUserData(result){
  	sessionStorage.setItem('userData', JSON.stringify(result));
-	window.location.href='../basicinfo';
+	window.location.href='../welcome';
 }
 
 

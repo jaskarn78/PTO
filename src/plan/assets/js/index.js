@@ -8,17 +8,18 @@ $(document).ready(function(){
 	    }
 	});
 	$("#selectPlan").on("click", function(){
-		if(typeof(checkedVal)!=='undefined' || checkedVal!=null){
-			var checkedVal = $("#"+checked.id).val();
+		var checkedVal = $("#"+checked.id).val();
+		if(typeof(checkedVal)!=='undefined' || checkedVal!=null || checkedVal!=''){
 			saveplanData(checkedVal);
-		}else alert("Please select a plan");
+		}
+		else alert("Please select a plan");
 	})
 });
 
 function saveplanData(planType) {
 	var currentUser = JSON.parse(sessionStorage.getItem("userData"));
 	var plan = {"type":planType, "cost":getCost(planType)};
-	currentUser.plan = plan;
+	currentUser.userData.plan = plan;
 	sessionStorage.setItem("userData", JSON.stringify(currentUser));
 	writeUserData(currentUser);
 }
@@ -26,15 +27,13 @@ function saveplanData(planType) {
 function writeUserData(user) {
 	firebase.firestore().collection("users").doc(user.userData.uid).set({
 		userData : {"name":user.userData.name, "email":user.userData.email, "photoURL":user.userData.photoURL, 
-		"birthday":user.userData.bday,"description":user.userData.description, "city":user.userData.city, 
-		"country":user.userData.country,"state":user.userData.state,"zip":user.userData.zip,
-		"lat":user.userData.lat,"lng":user.userData.lng,"provderData":user.userData.providerData,
-		"age":user.userData.age, "uid":user.userData.uid, "gender":parseInt(user.userData.gender),
-		"seeking":parseInt(user.userData.seeking), "plan":user.plan}
+		"birthday":user.userData.birthday, "city":user.userData.city, "country":user.userData.country,
+		"state":user.userData.state,"zip":user.userData.zip,"lat":user.userData.lat,"lng":user.userData.lng,
+		"age":getAgeFromDob(user.userData.birthday), "uid":user.userData.uid, "plan":user.userData.plan, 
+		"verified":user.userData.verified}
 	}).catch(function(error){
 		alert(error.message);
 	}).then(function(){
-		console.log(user);
 		goToNext();
 	});
 }
@@ -43,14 +42,21 @@ function goToNext(){
 	window.location.href="../checkout";
 }
 
+function getAgeFromDob(bday){
+	var ageDiffMs = Date.now() - (new Date(bday)).getTime();
+	var ageDate = new Date(ageDiffMs);
+	return Math.abs(ageDate.getUTCFullYear()-1970);
+}
+
+
 function getCost(planType){
 	switch(planType){
-		case "0"  : return 0;
-		case "1"  : return 40;
-		case "3"  : return 36;
-		case "6"  : return 34;
-		case "9"  : return 32;
-		case "12" : return 30;
+		case "0"  : return "0.00";
+		case "1"  : return "40.00";
+		case "3"  : return "36.00";
+		case "6"  : return "34.00";
+		case "9"  : return "32.00";
+		case "12" : return "30.00";
 	}
 }
 function verifyChecked(response){

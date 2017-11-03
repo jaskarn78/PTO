@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Choose Plan</title>
+    <title>Checkout</title>
     <!-- Favicons-->
     <link rel="icon" href="/pt-heart.png" sizes="32x32">
     <meta name="msapplication-TileColor" content="#00bcd4">
@@ -13,19 +13,19 @@
     <link href="assets/css/style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+    <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4 log-level="warn"></script>
+    <script src="https://js.braintreegateway.com/web/3.25.0/js/paypal-checkout.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.25.0/js/client.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../util/css/loader.css">
 
 
   </head>
   <body style="background:#F8F8F8; display:flex;min-height:100vh;flex-direction:column;">
     <!-- Start Page Loading -->
-    <div id="loader-wrapper">
-      <div id="loader"></div>
-      <div class="loader-section section-left"></div>
-      <div class="loader-section section-right"></div>
-    </div>
+    
     <nav style="background-color: white;">
       <div class="container" style="background: white;">
         <div class="nav-wrapper">
@@ -55,8 +55,9 @@
       </nav>
     </div>
 
-    <div class="loader" id="loader" style="margin-top:50px;display:none"></div>
-    <div id="main" style="flex: 1 0 auto;">
+    <div id="main" style="flex: 1 0 auto; margin-top:25px;">
+      <div class="center loader" hidden id="loader";></div>
+
       <!-- START WRAPPER -->
       <div class="wrapper">
         <section id="content">
@@ -64,9 +65,9 @@
             <div id="checkout-page" class="section">
               <div class="row">
                 <div class="col s7 m7 l7">
-                  <div class="left-align" align="center" style="margin-bottom:40px;font-size:26px;color:black;">Checkout</div>
+                  <div class="left-align" align="center" style="margin-bottom:20px;font-size:26px;color:black;">Checkout</div>
                   <form id="checkout">
-                  <div class="row" style="padding-bottom:100px;">
+                  <div class="row">
                     <div class="col s11 m11 l11" style="max-width:450px;">
                       <p class="col s6 m6 l6">Credit Card Information</p>
                       <ul id="paymentIcons" class="hList col s5 m5 l5" style="display:inline">
@@ -88,33 +89,36 @@
                     </div>
                     <div class="col s12 m12 l12" style="max-width:420px;">
                       <p>Billing Address (for the credit card you've provided)</p>
-                      <input type="checkbox"/>
-                      <input class="col s5 m5 l5" placeholder="First Name" value="Jaskarn" id="first_name" style="margin-right:25px;height:40px;
+                       <p>
+                        <input type="checkbox" id="autoFill" />
+                        <label style="font-size:12px;" for="autoFill">Check here to autofills</label>
+                      </p>
+                      <input class="col s5 m5 l5" placeholder="First Name" id="first_name" style="margin-right:25px;height:40px;
                       background:white;padding-left:10px;border:solid;max-width:186px;border-width:2px;border-color:#D8D8D8;"/>
                       <input class="col s5 m5 l5" style="height:40px;max-width:186px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
-                      placeholder="Last Name" value="Jagpal" id="last_name" type="text"/>
+                      placeholder="Last Name" id="last_name" type="text"/>
                     </div>
                     <div class="col s12 m12 l12" style="max-width:450px;">
                        <input class="col s6 m6 l6" style="height:40px;background:white;padding-left:10px;border:solid;margin-right:13px;border-width:2px;border-color:#D8D8D8;"
-                      placeholder="Street Address" value="686 Shanghai Bend Rd." id="streetAddress" type="text"/>
+                      placeholder="Street Address" id="streetAddress" type="text"/>
                       <input class="col s3 m3 l3" style="margin-left:10px;height:40px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
                       placeholder="Apt/Suite" id="aptnum" type="text"/>
                     </div>
                     <div class="col s12 m12 l12" style="max-width:450px;">
                        <input class="col s4 m4 l4" style="height:40px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
-                      placeholder="City" id="city" value="Yuba City" type="text"/>
-                      <input class="col s2 m2 l2" value="Ca" style="margin-left:22px;margin-right:22px;height:40px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
+                      placeholder="City" id="city" type="text"/>
+                      <input class="col s2 m2 l2" style="margin-left:22px;margin-right:22px;height:40px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
                       placeholder="State" id="state" type="text"/>
                       <input class="col s2 m2 l2" style="height:40px;max-width:100px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" 
-                      placeholder="Zip" id="zip" value="95991" data-braintree-name="postal_code" type="text"/>
+                      placeholder="Zip" id="zip" data-braintree-name="postal_code" type="text"/>
                     </div>
                   </div>
                 </div>
-                <div class="card col s5 m5 l5" style="height:65%;max-width:300px;margin-top:30px;padding-top:8px;padding-left:5px;padding-right:5px;">
+                <div class="card col s5 m5 l5" style="height:70%;max-width:310px;margin-top:30px;padding-top:8px;padding-left:5px;padding-right:5px;">
                   <ul class="hList col s12 m12 l12">
                     <li ><img src="/pt-heart.png" style="vertical-align:middle; height:27px;"/></li>
-                    <li><span style="margin-left:5px;" id="planType">6 Month Subscription</span></li>
-                    <span class="right" style="vertical-align: middle;" id="planCost">$204.00</span>
+                    <li id="plan"><span style="margin-left:5px;" id="planType"></span></li>
+                    <span class="right" style="vertical-align: middle;" id="planCost"></span>
                   </ul>
                   <div class="col s12 m12 l12" style="margin-bottom:10px;">
                     <input class="col s7 m7 l7" style="margin-right:5px;height:35px;max-width:190px;background:white;padding-left:10px;border:solid;border-width:2px;border-color:#D8D8D8;" placeholder="Enter Discount Code" id="discountCode" type="text"/>
@@ -122,44 +126,53 @@
                   </div>
                   <ul class="hList col s12 m12 l12" style="height:0px;">
                     <li ><span style="font-size:12px;">Subtotal</span></li>
-                    <li><span class="right" style="font-size:12px;margin-left:5px;" id="subtotal">$204.00</span></li>
+                    <li><span class="right" style="font-size:12px;margin-left:5px;" id="subtotal"></span></li>
                   </ul>
                   <ul class="hList col s12 m12 l12" style="margin-top:5px;margin-bottom:0px;">
                     <li ><span style="font-size:11px;">Taxes</span></li>
-                    <li><span class="right" style="font-size:11px;margin-left:5px;" id="taxes">$16.32</span></li>
+                    <li><span class="right" style="font-size:11px;margin-left:5px;" id="taxes"></span></li>
+                  </ul>
+                  <ul hidden id="discountList" class="hList col s12 m12 l12" style="margin-top:0px;margin-bottom:0px;">
+                    <li ><span id="discounts" style="font-size:11px;">Discounts</span></li>
+                    <li><span class="right" style="font-size:11px;margin-left:5px;" id="discountApproved"></span></li>
                   </ul>
                    <ul class="hList col s12 m12 l12" style="margin-top:0px;margin-bottom:20px;">
-                    <li ><span style="font-size:13px;">TOTAL</span></li>
-                    <li><span class="right" style="font-size:13px;margin-left:5px;" id="total">$220.32</span></li>
+                    <li ><span style="font-weight:bold; font-size:13px;">TOTAL</span></li>
+                    <li><span class="right" style="font-weight:bold; font-size:13px;margin-left:5px;" id="total"></span></li>
                   </ul>
                   <p align="left" style="font-size:10px;margin-bottom:20px;" class="col s12 m12 l12">
                     By checking the box below and entering you full name, you agree that you have read and agree to adhere to the Terms and Conditions, Privacy Policy, Refund Policy, User Agreement, etc.
                   </p>
+                   <p align="center">
+                      <input type="checkbox" id="termsCheckbox" />
+                      <label style="font-size:12px;" for="termsCheckbox">I agree to the terms and conditions</label>
+                    </p>
                   <div class="col s12 m12 l12">
-                    <input class="col s11 m11 l11" style="height:30px;background:white;padding-left:5px;padding-right:10px;border:solid;border-width:1px;border-color:#D8D8D8;" 
+                    <input class="col s11 m11 l11" style="height:35px;background:white;padding-left:5px;padding-right:10px;border:solid;border-width:1px;border-color:#D8D8D8;" 
                       placeholder="Enter Your First and Last Name" id="fullName" type="text"/>
                   </div>
+                  <div class="center col s12 m12 l12" id="paypal-button" style="margin-bottom:10px;"></div>
                   <div class="col s12 m12 l12" style="margin-bottom:10px;">
-                    <button class="right waves-effect btn col s12 m12 l12" type="submit" id="completeBtn" style="padding-bottom:5px;height:35px;margin-bottom:5px;font-size:15px;color:white;">COMPLETE ORDER</button>
-                  </div>
-                </div>
-              </form>
-              </div><!--/profile-page-->
-            </div>
-          </div><!--container-->
-        </section><!--section-->
-
-      </div><!--wrapper-->
-    </div><!--main-->
+                    <button class="right waves-effect-red btn col s12 m12 l12" type="submit" id="completeBtn" style="padding-bottom:5px;height:35px;margin-bottom:5px;font-size:15px;color:white;">COMPLETE ORDER</button>
+                 </div>
+               </div>
+             </form>
+           </div>
+         </div>
+       </div>
+     </div>
+   </section>
+ </div>
+</div>
 
     <footer class="page-footer" style="background-color:#333333">
       <div class="footer-copyright">
-        <div class="container" style="margin-top:20px;">
+        <div class="container">
           <div class="row">
             <div class="col l6 s12" ">
-              <img style="margin-top:0px;height:40px;" src="assets/images/pto_white.png"/>
+              <img style="margin-top:0px;height:30px;" src="assets/images/pto_white.png"/>
             </div>
-            <div style="padding-top:20px;font-size:12px;" class="right-align container">
+            <div font-size:12px;" class="right-align ">
             © 2017 Press To Open, Inc. Site by <span style="font-size:12px;color:#BE466D">Dk Web Design</span>
             </div>
           </div>

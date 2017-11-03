@@ -1,85 +1,50 @@
 
  $(document).ready(function(){
  	if(sessionStorage.getItem('userData')!==null){
-		var user = JSON.parse(sessionStorage.getItem('userData'));
-		getName(user);
-		getImage(user);
-		getDescription(user);
-		setGenderAge(user);
-		setLocation(user);
-		$("#profileImageBtn").click(function(){
-			$("#my_file").click();
-		});
-		var image = loadImage(user);
-		$("#welcomeBtn").click(function(){
-			saveData(user);
-		});
+		var userData = JSON.parse(sessionStorage.getItem('userData'));
+		setKnownData(userData);
+		var image = loadImage(userData.user);
+
+		$("#profileImageBtn").on("click",function(){ $("#my_file").click(); });
+	    $("#bday").datepicker();
+		$("#finishBtn").click(function(){ saveData(userData);});
  	}
-	else 
-		window.location.href='../signup';
+	else window.location.href='../signup';
  	
  });
 
-function getName(data){
-	if(typeof(data.userData.name)!=='undefined'){
-		$("#name").attr("value", data.userData.name);
+ function setKnownData(data){
+ 	console.log(data);
+ 	if(data.user.photoURL != null)
+ 		$("#photoURL").attr("src", data.user.photoURL);
+ 	else $("#photoURL").attr("src", "assets/img/person.png");
+
+ 	if(data.user.displayName != null)
+ 		$("#name").attr("value", data.user.displayName);
+
+ 	if(data.userData != null){
+	 	if(data.userData.birthday != null)
+	 		$("#bday").attr("value", data.userData.birthday);
+	 	if(data.userData != null)
+			$("#zip").attr("value", data.userData.zip);
 	}
 }
 
-function getImage(data){
-	if(typeof(data.userData.photoURL)!=='undefined')
-		$("#profile").attr("src", data.userData.photoURL);
-	else 
-		$("#profile").attr("src", 'assets/img/person.png');
-}
-
-function setGenderAge(data){
-	$("#genderAge").text(parseGender(data.userData.gender)+", "+data.userData.age);
-}
-
-function setLocation(data){
-	console.log(data);
-	$("#location").text(data.userData.city+", "+data.userData.state);
-}
 
 function loadImage(user){
 	$("#my_file").on("change", function(event){
 		event.stopPropagation();
 		event.preventDefault();
 		var image =event.target.files[0];
-		$("#profile").attr("src", URL.createObjectURL(image));
+		$("#photoURL").attr("src", URL.createObjectURL(image));
 		uploadImage(image, user);
 
 	});	
 }
-
-
-function saveData(data){
-	var description = $("#description").val();
-	var name 		= $("#name").val();
-	if(description!="" && name!=""){
-		data.userData.description  = description;
-		data.userData.name 		   = name;
-		sessionStorage.setItem("userData", JSON.stringify(data));
-		goToNext();
-		//writeUserData(data);
-	}
-	else
-		alert('Please complete all fields');
-}
-
-function getDescription(data){
-	if(typeof(data.userData.description)!=='undefined')
-		$("#description").text(data.userData.description);
-}
-
- 
-
 function uploadImage(image, user){
 	var metadata   = {"contentType":image.type};
     var storageRef = firebase.storage().ref('images/user/'+user.userData.uid+'/'+image.name);
     storageRef.put(image, metadata).then(function(snapshot){
-    console.log(snapshot.metadata);
     var url = snapshot.downloadURL;
     user.userData.photoURL = url;
     console.log('File available at', url);
@@ -88,10 +53,58 @@ function uploadImage(image, user){
   });
 }
 
-function parseGender(genderVal){
-    var genderArr = ["Male (Cis)", "Male (Trans)","Genderqueer", "Female (Cis)", "Female (Trans)", "Genderqueer","Intersex", "Agender"];
-    return genderArr[genderVal];
+
+function saveData(data){
+	var userData = {};
+	userData.name 		= $("#name").val();
+	userData.birthday 	= $("#bday").val();
+	var location 		= getLocationFromZip($("#zip").val());
+	userData.zip 		= location.zip;
+	userData.city 		= location.city;
+	userData.state 		= location.state;
+	userData.lat 		= location.lat;
+	userData.lng 		= location.lng;
+	userData.country 	= location.country;
+	userData.email 		= data.user.email;
+	userData.verified 	= data.user.emailVerified;
+	userData.photoURL 	= data.user.photoURL;
+	userData.uid 		= data.user.uid;
+
+	if(data.user.apiKey != null)
+		userData.apiKey = data.user.apiKey
+	if(data.user.credential != null)
+		userData.credential = user.credential;
+	if(data.user.additionalUserInfo != null){
+		userData.link = user.additionalUserInfo.profile.link;
+		userData.locale = user.additionalUserInfo.locale;
+	}
+
+	
+	data.userData = userData;
+	sessionStorage.setItem("userData" ,JSON.stringify(data));
+	goToNext();
+
 }
+
+
+function getLocationFromZip(zip){
+	var Httpreq = new XMLHttpRequest(); // a new request
+    if(zip.length==5 && zip.match(/^[0-9]+$/)){   
+        var url="https://maps.googleapis.com/maps/api/geocode/json?address="+zip+"&sensor=true";
+        Httpreq.open("GET",url, false);
+        Httpreq.send(null);
+        var jsonObj      = JSON.parse(Httpreq.responseText);
+        var locationData = {};
+        locationData.zip     = zip;
+        locationData.city    = jsonObj.results[0].address_components[1].long_name;
+        locationData.state   = jsonObj.results[0].address_components[3].short_name;
+        locationData.country = jsonObj.results[0].address_components[4].short_name;
+        locationData.lat     = jsonObj.results[0].geometry.location.lat;
+        locationData.lng     = jsonObj.results[0].geometry.location.lng;
+        return locationData;
+   }
+}
+
 
 
 function goToNext(){

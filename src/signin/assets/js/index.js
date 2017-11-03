@@ -4,67 +4,59 @@
  	$("#registerBtn").on("click", function(){
 	 	var email = $("#email").val();
 	 	var pass  = $("#password").val();
-		signUpWithEmail(email, pass);
+		signIWithEmail(email, pass);
  	});
-
- 	$("#fbSignup").click(function(){
- 		signInWithFb();
- 	});
-
- 	$("#googleSignup").click(function(){
- 		signInWithGoogle();
- 	});
+ 	$("#fbSignup").click(signInWithFb);
+ 	$("#googleSignup").click(signInWithGoogle);
  });
 
- function signUpWithEmail(email, pass, name){
- 	var response='';
- 	firebase.auth().signInWithEmailAndPassword(email, pass)
- 	.then(function(user){
- 		if(user!=null){
- 			console.log(user);
- 			goToProfile();
- 		}
- 	})
- 	.catch(function(error){
- 		var errorCode = error.code;
- 		var errorMsg  = error.message;
-        if(errorCode==="auth/wrong-password" || errorCode==="auth/user-not-found")
- 		 alert("Incorrect email or password");
-        else if(errorMsg=="The email address is badly formatted."){
-            alert("Invalid email address");
-        }
-        else alert(errorCode);
- 	});
-
- }
+ function signIWithEmail(email, pass, name){
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(function(){
+    return firebase.auth().signInWithEmailAndPassword(email, pass).then(function(user){
+      if(user!=null)
+        goToProfile();
+  }).catch(function(error){
+   		var errorCode = error.code;
+   		var errorMsg  = error.message;
+          if(errorCode==="auth/wrong-password" || errorCode==="auth/user-not-found")
+   		 alert("Incorrect email or password");
+          else if(errorMsg=="The email address is badly formatted."){
+              alert("Invalid email address");
+          }
+          else alert(errorCode);
+   	});
+ });
+}
 
  function signInWithFb(){
  	var provider = new firebase.auth.FacebookAuthProvider();
  	provider.addScope('user_about_me');
  	provider.setCustomParameters({ 'display': 'popup' });
- 	firebase.auth().signInWithPopup(provider).then(function(result){
- 		if(result.user != null)
-	 		checkIfuserExists(result);
- 	}).catch(function(error){
- 		var errorCode = error.code;
- 		var errorMsg  = error.message;
- 		alert (errorCode);
- 	});
+    signInWithPersistance(provider);
  }
 
 
 
  function signInWithGoogle(){
  	var provider = new firebase.auth.GoogleAuthProvider();
- 	firebase.auth().signInWithPopup(provider).then(function(result){
- 		if(result.user != null)
- 			checkIfuserExists(result);
- 	}).catch(function(error){
- 		var errorCode = error.code;
- 		var errorMsg  = error.message;
- 		alert(errorCode);
- 	});
+    signInWithPersistance(provider);
  }
+
+ function signInWithPersistance(provider){
+     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(function() {
+      return firebase.auth().signInWithPopup(provider).then(function(result){
+        if(result.user !=null)
+            checkIfuserExists(result);
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(errorCode);
+    })
+ });
+}
 
  function saveUserData(result){
  	sessionStorage.setItem('userData', JSON.stringify(result));
