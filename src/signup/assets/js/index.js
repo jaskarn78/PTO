@@ -18,8 +18,7 @@
 
  function signUpWithEmail(email, pass){
  	var response='';
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(function() {
-      return firebase.auth().createUserWithEmailAndPassword(email, pass).then(function(user){
+    firebase.auth().createUserWithEmailAndPassword(email, pass).then(function(user){
  		if(user!=null){
  			saveUserData(user);
  		}
@@ -28,27 +27,13 @@
  		var errorMsg  = error.message;
  		alert(errorMsg);
  	});
- });
 }
 
  function signUpWithFb(){
  	var provider = new firebase.auth.FacebookAuthProvider();
  	provider.addScope('user_about_me');
  	provider.setCustomParameters({ 'display': 'popup' });
- 	signUpWithPersistance(provider);
- }
-
-
-
- function signUpWithGoogle(){
- 	var provider = new firebase.auth.GoogleAuthProvider();
- 	signUpWithPersistance(provider);
- }
-
- function signUpWithPersistance(provider){
-     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-    .then(function() {
-      return firebase.auth().signInWithPopup(provider).then(function(result){
+ 	firebase.auth().signInWithPopup(provider).then(function(result){
         if(result.user !=null)
             checkIfuserExists(result);
     }).catch(function(error) {
@@ -56,9 +41,26 @@
       var errorCode = error.code;
       var errorMessage = error.message;
       alert(errorCode);
-    })
- });
-}
+    });
+ }
+
+
+
+ function signUpWithGoogle(){
+ 	var provider = new firebase.auth.GoogleAuthProvider();
+  provider.addScope('email');
+ 	firebase.auth().signInWithPopup(provider).then(function(result){
+        if(result!=null)
+            checkIfuserExists(result);
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(errorCode);
+    });
+ }
+
+ 
 
  function saveUserData(result){
  	sessionStorage.setItem('userData', JSON.stringify(result));
@@ -70,8 +72,16 @@
  	 firebase.firestore().collection('users').doc(result.user.uid)
     .get().then(function(doc){
     	if(doc.exists)
-    		goToProfile(doc.data());
-    	else saveUserData(result);
+    	   saveUserData(doc.data());
+       else {
+            var additional = result.additionalUserInfo.profile;
+            var userData = {"email":additional.email, "displayName":result.user.displayName,
+                        "photoURL":result.user.photoURL, "providerData":result.user.providerData,
+                         "emailVerified":result.user.emailVerified, "uid":result.user.uid};
+            result.email = additional.email;
+            result.photoURL = result.user.photoURL;
+            saveUserData(result);
+        }
     });
  }
 

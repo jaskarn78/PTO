@@ -4,93 +4,112 @@ var data = JSON.parse(sessionStorage.getItem("userData"));
 var user = data.userData;
 var matchObj = {};
 
+//variables for opening/sending "winks"
 var winkId;
 var winkData = [];
 var openedWinkId;
 var numOfWinks=0;
+var matches;
 
 //variables for filtering results
+var ageRange, activityLevel, hairColor, eyeColor;
 var allMatchedUsers = [];
-
+var matchedUsers = [];
 
 $(document).ready(function(){
+	console.log(localStorage);
 	showLoader();
 	setupAgeSlider();
-	setupActivityFilter();
 	$("#nameLink").text(user.name);
 	$("#signOut").on("click", function(){ signOut(); })
 	$("#closeWink").on("click", function(){ $("#modal1").modal('close');});
 	$("#sendWink").hide();
 	$("#deleteWink").hide();
 	getMatchesFromDb(user);
- 	
+ 	activityLevel = -1;
+ 	hairColor = -1;
+ 	eyeColor = -1;
 
 });
 
 function setupAgeSlider(){
 	var slider = document.getElementById("age-slider");
-
 	noUiSlider.create(slider, {
-		start: [20, 80],
+		start: [0, 100],
 	    connect: true,
 	    step: 1,
 		tooltips: true,
-		range: {'min': [ 0 ],'max': [ 100 ]},
+		range: {'min': [18],'max': [90]},
 		format: wNumb({ decimals: 0 })
 	});
+	ageRange = slider.noUiSlider.get();
+}
+
+
+
+function setupFilters(users){
+	$('[name="activity"]').on("change", function(){
+		activityLevel = $(this).val();
+		applyFilters(users, ageRange, activityLevel, hairColor, eyeColor);
+	});
+
+	var slider = document.getElementById("age-slider");
 	slider.noUiSlider.on('change', function(){
-		filterByAgeRange(slider.noUiSlider.get());
+		ageRange = slider.noUiSlider.get();
+		applyFilters(users, ageRange, activityLevel, hairColor, eyeColor);
 	});
-}
 
-function filterByAgeRange(ageRange){
-	var minAge = ageRange[0];
-	var maxAge = ageRange[1];
-	var matches = $("#flex-grid").children();
-
-	for(i=0; i<matches.length; i++){
-		var matchedUserAge = matches[i].attributes[2].value;
-		if(matchedUserAge > maxAge || matchedUserAge < minAge) 
-			matches[i].hidden = true;
-		else matches[i].hidden = false;
+	$('[name="haircolor"]').on("change", function(){
+		hairColor = $(this).val();
+		applyFilters(users, ageRange, activityLevel, hairColor, eyeColor);
 		
-	}
+	})
+	$('[name="eyecolor"]').on("change", function(){
+		eyeColor = $(this).val();
+		applyFilters(users, ageRange, activityLevel, hairColor, eyeColor);
+		
+	})
+
 }
 
-function setupActivityFilter(){
-	$('[name="activity"]').on("click", function(){
-		var selectedVal = $(this).val();
-		var matches = $("#flex-grid").children();
-		for(i=0; i<matches.length; i++){
-			var matchedActivityLevel = matches[i].attributes[3].value;
-			if(selectedVal != -1 && matchedActivityLevel != selectedVal){
-				matches[i].hidden = true;
-			}else
-				matches[i].hidden=false;
-			
-		}
-
-
-	});
-}
 
 
 
 function getMatchesFromDb(myInfo){
 	db.collection("users").where("userData.gender", "==", parseInt(myInfo.seeking))
-	.where("userData.seeking", "==", parseInt(myInfo.gender)).limit(100)
+	.where("userData.seeking", "==", parseInt(myInfo.gender))
 		.get().then(function(querySnapshot) {
 	    querySnapshot.forEach(function(doc) {
 	    	matchObj[doc.data().userData.uid.replace("-", "")] = doc.data();
 	        populateMatches(doc.data());
-	        populateChat(doc.data());
+	       // populateChat(doc.data());
 	        hideLoader();
-	       
 	    });
 	    winks();
-		storeMatches(matchObj)
+		storeMatches(matchObj);
+		matchedUsers = $("#flex-grid").children();
+		setupFilters(matchedUsers);
 
 	});
+}
+
+function applyFilters(data, ageRange, activityLevel, hairColor, eyeColor){
+	var minAge = ageRange[0];
+	var maxAge = ageRange[1];
+	for(i=0; i<data.length; i++){
+		var matchedUserAge = data[i].attributes[2].value;
+		var matchedActivityLevel = data[i].attributes[3].value;
+		var matchedHairColor = data[i].attributes[4].value;
+		var matchedEyeColor = data[i].attributes[5].value;
+		if((matchedUserAge > maxAge || matchedUserAge < minAge) || (activityLevel !=-1 && matchedActivityLevel != activityLevel)
+			|| (hairColor != -1 && matchedHairColor != hairColor) || (eyeColor !=-1 && matchedEyeColor !=eyeColor))
+			data[i].hidden = true;
+		else data[i].hidden = false;
+	}
+	console.log(matchObj);
+	console.log("Age Range: "+ageRange);
+	console.log("Activity Level: "+activityLevel);
+	console.log("Hair Color: "+hairColor);
 }
 
 
@@ -114,7 +133,7 @@ function winks(){
    		if(winkText=="") alert("Please type a proper message");
    		else sendWink(winkText);
    });
-	loadRecievedWinks();
+	loadRecievedData();
 	$("#deleteWink").on("click", function(){
 		deleteWink();
 	});
@@ -124,7 +143,8 @@ function populateMatches(matchData){
 	var userData = matchData.userData;
 	if(userData.uid!==user.uid){
 		$("#flex-grid").append('\
-			<div class="palette" id="users" data-age="'+getAgeFromDob(userData.birthday)+'" data-activity="'+userData.activity_level+'">\
+			<div class="palette" id="users" data-age="'+getAgeFromDob(userData.birthday)+'" data-activity="'+userData.activity_level+'"\
+			data-hairColor="'+userData.hair_color+'" data-eyeColor="'+userData.eye_color+'">\
 				<div class="wrapper">\
 					<div class="user">\
 	        			<img src="'+userData.photoURL+'" alt="" class="circle responsive-img" style="width:90px; height:90px;"">\
@@ -142,8 +162,6 @@ function populateMatches(matchData){
 	         </div>');
 	}
 }
-
-
 
 
 function displayMessage(key, fromId, name, text, photoUrl, imageUrl){
@@ -188,24 +206,45 @@ function clearTextArea(){
 	$("#winkText").val('');
 }
 
-function loadRecievedWinks(){
+function loadRecievedData(){
 	var winksRefToMe = firebase.database().ref('winks/'+user.uid+'/');
+	var members = firebase.database().ref().child("members").orderByChild("to").equalTo(user.uid);
+	members.once('value').then(function(snapshot){
+		if(snapshot.val()!=null)
+			console.log(Object.keys(snapshot.val()));
+	});
   	winksRefToMe.off();
-  	var showToast = function(){
+  	var showWinkToast = function(){
   		Materialize.toast('Wink Recieved!', 3000, 'rounded');
   	}
-  	var setMessage = function(data){
-    var val = data.val();
+  	var showMsgToast = function(data){
+  		Materialize.toast("Message Recieved!", 3000, 'rounded');
+  	}
+  	var setMsg = function(data){
+  		var val = data.val();
+  		var key = data.key;
+	    
+  		//console.log(val);
+    	//displayMessage(data.key, val.fromId, val.name, val.text, val.photoUrl, val.imageUrl);
+  	}
+  	var setWink = function(data){
     displayMessage(data.key, val.fromId, val.name, val.text, val.photoUrl, val.imageUrl);
     winkData[data.key] = val;
     $("#badge").text(++numOfWinks);
   }.bind(this);
-  	winksRefToMe.limitToLast(12).on('child_added', setMessage);
-  	winksRefToMe.limitToLast(12).on('child_changed', setMessage);
-  	winksRefToMe.limitToLast(1).on('child_added', showToast);
-  	winksRefToMe.limitToLast(1).on('child_changed', showToast);
+  	winksRefToMe.limitToLast(12).on('child_added', setWink);
+  	winksRefToMe.limitToLast(12).on('child_changed', setWink);
+  	winksRefToMe.limitToLast(1).on('child_added', showWinkToast);
+  	winksRefToMe.limitToLast(1).on('child_changed', showWinkToast);
+  	//messages.limitToLast(1).on('child_added', showMsgToast);
+  	//messages.limitToLast(1).on('child_changed', showMsgToast);
+  	//messages.limitToLast(1).on('child_added', setMsg);
+  	//messages.limitToLast(1).on('child_changed', setMsg);
+
 
 }
+
+
 function sendWink(winkText){
 	var winksFromMe = user.uid+"_"+winkId;
   	var winksRefFromMe = firebase.database().ref('winks/'+winkId+'/');
@@ -260,9 +299,11 @@ function parseGender(genderVal){
 	return genderArr[genderVal];
 }
 function signOut(){
-	firebase.auth().signOut().then(function() {
+	firebase.auth().signOut().then(function(result) {
+		sessionStorage.clear();
+		localStorage.clear();
 		window.location.href='../signin';
-	}, function(error) {
+	}).catch(function(error) {
 		console.error('Sign Out Error', error);
 	});
 }

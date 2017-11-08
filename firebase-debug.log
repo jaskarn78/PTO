@@ -1,0 +1,116 @@
+[debug] [2017-11-06T19:17:01.459Z] ----------------------------------------------------------------------
+[debug] [2017-11-06T19:17:01.461Z] Command:       /usr/local/Cellar/node/8.7.0/bin/node /usr/local/bin/firebase serve
+[debug] [2017-11-06T19:17:01.461Z] CLI Version:   3.14.0
+[debug] [2017-11-06T19:17:01.461Z] Platform:      darwin
+[debug] [2017-11-06T19:17:01.461Z] Node Version:  v8.7.0
+[debug] [2017-11-06T19:17:01.462Z] Time:          Mon Nov 06 2017 11:17:01 GMT-0800 (PST)
+[debug] [2017-11-06T19:17:01.462Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-06T19:17:01.474Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-06T19:17:01.474Z] > authorizing via signed-in user
+[debug] [2017-11-06T19:17:01.475Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/ptoapp-90ad1  
+ Mon Nov 06 2017 11:17:01 GMT-0800 (PST)
+[debug] [2017-11-06T19:17:01.888Z] <<< HTTP RESPONSE 200
+[error] 
+[error] Error: Server Error: Unexpected Response. Please try again
+[debug] [2017-11-06T19:17:01.899Z] Error Context: {
+  "status": 200,
+  "response": {
+    "statusCode": 200,
+    "body": {
+      "error": {
+        "code": "SERVICE_UNAVAILABLE",
+        "message": "This service is currently unavailable. Please try again in a few moments."
+      }
+    },
+    "headers": {
+      "server": "nginx",
+      "date": "Mon, 06 Nov 2017 19:17:01 GMT",
+      "content-type": "application/json",
+      "content-length": "147",
+      "last-modified": "Wed, 18 May 2016 18:59:26 GMT",
+      "connection": "close",
+      "etag": "\"573cbb8e-93\"",
+      "access-control-allow-origin": "*",
+      "access-control-allow-methods": "GET, PUT, POST, DELETE, OPTIONS",
+      "access-control-allow-headers": "*",
+      "strict-transport-security": "max-age=31536000; includeSubdomains",
+      "cache-control": "no-cache, no-store",
+      "accept-ranges": "bytes"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "admin.firebase.com",
+        "port": 443,
+        "hostname": "admin.firebase.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1/projects/ptoapp-90ad1",
+        "path": "/v1/projects/ptoapp-90ad1",
+        "href": "https://admin.firebase.com/v1/projects/ptoapp-90ad1"
+      },
+      "method": "GET",
+      "headers": {
+        "User-Agent": "FirebaseCLI/3.14.0",
+        "X-Client-Version": "FirebaseCLI/3.14.0",
+        "authorization": "Bearer ya29.Glz8BLvYC4xq1EZrJQQC3OVgvj-oFAiVaBkeWDheENJAm2eXuKKMUxn1uSNgoqsdqbyXuR5aX6DSekdfbDzUViwyZg0Arox3txKXo7eLEfsTdX-bEakJzPXIOL_MWA",
+        "accept": "application/json"
+      }
+    }
+  },
+  "body": {
+    "error": {
+      "code": "SERVICE_UNAVAILABLE",
+      "message": "This service is currently unavailable. Please try again in a few moments."
+    }
+  }
+}
+[debug] [2017-11-06T19:17:14.816Z] ----------------------------------------------------------------------
+[debug] [2017-11-06T19:17:14.817Z] Command:       /usr/local/Cellar/node/8.7.0/bin/node /usr/local/bin/firebase serve
+[debug] [2017-11-06T19:17:14.817Z] CLI Version:   3.14.0
+[debug] [2017-11-06T19:17:14.817Z] Platform:      darwin
+[debug] [2017-11-06T19:17:14.817Z] Node Version:  v8.7.0
+[debug] [2017-11-06T19:17:14.818Z] Time:          Mon Nov 06 2017 11:17:14 GMT-0800 (PST)
+[debug] [2017-11-06T19:17:14.818Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-06T19:17:14.826Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-06T19:17:14.826Z] > authorizing via signed-in user
+[debug] [2017-11-06T19:17:14.827Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/ptoapp-90ad1  
+ Mon Nov 06 2017 11:17:14 GMT-0800 (PST)
+[debug] [2017-11-06T19:17:15.273Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-06T19:17:15.274Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/ptoapp-90ad1/tokens  
+ Mon Nov 06 2017 11:17:15 GMT-0800 (PST)
+[debug] [2017-11-06T19:17:26.015Z] ----------------------------------------------------------------------
+[debug] [2017-11-06T19:17:26.017Z] Command:       /usr/local/Cellar/node/8.7.0/bin/node /usr/local/bin/firebase serve -p 8085
+[debug] [2017-11-06T19:17:26.017Z] CLI Version:   3.14.0
+[debug] [2017-11-06T19:17:26.017Z] Platform:      darwin
+[debug] [2017-11-06T19:17:26.017Z] Node Version:  v8.7.0
+[debug] [2017-11-06T19:17:26.018Z] Time:          Mon Nov 06 2017 11:17:26 GMT-0800 (PST)
+[debug] [2017-11-06T19:17:26.018Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-06T19:17:26.026Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-06T19:17:26.026Z] > authorizing via signed-in user
+[debug] [2017-11-06T19:17:26.027Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/ptoapp-90ad1  
+ Mon Nov 06 2017 11:17:26 GMT-0800 (PST)
+[debug] [2017-11-06T19:17:26.444Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-06T19:17:26.444Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/ptoapp-90ad1/tokens  
+ Mon Nov 06 2017 11:17:26 GMT-0800 (PST)
+[debug] [2017-11-06T19:18:25.511Z] ----------------------------------------------------------------------
+[debug] [2017-11-06T19:18:25.512Z] Command:       /usr/local/Cellar/node/8.7.0/bin/node /usr/local/bin/firebase serve -p 8085
+[debug] [2017-11-06T19:18:25.512Z] CLI Version:   3.14.0
+[debug] [2017-11-06T19:18:25.513Z] Platform:      darwin
+[debug] [2017-11-06T19:18:25.513Z] Node Version:  v8.7.0
+[debug] [2017-11-06T19:18:25.513Z] Time:          Mon Nov 06 2017 11:18:25 GMT-0800 (PST)
+[debug] [2017-11-06T19:18:25.513Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-06T19:18:25.521Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-06T19:18:25.521Z] > authorizing via signed-in user
+[debug] [2017-11-06T19:18:25.523Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/ptoapp-90ad1  
+ Mon Nov 06 2017 11:18:25 GMT-0800 (PST)
+[debug] [2017-11-06T19:18:25.954Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-06T19:18:25.954Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/ptoapp-90ad1/tokens  
+ Mon Nov 06 2017 11:18:25 GMT-0800 (PST)

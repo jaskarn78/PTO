@@ -11,12 +11,17 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
 	<!--     Fonts and icons     -->
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+	<link rel="stylesheet" href="../util/css/font-awesome.min.css">
+
+
+
+
 
 	<!-- CSS Files -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/css/material-kit.css?v=1.2.0" rel="stylesheet"/>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="assets/css/material-kit.css?v=1.2.0" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
 <body class="login-page">
@@ -29,21 +34,24 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-					<div class="card card-signup">
-						<h4 class="card-title text-center">Sign In</h4>
+					<div class="card card-signup" style="background: #febbbb;
+				    background: -moz-linear-gradient(-45deg, #febbbb 0%, #fe9090 45%, #ff5c5c 100%); /* FF3.6-15 */
+				    background: -webkit-linear-gradient(-45deg, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* Chrome10-25,Safari5.1-6 */
+				    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#febbbb', endColorstr='#ff5c5c',GradientType=1);">
+						<h4 class="card-title text-center" style="color: white;">Sign In</h4>
 						<form class="form">
 							<div class="card-content" style="margin-left:15px;margin-right:15px;">
 								<div class="input-group">
 									<span class="input-group-addon">
-										<i class="material-icons">email</i>
+										<i style="color:white" class="material-icons">email</i>
 									</span>
-									<input id="email" type="text" class="form-control" placeholder="Email...">
+									<input style="padding-left:2px" id="email" type="text" class="form-control" placeholder="Email...">
 								</div>
 								<div class="input-group">
 									<span class="input-group-addon">
-										<i class="material-icons">lock_outline</i>
+										<i style="color:white;" class="material-icons">lock_outline</i>
 									</span>
-									<input id="password" type="password" placeholder="Password..." class="form-control" />
+									<input style="padding-left:2px;" id="password" type="password" placeholder="Password..." class="form-control" />
 								</div>
 							</div>
 							
@@ -84,6 +92,7 @@
 	<script src="/__/firebase/4.5.0/firebase-app.js"></script>
     <script src="/__/firebase/4.5.0/firebase-auth.js"></script>
     <script src="/__/firebase/4.5.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-database.js"></script>
     <script src="/__/firebase/init.js"></script>
-	<script src="assets/js/index.js"></script>
+	<script src="assets/js/index.js?n=1"></script>
 </html>

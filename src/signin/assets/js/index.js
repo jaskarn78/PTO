@@ -1,6 +1,10 @@
 
  $(document).ready(function(){
+   console.log(localStorage);
+
+
  	sessionStorage.clear();
+  localStorage.clear();
  	$("#registerBtn").on("click", function(){
 	 	var email = $("#email").val();
 	 	var pass  = $("#password").val();
@@ -11,65 +15,74 @@
  });
 
  function signIWithEmail(email, pass, name){
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-  .then(function(){
-    return firebase.auth().signInWithEmailAndPassword(email, pass).then(function(user){
-      if(user!=null)
-        goToProfile();
+  firebase.auth().signInWithEmailAndPassword(email, pass).then(function(user){
+      if(user!=null){
+        checkIfEmailuserExists(user);
+    }
   }).catch(function(error){
    		var errorCode = error.code;
    		var errorMsg  = error.message;
-          if(errorCode==="auth/wrong-password" || errorCode==="auth/user-not-found")
+      if(errorCode==="auth/wrong-password" || errorCode==="auth/user-not-found")
    		 alert("Incorrect email or password");
-          else if(errorMsg=="The email address is badly formatted."){
-              alert("Invalid email address");
-          }
-          else alert(errorCode);
+      else if(errorMsg=="The email address is badly formatted."){
+          alert("Invalid email address");
+      }
    	});
- });
-}
+ }
 
  function signInWithFb(){
  	var provider = new firebase.auth.FacebookAuthProvider();
  	provider.addScope('user_about_me');
  	provider.setCustomParameters({ 'display': 'popup' });
-    signInWithPersistance(provider);
- }
-
-
-
- function signInWithGoogle(){
- 	var provider = new firebase.auth.GoogleAuthProvider();
-    signInWithPersistance(provider);
- }
-
- function signInWithPersistance(provider){
-     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-    .then(function() {
-      return firebase.auth().signInWithPopup(provider).then(function(result){
+    firebase.auth().signInWithPopup(provider).then(function(result){
         if(result.user !=null)
-            checkIfuserExists(result);
+          checkIfuserExists(result);
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
       alert(errorCode);
-    })
- });
-}
+    });
+ }
+
+
+
+
+
+ function signInWithGoogle(){
+ 	var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result){
+        if(result.user !=null)
+          checkIfuserExists(result);
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(errorCode);
+    });
+ }
 
  function saveUserData(result){
  	sessionStorage.setItem('userData', JSON.stringify(result));
     goToProfile();
 }
 
+ function checkIfEmailuserExists(result){
+  console.log(result);
+   firebase.firestore().collection('users').doc(result.uid)
+    .get().then(function(doc){
+      if(doc.exists){
+        saveUserData(doc.data());
+      }
+    });
+ }
 
  function checkIfuserExists(result){
  	 firebase.firestore().collection('users').doc(result.user.uid)
     .get().then(function(doc){
-    	if(doc.exists)
-    		goToProfile(doc.data());
-    	else saveUserData(result);
+    	if(doc.exists){
+        saveUserData(doc.data());
+      }
     });
  }
 

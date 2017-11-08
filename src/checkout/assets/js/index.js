@@ -130,8 +130,8 @@ function sendData(nonce, totalCost){
 		success:function(data){}
 	}).done(function(data){
 		if(data.transaction != null){
-			alert("Charged for the amount: $"+data.transaction.amount);
-			sendVerificationEmail();
+			//alert("Charged for the amount: $"+data.transaction.amount);
+			goToNext();
 		}
 	}).catch(function(err){
 		console.log(err);
@@ -176,14 +176,14 @@ function setupPayment(token){
 }
 
 function sendVerificationEmail(){
-	var firebaseUser = firebase.auth().currentUser;
+	goToNext();
+	/*var firebaseUser = firebase.auth().currentUser;
 	firebaseUser.sendEmailVerification().then(function(){
 		//Email sent
 		alert("Check email for account activation");
-		goToNext();
 	}).catch(function(error){
 		//Error occured
-	});
+	});*/
 }
 function initAutocomplete() {
     // Create the autocomplete object, restricting the search to geographical

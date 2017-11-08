@@ -9,17 +9,18 @@
   <meta name="manifest" src="/manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="materialize/css/materialize.css">
+  <link rel="stylesheet" type="text/css" href="materialize/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="css/nouislider.css">
   <link rel="stylesheet" type="text/css" href="css/results.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="../util/css/loader.css">
   <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="materialize/css/style.css">
     
   </head>
-
   <body>
+
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper" style="background-color:white">
@@ -28,7 +29,7 @@
         </a> 
         <ul id="nav-mobile" class="right hide-on-small-and-down">
           <li><a class='dropdown-button ' href='#' data-activates='dropdown1'><img id="navHeart" style="margin-top:0px;height:25px;" src="/pt-heart.png"/>
-          <span id="badge" style="font-size:14px;" class="new badge">0</span></a><li>
+          <span id="badge" style="background-color:#FF727D;font-size:14px;" class="new badge">0</span></a><li>
            <ul style="margin-top:10px;" id='dropdown1' class='dropdown-content'>
           </ul>
           <li><a id="nameLink" style="font-size:12px;color:black;" href="../profile"></a></li>
@@ -43,69 +44,6 @@
     </nav>
   </div>
 
-  <div id="slide-out" class="side-nav fixed" style="margin-top: 80px;">
-    <ul class="collapsible" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header">
-        <i class="material-icons">filter_drama</i>Age Range
-      </div>
-      <div class="collapsible-body">
-        <div class="row">
-          <p class="col s12 offset-s1" style="color:black;">Select min and max age</p>
-          <div class="col s12 offset-s1 slider" id="age-slider" style="margin-bottom:10px;width:180px;"></div>
-        </div>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header">
-        <i class="material-icons">place</i>Activity Level
-      </div>
-      <div class="collapsible-body">
-        <div class="row">
-          <p class="col s12 offset-s1" style="color:black;">Choose activity level</p>
-          
-          <p class="col s12 offset-s1">
-            <input class="with-gap" name="activity" value=0 type="radio" id="veryActive" />
-            <label for="veryActive">Very Active</label>
-          </p>
-          <p class="col s12 offset-s1">
-            <input class="with-gap" name="activity" value=1 type="radio" id="moderatelyActive" />
-            <label for="moderatelyActive">Moderately Active</label>
-          </p>
-          <p class="col s12 offset-s1">
-            <input class="with-gap" name="activity" value=2 type="radio" id="lessActive"  />
-            <label for="lessActive">Less Active</label>
-          </p>
-          <p class="col s12 offset-s1">
-            <input class="with-gap" name="activity" value=-1  checked type="radio" id="showAllActivity" />
-            <label for="showAllActivity">All</label>
-          </p>
-        </div>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Height</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Weight</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Hair Color</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Eye Color</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>
-  </div>
-      
-
- 
 
  <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer" style="max-height:320px;overflow: hidden;">
@@ -131,23 +69,127 @@
         <label style="font-size:10px;color:white" for="winkText">Wink Message</label>   
       </div>
     </div>
+
     <div class="modal-footer" style="background: #febbbb;
-    background: -moz-linear-gradient(-45deg, #febbbb 0%, #fe9090 45%, #ff5c5c 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #febbbb 0%,#fe9090 45%,#ff5c5c 100%);">
+      background: -moz-linear-gradient(-45deg, #febbbb 0%, #fe9090 45%, #ff5c5c 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(-45deg, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(135deg, #febbbb 0%,#fe9090 45%,#ff5c5c 100%);">
       <a class="right-align waves-effect waves-red btn-flat " id="closeWink" data-target="modal1" style="max-width:100px;color:white;" >Close</a>
       <a class="right-align waves-effect waves-red btn-flat " id="sendWink" data-target="modal1" style="max-width:100px;color:white;" href="#!" >Send Wink</a>
       <a class="right-align waves-effect waves-red btn-flat " id="deleteWink" data-target="modal1" style="max-width:100px;color:white;" href="#!" >Delete</a>
-
     </div>
   </div>
+  
   <div class="loader" id="loader" style="margin-left:50px"></div>
-
-  <div id="myDiv" class="animate-bottom">
-     <div class="col s9" style="padding-left:250px;">
-        <div id="flex-grid" class="flex-grid">
+  <div class="row">
+    <div id="slide-out" class="hide-on-small-and-down side-nav fixed col s2" style="min-width:20%;margin-top:80px;">
+        <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">filter_drama</i>Age Range
+          </div>
+          <div class="collapsible-body">
+            <div class="center-align row">
+              <div class="col s12" style="color:black;">Min and max age</div>
+              <div class="col s8 offset-s2 slider" id="age-slider" style="margin-bottom:10px;"></div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">place</i>Activity Level
+          </div>
+          <div class="collapsible-body">
+            <div class="row" style="padding:5px;margin-top:10px;">
+              
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="activity" value=0 type="radio" id="veryActive" />
+                <label style="font-size:12px;" for="veryActive">Very Active</label>
+              </p>
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="activity" value=1 type="radio" id="moderatelyActive" />
+                <label style="font-size:12px;" for="moderatelyActive">Moderately Active</label>
+              </p>
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="activity" value=2 type="radio" id="lessActive"  />
+                <label style="font-size:12px;" for="lessActive">Less Active</label>
+              </p>
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="activity" value=-1  checked type="radio" id="showAllActivity" />
+                <label style="font-size:12px;" for="showAllActivity">All</label>
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+        <div class="collapsible-header"><i class="material-icons">whatshot</i>Hair Color</div>
+        <div class="collapsible-body">
+           <div class="row" style="padding:5px;margin-top:10px;">
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="haircolor" value=0 type="radio" id="blondeHair" />
+                <label style="font-size:12px;" for="blondeHair">Blonde</label>
+              </p>
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="haircolor" value=1 type="radio" id="blackHair" />
+                <label style="font-size:12px;" for="blackHair">Black</label>
+              </p>
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="haircolor" value=2 type="radio" id="redHair"  />
+                <label style="font-size:12px;" for="redHair">Red</label>
+              </p>
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="haircolor" value=3 type="radio" id="grayHair" />
+                <label style="font-size:12px;" for="grayHair">Gray</label>
+              </p>
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="haircolor" value=4 type="radio" id="otherHair" />
+                <label style="font-size:12px;" for="otherHair">Other</label>
+              </p>
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="haircolor" value=-1 checked type="radio" id="allHair" />
+                <label style="font-size:12px;" for="allHair">All</label>
+              </p>
+          </div>
+        </div>
+      </li>
+      <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Eye Color</div>
+      <div class="collapsible-body">
+         <div class="row" style="padding:5px;margin-top:10px;">
+            <p class="col s12 offset-s1">
+              <input class="with-gap" name="eyecolor" value=0 type="radio" id="brownEyes" />
+              <label style="font-size:12px;" for="brownEyes">Brown</label>
+            </p>
+            <p class="col s12 offset-s1">
+              <input class="with-gap" name="eyecolor" value=1 type="radio" id="blueEyes" />
+              <label style="font-size:12px;" for="blueEyes">Blue</label>
+            </p>
+            <p class="col s12 offset-s1">
+              <input class="with-gap" name="eyecolor" value=2 type="radio" id="hazelEyes"  />
+              <label style="font-size:12px;" for="hazelEyes">Hazel</label>
+            </p>
+            <p class="col s12 offset-s1">
+              <input class="with-gap" name="eyecolor" value=3 type="radio" id="greenEyes" />
+              <label style="font-size:12px;" for="greenEyes">Green</label>
+            </p>
+            <p class="col s12 offset-s1">
+              <input class="with-gap" name="eyecolor" value=4 type="radio" id="multicolorEyes" />
+              <label style="font-size:12px;" for="multicolorEyes">Multicolored</label>
+            </p>
+            <p class="col s12 offset-s1">
+              <input class="with-gap" name="eyecolor" value=-1 checked type="radio" id="allEyes" />
+              <label style="font-size:12px;" for="allEyes">All</label>
+            </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="myDiv" class="center-align valign-wrapper col s10 animate-bottom" style="width:90%;">
+     <div class="valign-wrapper center-align col s12 push-s2">
+        <div id="flex-grid" class="center-align flex-grid">
         </div>
       </div>
+  </div>
   </div>
 <!--/div>
     <div id="jd-chat">

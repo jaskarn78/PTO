@@ -18,6 +18,11 @@
 // Initializes Chat.
 var getConvoFromMe;
 var getConvoToMe;
+var messagesRef;
+var recipient;
+var details = [];
+var userId;
+var matches = [];
 function Chat() {
   this.checkSetup();
 
@@ -65,31 +70,47 @@ Chat.prototype.initFirebase = function() {
   this.database = firebase.database();
   this.storage = firebase.storage();
   this.firestore = firebase.firestore();
-  console.log(this.userLink);
-  this.onStart();
+  firebase.auth().onAuthStateChanged(function(user) {
+    Chat.onStart(user);
+  });
+
 };
 
 // Loads chat messages history and listens for upcoming ones.
-Chat.prototype.loadMessages = function() {
+Chat.prototype.loadMessages = function(members) {
   // TODO(DEVELOPER): Load and listens for new messages.
   this.messageList.innerHTML = '';
-  this.messagesRefToMe = this.database.ref('conversations/'+getConvoToMe+'/messages/');
-  this.messagesRefFromMe = this.database.ref('conversations/'+getConvoFromMe+'/messages/');
-  this.messagesRefToMe.off();
-  this.messagesRefFromMe.off();
-  console.log(getConvoToMe);
-  console.log(getConvoFromMe);
+  this.chatRef = this.database.ref().child("chats").push();
+  var chatKey = this.chatRef.key;
+  this.database.ref().child("members").orderByChild(recipient).equalTo(true)
+  .once("value",function(snapshot){
+    var memberData = snapshot.val();
+      console.log(memberData);
+      //Check if previous conversation between two users exists
+      if(!memberData){
+        var key = firebase.database().ref().child("members").push(members).key;
+        messagesRef =  firebase.database().ref().child("/messages/"+key+"/");
+        setMsg(messagesRef);
+      }
+      else{
+        var key = Object.keys(snapshot.val())[0];
+        messagesRef =  firebase.database().ref().child("/messages/"+key+"/");
+        setMsg(messagesRef);
+     }
 
+  });
+};
+
+function setMsg(messageRef){
   //load last 12 messages and listen for new ones
   var setMessage = function(data){
     var val = data.val();
-    this.displayMessage(data.key, val.name, val.text, val.photoUrl, val.imageUrl);
+    Chat.displayMessage(data.key, val.name, val.text, val.photoUrl, val.imageUrl);
   }.bind(this);
-  this.messagesRefToMe.limitToLast(12).on('child_added', setMessage);
-  this.messagesRefToMe.limitToLast(12).on('child_changed', setMessage);
-  this.messagesRefFromMe.limitToLast(12).on('child_added', setMessage);
-  this.messagesRefFromMe.limitToLast(12).on('child_changed', setMessage);
-};
+  messagesRef.limitToLast(12).on('child_added', setMessage);
+  messagesRef.limitToLast(12).on('child_changed', setMessage);
+}
+
 
 // Saves a new message on the Firebase DB.
 Chat.prototype.saveMessage = function(e) {
@@ -98,23 +119,33 @@ Chat.prototype.saveMessage = function(e) {
     alert("Please select recipient first!");
     return;
   }
+
   // Check that the user entered a message and is signed in.
   if (this.messageInput.value && this.checkSignedInWithMessage()) {
     var currentUser = this.userInfo.userData;
+
     //Add a new message entry to database
-    this.messagesRefFromMe.push({
-      name: currentUser.name,
-      text: this.messageInput.value,
-      photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
+    messagesRef.push({
+        name: this.user.displayName,
+        text: this.messageInput.value,
+        photoUrl: currentUser.photoURL || '/images/profile_placeholder.png',
+        timestamp: Date.now(),
+        toId: recipient,
+        fromId: this.user.uid
     }).then(function(){
       resetMaterialTextfield(this.messageInput);
-      sendMessagPush(currentUser.name, this.messageInput.value);
+      sendMessagePush(currentUser.name, this.messageInput.value);
       this.toggleButton();
     }.bind(this)).catch(function(error){
       console.error("Error writing new messages to database", error);
     });
   }
+  //Add a new message entry to database
+
+
 };
+
+
 
 // Sets the URL of the given img element with the URL of the image stored in Cloud Storage.
 Chat.prototype.setImageUrl = function(imageUri, imgElement) {
@@ -136,7 +167,7 @@ Chat.prototype.setImageUrl = function(imageUri, imgElement) {
 Chat.prototype.saveImageMessage = function(event) {
   event.preventDefault();
   var file = event.target.files[0];
-// A loading image URL.
+  // A loading image URL.
   //Chat.LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
   // Clear the selection in the file picker input.
   this.imageForm.reset();
@@ -154,8 +185,9 @@ Chat.prototype.saveImageMessage = function(event) {
   if (this.checkSignedInWithMessage()) {
     // TODO(DEVELOPER): Upload image to Firebase storage and add message.
     var currentUser = this.userInfo.userData;
-    this.messagesRefFromMe.push({
+    messagesRef.push({
       name: currentUser.name,
+      toId: recipient,
       imageUrl: getLoadingImageUrl(),
       photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
     }).then(function(data){
@@ -187,12 +219,12 @@ Chat.prototype.signOut = function() {
 };
 
 // Triggers when the auth state change for instance when the user signs-in or signs-out.
-Chat.prototype.onStart = function() {
-  if (this.userInfo) { // User is signed in!
+Chat.prototype.onStart = function(user) {
+  if (user) { // User is signed in!
     // Get profile pic and user's name from the Firebase user object.
-    var profilePicUrl = this.userInfo.userData.photoURL;
-    var userName = this.userInfo.userData.name;
-
+    var profilePicUrl = user.photoURL;
+    var userName = user.displayName;
+    this.user = user;
     // Set the user's profile pic and name.
     this.userPic.style.backgroundImage = 'url(' + profilePicUrl + ')';
     this.userName.textContent = userName;
@@ -208,7 +240,7 @@ Chat.prototype.onStart = function() {
  // We save the Firebase Messaging Device token and enable notifications.
     this.saveMessagingDeviceToken();
     // We load currently existing chant messages.
-    this.loadMatches();
+    this.loadMatches(user);
 
    
   } else { // User is signed out!
@@ -222,34 +254,51 @@ Chat.prototype.onStart = function() {
   }
 };
 
-Chat.prototype.loadMatches = function(){
+Chat.prototype.loadMatches = function(curUser){
   var db = this.firestore;
   var user = this.userInfo.userData;
-
-  db.collection("users").where("userData.gender", "==", parseInt(user.seeking))
-    .where("userData.seeking", "==", parseInt(user.gender))
+  console.log(user);
+  db.collection("users").where("userData.gender", "==", user.seeking)
+    .where("userData.seeking", "==", user.gender)
     .get().then(function(querySnapshot){
       var index = 0;
       querySnapshot.forEach(function(doc){
         var match = doc.data();
-        $("#slide-out").append('<li class="matched_userList"><a class="userChat waves-effect" id="'+match.userData.uid+'"">'+
+        matches.push('<li class="matched_userList"><a class="userChat waves-effect" data-toId="'+match.userData.uid+'">\
+              <img src="'+match.userData.photoURL+'"class="mdl-color-text--blue-grey-400 material-icons"\
+              style="width:40px; height:40px;margin-bottom:10px;margin-right:5px; border-radius:50%;">'+match.userData.name+'</a></li>\
+                  <li><div class="divider"></div></li>');
+        /*$("#slide-out").append('<li class="matched_userList"><a class="userChat waves-effect" data-toId="'match.userData.uid'">'+
               '<img src="'+match.userData.photoURL+'"class="mdl-color-text--blue-grey-400 material-icons"'+
               'style="width:40px; height:40px;margin-bottom:10px;margin-right:5px; border-radius:50%;">'+match.userData.name+'</a></li>\
-                  <li><div class="divider"></div></li>');
-    });
-    //Materialize.showStaggeredList('#slide-out');
-    $("#slide-out li a").on("click", function(){
-        var toId = $(this).attr("id").replace("-", "");
-        $(".matched_userList").removeClass('active');
-        $(this).parent().addClass('active');//.removeClass('active');
-        //$(this).addClass('active');
-        getConvoFromMe = user.uid+"_"+toId;
-        getConvoToMe = toId+"_"+user.uid;
-        Chat.loadMessages();
+                  <li><div class="divider"></div></li>');*/
+      });
+      setUpUsers(matches);
 
     });
-  });
-};
+
+  };
+
+  function setUpUsers(matches){
+    matches.forEach(function(element){
+      $("#slide-out").append(element);
+    });
+    var uid = Chat.userInfo.userData.uid;
+     $("#slide-out li a").on("click", function(){
+        var toId = $(this).attr("data-toId");
+          console.log(uid);
+        console.log(toId);
+        $(".matched_userList").removeClass('active');
+        $(this).parent().addClass('active');//.removeClass('active');
+        getConvoFromMe = true;
+        recipient = toId;
+        var members = {[uid]:true, [toId]:true, to:toId, from:uid};
+        Chat.loadMessages(members);
+
+    });
+
+   
+  }
 
 
 
@@ -272,7 +321,7 @@ Chat.prototype.checkSignedInWithMessage = function() {
 Chat.prototype.saveMessagingDeviceToken = function() {
   firebase.messaging().getToken().then(function(currentToken) {
     if (currentToken) {
-      console.log('Got FCM device token:', currentToken);
+      //console.log('Got FCM device token:', currentToken);
       // Saving the Device Token to the datastore.
       firebase.database().ref('/fcmTokens').child(currentToken)
           .set(Chat.userInfo.userData.uid);
@@ -287,7 +336,7 @@ Chat.prototype.saveMessagingDeviceToken = function() {
 
 // Requests permissions to show notifications.
 Chat.prototype.requestNotificationsPermissions = function() {
-  console.log('Requesting notifications permission...');
+  //console.log('Requesting notifications permission...');
   firebase.messaging().requestPermission().then(function() {
     // Notification permission granted.
     this.saveMessagingDeviceToken();
@@ -317,7 +366,9 @@ function getLoadingImageUrl(){
   return 'https://www.google.com/images/spin-32.gif';
 }
 
-function sendMessagPush(name, text){
+
+
+function sendMessagePush(name, text){
   firebase.messaging().getToken().then(function(currentToken){
     if(currentToken){
       $.ajax({        
@@ -330,7 +381,7 @@ function sendMessagPush(name, text){
         dataType: 'json',
         data: JSON.stringify({"to": currentToken, "notification": {"title":name,"body":text, "icon":"pt-heart.png","click_action": "http://localhost:8081"}}),
         success : function(response) {
-            console.log(currentToken);
+            //console.log(currentToken);
         },
         error : function(xhr, status, error) {
             console.log(xhr.error);                   

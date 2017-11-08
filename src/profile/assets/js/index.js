@@ -5,9 +5,7 @@ $(document).ready(function(){
 	showLoader();
 	setupDropZone();
 	$("#signOutBtn").on("click", function(){ signOut(); });
-	if(sessionStorage.getItem("userData")==null)
-		getUserDataFromDb();
-	else getUserDataFromSession();
+	getUserDataFromDb();
 });
 
 
@@ -49,12 +47,12 @@ function setupProfile(user){
 	$("#genderAge").text(parseGender(userInfo.gender)+", "+userInfo.age);
 	$("#description").text(userInfo.description);
 	//$("#edDiv span").text(profile.school);
-	$("#jobDib span").text(profile.job_title);
-	$("#ethnicityDiv span").text(profile.ehtnicity);
-	$("#homeTownDiv span").text(profile.home_city+", "+profile.home_state);
-	$("#drinkerDiv span").text(parseDrinker(profile.drinker));
-	$("#smokerDiv span").text(parseSmoker(profile.smoker));
-	$("#languageDiv span").text(parseLanguages(profile.languages));
+	//$("#jobDiv span").text(profile.job_title);
+	//$("#ethnicityDiv span").text(profile.ethnicity);
+	//$("#homeTownDiv span").text(profile.home_city+", "+profile.home_state);
+	//$("#drinkerDiv span").text(parseDrinker(profile.drinker));
+	//$("#smokerDiv span").text(parseSmoker(profile.smoker));
+	//$("#languageDiv span").text(parseLanguages(profile.languages));
 	$("#drop1").attr("src", $("#profilePicture").attr("src"));
 	$("#drop2").attr("src", $("#userImage1").attr("src"));
 	$("#drop3").attr("src", $("#userImage2").attr("src"));
@@ -172,6 +170,7 @@ function getImageFromSession(user){
 
 function signOut(){
 	firebase.auth().signOut().then(function() {
+		sessionStorage.clear();
 		window.location.href='../signin';
 	}, function(error) {
 		console.error('Sign Out Error', error);
