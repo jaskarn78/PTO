@@ -1,36 +1,72 @@
 
 var db = firebase.firestore();
-var data = JSON.parse(sessionStorage.getItem("userData"));
-var user = data.userData;
+var myInfo = JSON.parse(sessionStorage.getItem("userData"));
 var matchObj = {};
+var blocked = {};
+var blockId;
+var myId = myInfo.userData.uid;
 
 //variables for opening/sending "winks"
 var winkId;
 var winkData = [];
 var openedWinkId;
 var numOfWinks=0;
-var matches;
 
 //variables for filtering results
 var ageRange, activityLevel, hairColor, eyeColor;
-var allMatchedUsers = [];
 var matchedUsers = [];
+var hiddenUsers = [];
+$(".modal").modal();
+
+db.collection("users").doc(myId).onSnapshot(function(doc) {
+	myInfo = doc.data();
+	if(doc.data().blocked != null){
+		blocked = doc.data().blocked;
+		hideBlockedUsers(blocked);
+	}
+});
 
 $(document).ready(function(){
-	console.log(localStorage);
 	showLoader();
 	setupAgeSlider();
-	$("#nameLink").text(user.name);
+	$("#nameLink").text(myInfo.userData.name);
 	$("#signOut").on("click", function(){ signOut(); })
 	$("#closeWink").on("click", function(){ $("#modal1").modal('close');});
 	$("#sendWink").hide();
 	$("#deleteWink").hide();
-	getMatchesFromDb(user);
- 	activityLevel = -1;
- 	hairColor = -1;
- 	eyeColor = -1;
-
+	getMatchesFromDb(myInfo.userData);
+ 	activityLevel = -1;hairColor = -1;eyeColor = -1;
 });
+
+function getMatchesFromDb(myInfo){
+	db.collection("users").where("userData.gender", "==", parseInt(myInfo.seeking))
+	.where("userData.seeking", "==", parseInt(myInfo.gender))
+		.get().then(function(querySnapshot) {
+    	querySnapshot.forEach(function(doc) {
+    		if(blocked[doc.data().userData.uid] == null){
+    			matchObj[doc.data().userData.uid] = doc.data();
+        		populateMatches(doc.data());
+    		}
+       });
+
+        hideLoader();
+	    winks();
+		storeMatches(matchObj);
+		getMatchedUsersArray();
+		setupFilters(matchedUsers);
+		setupUserMenu(matchObj);
+	});
+}
+
+	
+function getMatchedUsersArray(){
+	matchedUsers = $("#flex-grid").children();
+	for(i=0; i<matchedUsers.length; i++){
+		if(matchedUsers[i].attributes[6] != null)
+			hiddenUsers[matchedUsers[i].attributes[6].value] = matchedUsers[i];
+	}
+}
+
 
 function setupAgeSlider(){
 	var slider = document.getElementById("age-slider");
@@ -66,118 +102,149 @@ function setupFilters(users){
 	})
 	$('[name="eyecolor"]').on("change", function(){
 		eyeColor = $(this).val();
-		applyFilters(users, ageRange, activityLevel, hairColor, eyeColor);
-		
+		applyFilters(users, ageRange, activityLevel, hairColor, eyeColor);	
 	})
-
-}
-
-
-
-
-function getMatchesFromDb(myInfo){
-	db.collection("users").where("userData.gender", "==", parseInt(myInfo.seeking))
-	.where("userData.seeking", "==", parseInt(myInfo.gender))
-		.get().then(function(querySnapshot) {
-	    querySnapshot.forEach(function(doc) {
-	    	matchObj[doc.data().userData.uid.replace("-", "")] = doc.data();
-	        populateMatches(doc.data());
-	       // populateChat(doc.data());
-	        hideLoader();
-	    });
-	    winks();
-		storeMatches(matchObj);
-		matchedUsers = $("#flex-grid").children();
-		setupFilters(matchedUsers);
-
-	});
 }
 
 function applyFilters(data, ageRange, activityLevel, hairColor, eyeColor){
 	var minAge = ageRange[0];
 	var maxAge = ageRange[1];
 	for(i=0; i<data.length; i++){
-		var matchedUserAge = data[i].attributes[2].value;
-		var matchedActivityLevel = data[i].attributes[3].value;
-		var matchedHairColor = data[i].attributes[4].value;
-		var matchedEyeColor = data[i].attributes[5].value;
-		if((matchedUserAge > maxAge || matchedUserAge < minAge) || (activityLevel !=-1 && matchedActivityLevel != activityLevel)
-			|| (hairColor != -1 && matchedHairColor != hairColor) || (eyeColor !=-1 && matchedEyeColor !=eyeColor))
-			data[i].hidden = true;
-		else data[i].hidden = false;
+		if(data[i].attributes[2] !=null && data[i].attributes[3] !=null && data[i].attributes[4] !=null && data[i].attributes[5] !=null 
+			&& blocked[data[i].attributes[6].value] == null){
+			var matchedUserAge = data[i].attributes[2].value;
+			var matchedActivityLevel = data[i].attributes[3].value;
+			var matchedHairColor = data[i].attributes[4].value;
+			var matchedEyeColor = data[i].attributes[5].value;
+			if((matchedUserAge > maxAge || matchedUserAge < minAge) || (activityLevel !=-1 && matchedActivityLevel != activityLevel)
+				|| (hairColor != -1 && matchedHairColor != hairColor) || (eyeColor !=-1 && matchedEyeColor !=eyeColor))
+				data[i].hidden = true;
+			else data[i].hidden = false;
+		}
 	}
-	console.log(matchObj);
-	console.log("Age Range: "+ageRange);
-	console.log("Activity Level: "+activityLevel);
-	console.log("Hair Color: "+hairColor);
-}
 
-
-
-function winks(){
-	$(".user-more .wink").on("click", function(){
-		$("#sendWink").show();
-		$("#deleteWink").hide();
-		var user = matchObj[$(this).attr("id").replace("-", "")].userData;
-		$("#winkText").val('');
-		winkId = $(this).attr("id").replace("-", "");
-   		$("#winkText").attr("disabled",false); 
-   		$("#winkText").css({"background":"white", "color":"black"});
-   		$("#winkText").addClass("center-align");
-
-   		$("#winkHeader").html('Send Wink To:<br><a onclick="goToProfile(winkId)" style="cursor:pointer;cursor:hand;"><span style="font-size:14px;color:white" id="modalHeader"></span></a>');
-		openModal(user.name, user.photoURL, '');
-   });
-	$("#sendWink").on("click", function(){
-   		var winkText = $("#winkText").val();
-   		if(winkText=="") alert("Please type a proper message");
-   		else sendWink(winkText);
-   });
-	loadRecievedData();
-	$("#deleteWink").on("click", function(){
-		deleteWink();
-	});
 }
 
 function populateMatches(matchData){
 	var userData = matchData.userData;
-	if(userData.uid!==user.uid){
+	if(userData.uid!==myId){
 		$("#flex-grid").append('\
 			<div class="palette" id="users" data-age="'+getAgeFromDob(userData.birthday)+'" data-activity="'+userData.activity_level+'"\
-			data-hairColor="'+userData.hair_color+'" data-eyeColor="'+userData.eye_color+'">\
-				<div class="wrapper">\
+			data-hairColor="'+userData.hair_color+'" data-eyeColor="'+userData.eye_color+'" data-uid="'+userData.uid+'">\
+				<div class="wrapper" id="'+userData.uid+'">\
+					<a id="'+userData.uid+'" class="right-align remove" style="color:red" href="#blockModal"><i class="small material-icons">close</i></a>\
 					<div class="user">\
-	        			<img src="'+userData.photoURL+'" alt="" class="circle responsive-img" style="width:90px; height:90px;"">\
-	        			<p class="user-info">'+parseGender(userData.gender)+" "+getAgeFromDob(userData.birthday)+'</p>\
+	        			<img src="'+userData.photoURL+'" alt="" class="circle responsive-img" style="width:85px; height:85px;"/>\
+	        			<p class="user-info" style="margin-bottom:5px;" >'+parseGender(userData.gender)+" "+getAgeFromDob(userData.birthday)+'</p>\
 				        <p class="user-name">'+userData.name+'</p>\
-				        <p class="user-location">'+userData.city+", "+userData.state+'</p>\
+				        <p class="user-location" style="margin-bottom:5px;">'+userData.city+", "+userData.state+'</p>\
 				    </div>\
-	         		<div layout="row" class="user-more">\
-	                	<a href="../member/member.html?match='+userData.uid.replace("-", "")+'">\
+	         		<div layout="row" class="center-align user-more" style="z-index:20 !important;"margin-bottom:25px;">\
+	                	<a href="../member/member.html?match='+userData.uid+'">\
 	                	<i class="small material-icons" id="person">person_outline</i></a>\
-	                	<a data-target="modal1" style="background:none;border:none;border-shadow:none;cursor:pointer;cursor:hand;color:#FC747C" class="wink modal-trigger" id="'+userData.uid.replace("-", "")+'">\
+	                	<a data-target="modal1" style="margin-left:15px;margin-right:15px;background:none;border:none;border-shadow:none;cursor:pointer;cursor:hand;color:#FC747C" class="wink modal-trigger" id="'+userData.uid.replace("-", "")+'">\
 	                	<i name="wink" class="small material-icons">favorite_border</i></a>\
+				   		<a id="'+userData.uid+'" style="position:absolute;" class="dropdown-button usermenubtn" data-activates="usermenu" href="#"><i class="small material-icons">menu</i></a>\
 	         		</div>\
 	         	</div>\
-	         </div>');
+	         </div>\
+   			<ul id="usermenu"  style="position:absolute;z-index:20" class="dropdown-content">\
+			    <li><a id="block" class="modal-trigger" href="#blockModal" style="font-size:14px;color:#FC747C">Block User</a></li>\
+			    <li><a id="view" href="#!" style="font-size:14px;color:#FC747C">View Page</a></li>\
+			    <li class="divider"></li>\
+			    <li><a id="chat" href="#!" style="font-size:14px;color:#FC747C">Chat</a></li>\
+	  </ul>');
 	}
 }
 
 
 function displayMessage(key, fromId, name, text, photoUrl, imageUrl){
 	if(key!=null || key!="undefined")
-		//$("#navHeart").css({"animation-name":"pulse_animation","animation-duration":"4s","animation-iteration-count":"infinite"});
-	$("#dropdown1").append('\
-		<li id="winkList">\
-			<a id="'+key+'" class="wink" onclick="openWink(this.id)" style="margin-top:10px;align:center">\
-			<img src="'+photoUrl+'" style="margin-right:5px;width:30px;min-height:30px;height30px;border-radius:50%"/>'+name+'</a>\
-		</li>');
+		$("#dropdown1").append('\
+			<li id="winkList">\
+				<a id="'+key+'" class="wink" onclick="openWink(this.id)" style="margin-top:10px;align:center">\
+				<img src="'+photoUrl+'" style="margin-right:5px;width:30px;min-height:30px;height30px;border-radius:50%"/>'+name+'</a>\
+			</li>');
+}
+
+function setupUserMenu(users){
+	console.log(hiddenUsers);
+	$('.dropdown-button').dropdown({inDuration: 300,outDuration: 225,constrainWidth: false, 
+		hover: false, stopPropagation: false 
+	});
+	$(".remove").on("click", function(){
+		blockId = $(this).attr("id");
+		blockUser(blockId, users);
+
+	});
+}
+
+function blockUser(uid, users){
+	$("#blockModal").modal('open');
+	var blockUserData = users[uid].userData;
+	var blockUserName = blockUserData.name;
+	
+	$("#blockedUserName").html("Are you sure you want to block:<br>"+blockUserName+"<br><span style='font-size:11px;'>*User will be added to your blocked list.");
+	$("#blockUserBtn").on("click", function(){
+		  db.collection("users").doc(myId).set({"blocked":{[uid]: true}}, {"merge":true})
+		  .then(function(){
+			  db.collection("users").doc(uid).set({"blocked":{[myId]: true}}, {"merge":true})
+			  .then(function(){
+		  	 });
+		});
+	  	$("#blockedUserName").html("Successfully blocked user:<br>"+blockUserName);
+		 setTimeout(closeModal, 500);
+
+	});
+}
+
+function hideBlockedUsers(blocked){
+	for(i=0; i<matchedUsers.length; i++){
+		if(matchedUsers[i].attributes[6] != null){
+			var user = matchedUsers[i].attributes[6].value;
+			if(blocked[user] != null){
+				matchedUsers[i].hidden = true;
+			}
+
+		}
+	}
+}
+
+
+function closeModal(){
+	$("#blockModal").modal('close')
+}
+
+
+function winks(){
+	$(".user-more .wink").on("click", function(){
+		$("#sendWink").show();
+		$("#deleteWink").hide();
+		var user = matchObj[$(this).attr("id")].userData;
+		$("#winkText").val('');
+		winkId = $(this).attr("id");
+   		$("#winkText").attr("disabled",false); 
+   		$("#winkText").css({"background":"white", "color":"black"});
+   		$("#winkText").addClass("center-align");
+   		$("#winkHeader").html('Send Wink To:<br><a onclick="goToProfile(winkId)" style="cursor:pointer;cursor:hand;"><span style="font-size:14px;color:white" id="modalHeader"></span></a>');
+		openWinkModal(user.name, user.photoURL, '');
+   });
+
+	$("#sendWink").on("click", function(){
+   		var winkText = $("#winkText").val();
+   		if(winkText=="") alert("Please type a proper message");
+   		else sendWink(winkText);
+   });
+	if(hiddenUsers[winkId]==null){
+		loadRecievedData();
+	}
+	$("#deleteWink").on("click", function(){
+		deleteWink();
+	});
 }
 
 function openWink(id){
 	openedWinkId = id;
-	//$("#sendWink").css({"display":"none"});
-	//$("#deleteWink").css({"display":"block"});
 	$("#sendWink").hide();
 	$("#deleteWink").show();
 	$("#winkText").val(winkData[id].text);
@@ -186,15 +253,13 @@ function openWink(id){
 		style="cursor:pointer;cursor:hand;style="font-size:14px;color:white;">\
 		<span id="modalHeader" style="color:white;"></span></a>');
 	$("#winkText").attr("disabled",true); 
-	$('.modal').modal();
-	openModal(winkData[id].name, winkData[id].photoUrl, winkData[id].text);
+	openWinkModal(winkData[id].name, winkData[id].photoUrl, winkData[id].text);
 	return;
 }
 
-function openModal(name, photo, text){
-	$(".modal").modal();
+function openWinkModal(name, photo, text){
 	$('#modal1').modal('open');
-	$(".modal").css({"max-height":"320px", "max-width":"420px"});
+	$("#modal1").css({"max-height":"320px", "max-width":"420px"});
 	$("#modalHeader").text(name);
 	$("#winkImage").attr("src", photo);
 	if(text!=="undefined")
@@ -207,12 +272,12 @@ function clearTextArea(){
 }
 
 function loadRecievedData(){
-	var winksRefToMe = firebase.database().ref('winks/'+user.uid+'/');
-	var members = firebase.database().ref().child("members").orderByChild("to").equalTo(user.uid);
-	members.once('value').then(function(snapshot){
-		if(snapshot.val()!=null)
-			console.log(Object.keys(snapshot.val()));
-	});
+	//$(".modal").modal();
+	var winksRefToMe = firebase.database().ref('winks/'+myId+'/');
+	var messages = firebase.database().ref().child("members").orderByChild("to").equalTo(myId);
+	//members.once('value').then(function(snapshot){
+		//if(snapshot.val()!=null)
+	//});
   	winksRefToMe.off();
   	var showWinkToast = function(){
   		Materialize.toast('Wink Recieved!', 3000, 'rounded');
@@ -223,21 +288,20 @@ function loadRecievedData(){
   	var setMsg = function(data){
   		var val = data.val();
   		var key = data.key;
-	    
-  		//console.log(val);
     	//displayMessage(data.key, val.fromId, val.name, val.text, val.photoUrl, val.imageUrl);
   	}
   	var setWink = function(data){
-    displayMessage(data.key, val.fromId, val.name, val.text, val.photoUrl, val.imageUrl);
-    winkData[data.key] = val;
-    $("#badge").text(++numOfWinks);
+  		var val = data.val();
+    	displayMessage(data.key, val.fromId, val.name, val.text, val.photoUrl, val.imageUrl);
+    	winkData[data.key] = val;
+    	$("#badge").text(++numOfWinks);
   }.bind(this);
   	winksRefToMe.limitToLast(12).on('child_added', setWink);
   	winksRefToMe.limitToLast(12).on('child_changed', setWink);
   	winksRefToMe.limitToLast(1).on('child_added', showWinkToast);
   	winksRefToMe.limitToLast(1).on('child_changed', showWinkToast);
-  	//messages.limitToLast(1).on('child_added', showMsgToast);
-  	//messages.limitToLast(1).on('child_changed', showMsgToast);
+  	messages.limitToLast(1).on('child_added', showMsgToast);
+  	messages.limitToLast(1).on('child_changed', showMsgToast);
   	//messages.limitToLast(1).on('child_added', setMsg);
   	//messages.limitToLast(1).on('child_changed', setMsg);
 
@@ -246,13 +310,10 @@ function loadRecievedData(){
 
 
 function sendWink(winkText){
-	var winksFromMe = user.uid+"_"+winkId;
+	var winksFromMe = myId+"_"+winkId;
   	var winksRefFromMe = firebase.database().ref('winks/'+winkId+'/');
-  	 winksRefFromMe.push({
-      name: user.name,
-      text: winkText,
-      fromId: user.uid,
-      photoUrl: user.photoURL || '/images/profile_placeholder.png'
+  	 winksRefFromMe.push({name: myInfo.userData.name,text: winkText,fromId: myId,
+  	 	photoUrl: myInfo.userData.photoURL || '/images/profile_placeholder.png'
     }).then(function(){
 		$('#modal1').modal('close');
 		$("#winkText").val('');
@@ -261,8 +322,7 @@ function sendWink(winkText){
 }
 
 function deleteWink(){
-	//alert(openedWinkId);
-	var deleteWinkRef = firebase.database().ref('winks/'+user.uid+'/'+openedWinkId+'/');
+	var deleteWinkRef = firebase.database().ref('winks/'+myId+'/'+openedWinkId+'/');
 	deleteWinkRef.remove().then(function(){
 		$("#"+openedWinkId).parent().remove();
 		$('#modal1').modal('close');

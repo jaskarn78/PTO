@@ -59,10 +59,10 @@ function setKnownData(data){
 	var data = JSON.parse(sessionStorage.getItem("userData"));
 	if(data.userData.plan.discountApplied){
 		$("#discountList").show();
-		$("#discountApproved").text("$"+data.userData.plan.discountAmount);
+		$("#discountApproved").text("-$"+data.userData.plan.discountAmount);
 		$("#discountCode").val(data.userData.plan.discountCode);
-		$("#total").text(data.userData.plan.totalCost);
-	} else $("#total").text(totalCost);
+		$("#total").text("$"+data.userData.plan.totalCost);
+	} else $("#total").text("$"+totalCost);
 
 	storeData(data);
 

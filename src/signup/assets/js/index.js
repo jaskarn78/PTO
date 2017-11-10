@@ -18,9 +18,10 @@
 
  function signUpWithEmail(email, pass){
  	var response='';
-    firebase.auth().createUserWithEmailAndPassword(email, pass).then(function(user){
- 		if(user!=null){
- 			saveUserData(user);
+    firebase.auth().createUserWithEmailAndPassword(email, pass).then(function(result){
+ 		if(result!=null){
+      console.log(result);
+ 			saveUserWithEmailData(result);
  		}
  	}).catch(function(error){
  		var errorCode = error.code;
@@ -60,11 +61,15 @@
     });
  }
 
- 
+ function saveUserWithEmailData(result){
+    var userData = {"email":result.email, "uid":result.uid, "emailVerified":result.emailVerified, "providerData":result.providerData};
+    sessionStorage.setItem("userData", JSON.stringify(userData));
+    window.location.href='../basicinfo/index2.html';
+ }
 
  function saveUserData(result){
  	sessionStorage.setItem('userData', JSON.stringify(result));
-	window.location.href='../welcome';
+	window.location.href='../basicinfo/index2.html';
 }
 
 

@@ -1,11 +1,12 @@
 var placeSearch, autocomplete;
-var city, state, country, zip, lat, lng;
+var city, state, country, zip, lat, lng, uid;
  $(document).ready(function(){
  	$("#zip").on("focus", geolocate);
  	if(sessionStorage.getItem('userData')!==null){
 		var userData = JSON.parse(sessionStorage.getItem('userData'));
+		uid = userData.uid;
 		setKnownData(userData);
-		var image = loadImage(userData.user);
+		var image = loadImage(userData);
 
 		$("#profileImageBtn").on("click",function(){ $("#my_file").click(); });
 	    $("#bday").datepicker();
@@ -16,12 +17,11 @@ var city, state, country, zip, lat, lng;
  });
 
  function setKnownData(data){
- 	console.log(data);
- 	if(data.user.photoURL != null)
+ 	if(data.user != null && data.user.photoURL !=null)
  		$("#photoURL").attr("src", data.user.photoURL);
  	else $("#photoURL").attr("src", "assets/img/person.png");
 
- 	if(data.user.displayName != null)
+ 	if(data.user != null && data.user.displayName !=null)
  		$("#name").attr("value", data.user.displayName);
 
  	if(data.userData != null){
@@ -45,10 +45,10 @@ function loadImage(user){
 }
 function uploadImage(image, user){
 	var metadata   = {"contentType":image.type};
-    var storageRef = firebase.storage().ref('images/user/'+user.userData.uid+'/'+image.name);
+    var storageRef = firebase.storage().ref('images/user/'+uid+'/'+image.name);
     storageRef.put(image, metadata).then(function(snapshot){
     var url = snapshot.downloadURL;
-    user.userData.photoURL = url;
+    user.photoURL = url;
     console.log('File available at', url);
   }).catch(function(error) {
   	console.error('Upload failed:', error);
@@ -60,30 +60,41 @@ function saveData(data){
 	var userData = {};
 	userData.name 		= $("#name").val();
 	userData.birthday 	= $("#bday").val();
-	var location 		= getLocationFromZip($("#zip").val());
+	//var location 		= getLocationFromZip($("#zip").val());
 	userData.zip 		= zip;
 	userData.city 		= city;
 	userData.state 		= state;
 	userData.lat 		= lat;
 	userData.lng 		= lng;
 	userData.country 	= country;
-	userData.email 		= data.user.email;
-	userData.verified 	= data.user.emailVerified;
-	userData.photoURL 	= data.user.photoURL;
-	userData.uid 		= data.user.uid;
-
-	if(data.user.apiKey != null)
-		userData.apiKey = data.user.apiKey
-	if(data.user.credential != null)
-		userData.credential = user.credential;
-	if(data.user.additionalUserInfo != null){
-		userData.link = user.additionalUserInfo.profile.link;
-		userData.locale = user.additionalUserInfo.locale;
+	userData.email 		= data.email;
+	userData.gender 	= data.gender;
+	userData.seeking 	= data.seeking;
+	userData.photoURL 	= data.photoURL;
+	userData.emailVerified = data.emailVerified;
+	userData.providerData	= data.providerData;
+	userData.uid 		= data.uid;
+	userData.description = data.description;
+	console.log(data);
+	if(data.user != null){
+		userData.emailVerified 	= data.user.emailVerified;
+		userData.photoURL 	= data.user.photoURL;
+		userData.uid 		= data.user.uid;
+		userData.providerData = data.user.providerData;
+		if(data.user.apiKey != null)
+			userData.apiKey = data.user.apiKey
+		if(data.user.credential != null)
+			userData.credential = user.credential;
+		if(data.user.additionalUserInfo != null){
+			userData.link = user.additionalUserInfo.profile.link;
+			userData.locale = user.additionalUserInfo.locale;
+		}
 	}
 
 	
 	data.userData = userData;
 	sessionStorage.setItem("userData" ,JSON.stringify(data));
+	console.log(data);
 	goToNext();
 
 }

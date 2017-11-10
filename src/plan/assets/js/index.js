@@ -21,6 +21,7 @@ function saveplanData(planType) {
 	var plan = {"type":planType, "cost":getCost(planType)};
 	currentUser.userData.plan = plan;
 	sessionStorage.setItem("userData", JSON.stringify(currentUser));
+	console.log(currentUser);
 	writeUserData(currentUser);
 }
 
@@ -30,7 +31,7 @@ function writeUserData(user) {
 		"birthday":user.userData.birthday, "city":user.userData.city, "country":user.userData.country,
 		"state":user.userData.state,"zip":user.userData.zip,"lat":user.userData.lat,"lng":user.userData.lng,
 		"age":getAgeFromDob(user.userData.birthday), "uid":user.userData.uid, "plan":user.userData.plan, 
-		"verified":user.userData.verified}
+		"verified":user.userData.emailVerified, "gender":user.userData.gender, "seeking":user.userData.seeking}
 	}).catch(function(error){
 		alert(error.message);
 	}).then(function(){

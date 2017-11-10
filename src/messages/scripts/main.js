@@ -83,11 +83,15 @@ Chat.prototype.loadMessages = function(members) {
   this.chatRef = this.database.ref().child("chats").push();
   var chatKey = this.chatRef.key;
   this.database.ref().child("members").orderByChild(recipient).equalTo(true)
-  .once("value",function(snapshot){
-    var memberData = snapshot.val();
-      console.log(memberData);
+  .once("value", function(snapshot){
+    firebase.database().ref().child("members").orderByChild(Chat.userInfo.userData.uid).equalTo(true) 
+    .once("value", function(userSnap2){
+      console.log(extend({}, snapshot.val(), userSnap2.val()));
+    
+      var memberData = extend({}, snapshot.val(), userSnap2.val());
+      //console.log(memberData);
       //Check if previous conversation between two users exists
-      if(!memberData){
+      if(isEmpty(memberData)){
         var key = firebase.database().ref().child("members").push(members).key;
         messagesRef =  firebase.database().ref().child("/messages/"+key+"/");
         setMsg(messagesRef);
@@ -97,7 +101,7 @@ Chat.prototype.loadMessages = function(members) {
         messagesRef =  firebase.database().ref().child("/messages/"+key+"/");
         setMsg(messagesRef);
      }
-
+   });
   });
 };
 
@@ -257,7 +261,7 @@ Chat.prototype.onStart = function(user) {
 Chat.prototype.loadMatches = function(curUser){
   var db = this.firestore;
   var user = this.userInfo.userData;
-  console.log(user);
+  console.log(this.userInfo);
   db.collection("users").where("userData.gender", "==", user.seeking)
     .where("userData.seeking", "==", user.gender)
     .get().then(function(querySnapshot){
@@ -439,6 +443,29 @@ Chat.prototype.toggleButton = function() {
     this.submitButton.setAttribute('disabled', 'true');
   }
 };
+
+function extend(base) {
+    var parts = Array.prototype.slice.call(arguments, 1);
+    parts.forEach(function (p) {
+        if (p && typeof (p) === 'object') {
+            for (var k in p) {
+                if (p.hasOwnProperty(k)) {
+                    base[k] = p[k];
+                }
+            }
+        }
+    });
+    return base;
+}
+
+function isEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+
+    return JSON.stringify(obj) === JSON.stringify({});
+}
 
 // Checks that the Firebase SDK has been correctly setup and configured.
 Chat.prototype.checkSetup = function() {

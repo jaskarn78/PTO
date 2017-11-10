@@ -5,6 +5,8 @@ $(document).ready(function(){
 	showLoader();
 	setupDropZone();
 	$("#signOutBtn").on("click", function(){ signOut(); });
+	user = JSON.parse(sessionStorage.getItem("userData"));
+	console.log(user);
 	getUserDataFromDb();
 });
 

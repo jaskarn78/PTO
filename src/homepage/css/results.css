@@ -200,18 +200,7 @@ select option {
     background-color: "#F7F7F7"
 
 }
-#person{
-    margin:auto;
-    float: left;
-    padding-left: 35px;
-    color:blue;
-}
-#wink{
-    margin: auto;
-    float: right;
-    padding-right: 35px;
-    color: red;
-}
+
 
 /*------filters-----*/
 #filtercolumn{

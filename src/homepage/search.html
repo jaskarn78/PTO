@@ -15,7 +15,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="../util/css/loader.css">
-  <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="materialize/css/style.css">
     
   </head>
@@ -24,25 +23,26 @@
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper" style="background-color:white">
-        <a href="#" class="brand-logo left">
-          <img style="margin-left:10px;margin-top:10px;height:40px;" src="images/brand/PressToOpen_Final_TrademarkReady2.png"/>
+        <a href="#" class="hide-on-med-and-down left">
+          <img style="margin-left:50px;margin-top:10px;height:40px;" src="images/brand/PressToOpen_Final_TrademarkReady2.png"/>
         </a> 
         <ul id="nav-mobile" class="right hide-on-small-and-down">
-          <li><a class='dropdown-button ' href='#' data-activates='dropdown1'><img id="navHeart" style="margin-top:0px;height:25px;" src="/pt-heart.png"/>
+          <li><a class='dropdown-button' href='#' data-activates='dropdown1'><img id="navHeart" style="margin-top:0px;height:25px;" src="/pt-heart.png"/>
           <span id="badge" style="background-color:#FF727D;font-size:14px;" class="new badge">0</span></a><li>
            <ul style="margin-top:10px;" id='dropdown1' class='dropdown-content'>
           </ul>
           <li><a id="nameLink" style="font-size:12px;color:black;" href="../profile"></a></li>
           <li><a id="signOut" style="font-size:12px;color:black;">Sign Out</a></li>
         </ul>
-         <ul class="left hide-on-med-and-down" style="margin-left:20%;">
-            <li class="active"><a style="color:black;" href="#home">Members</a></li>
-            <li><a style="color:black;" href="../messages">Messages</a></li>
-            <li><a style="color:black;" href=#join>Winks</a></li>
+         <ul class="left" style="background:none;margin-left:10%;">
+            <li class="active" style="background:none;"><a style="font-size:14px;color:black;" href="#home">Members</a></li>
+            <li><a style="font-size:14px;color:black;" href="../messages">Messages</a></li>
+            <li><a style="font-size:14px;color:black;" href=#join>Winks</a></li>
           </ul>
       </div>
     </nav>
   </div>
+
 
 
  <!-- Modal Structure -->
@@ -79,7 +79,20 @@
       <a class="right-align waves-effect waves-red btn-flat " id="deleteWink" data-target="modal1" style="max-width:100px;color:white;" href="#!" >Delete</a>
     </div>
   </div>
+   <!-- Modal Structure -->
+  <div id="blockModal" class="modal modal-fixed-footer" style="border:none;height:120px;width:320px;overflow: hidden;">
+    <div class="modal-content" style="border:none;margin:10px;padding:5px;box-shadow:none;height:65%;overflow:hidden;">
+      <p id="blockedUserName"></p>
+    </div>
+    <div class="modal-footer" style="border:none;box-shadow:none;height:35%;">        
+      <a id="cancelBlockBtn" href="#!" class="modal-action modal-close waves-effect waves-red btn-flat" style="color:#FF6672">Cancel</a>
+        <a id="blockUserBtn" href="#!" class="modal-action waves-effect waves-red btn-flat" style="color:#FF6672">Block</a>
+
+    </div>
+    
+  </div>
   
+
   <div class="loader" id="loader" style="margin-left:50px"></div>
   <div class="row">
     <div id="slide-out" class="hide-on-small-and-down side-nav fixed col s2" style="min-width:20%;margin-top:80px;">
