@@ -46,7 +46,7 @@ function submitTicket(){
         headers: {"Authorization": "Basic " + btoa(api_key + ":x")},
         data: formdata,
         success: function(data, textStatus, jqXHR) {
-          console.log(data.id);
+          console.log(data);console.log(jqXHR);
           hideLoader();
   		  Materialize.toast('Ticket Submitted', 3000, 'rounded');
   		  storeTicketInDb(data);
@@ -60,7 +60,8 @@ function getOpenTickets(){
 	var ticketRef = firebase.database().ref('support/tickets/'+user.userData.uid+'/');
 	var setTicketData = function(data){
   		var val = data.val();
-  		displayTicket(val.id, val.created_at);
+      console.log(data.val().ticket.id);
+  		displayTicket(val.ticket.id, val.ticket.created_at);
   }.bind(this);
   	ticketRef.limitToLast(12).on('child_added', setTicketData);
   	ticketRef.limitToLast(12).on('child_changed', setTicketData);
@@ -69,13 +70,13 @@ function getOpenTickets(){
 
 function displayTicket(id, createdAt){
 	$("#openTickets").append('\
-		 <div class="center-align col s4">'+id+'</div>\
+		 <div class="center-align col s4"><a href="https://ptosupportpage.freshdesk.com/a/tickets/'+id+'">'+id+'</a></div>\
          <div class="right-align col s8">'+createdAt.substring(0, 10)+'</div>'
 	);
 }
 
 function storeTicketInDb(data){
-	var ticketRef = firebase.database().ref('support/tickets/'+user.userData.uid+'/');
+	var ticketRef = firebase.database().ref('support/tickets/'+user.userData.uid+'/'+data.id);
 	ticketRef.set({"ticket":data}).then(function(){
 		console.log("Ticket: "+data.id+" saved")
 	});
