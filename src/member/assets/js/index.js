@@ -16,7 +16,6 @@ function getMatchId(url){
 
 function setupMyInfo(){
 	var myInfo = JSON.parse(sessionStorage.getItem("userData"));
-	console.log(myInfo.userData.photoURL);
 	$("#myImage").attr("src", myInfo.userData.photoURL);
 }
 
@@ -24,8 +23,7 @@ function getMatchedUser(uid){
 	$("#matchImage1").attr("src", "assets/img/person.png");
 	$("#matched_img").attr("src", "assets/img/person.png");
 	if(sessionStorage.getItem("matchData")==null){
-		firebase.firestore().collection("users").doc(uid)
-		.get().then(function(doc){
+		firebase.firestore().collection("users").doc(uid).get().then(function(doc){
 			if(doc.exists){
 				hideLoader();
 				var matchData = doc.data();
@@ -50,11 +48,16 @@ function assignMatchInfo(matchData){
 	$("addr").text(userInfo.city+", "+userInfo.state);
 	$("#description").text(userInfo.description);
 	//$("#school").text(profile.school);
-	$("#ethnicity").text(userInfo.ethnicity);
-	$("#languages").text(userInfo.languages);
-	$("#job_title").text(userInfo.job);
+	$("#ethnicity").text("Test");
+	$("#languages").text("Test");
+	$("#job_title").text("Test");
 	//$("#drinker").text(parseDrinker(profile.drinker));
-	$("#homeTown").text(userInfo.home_city+", "+userInfo.home_state);
+	$("#homeTown").text("Test, Test");
+	if(userInfo.disability != null && userInfo.disability.showDisability){
+		console.log(userInfo.disability);
+		$("#disabilityItem").show();
+		$("#disability").text(userInfo.disability.disability);
+	} else $("#disabilityItem").hide();
 	//$("#smoker").text(parseSmoker(profile.smoker));
 
 }

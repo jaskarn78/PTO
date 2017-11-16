@@ -9,7 +9,7 @@
   <meta name="manifest" src="/manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="materialize/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="materialize/css/materialize.css">
   <link rel="stylesheet" type="text/css" href="css/nouislider.css">
   <link rel="stylesheet" type="text/css" href="css/results.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,25 +20,29 @@
   </head>
   <body>
 
+ 
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper" style="background-color:white">
-        <a href="#" class="hide-on-med-and-down left">
-          <img style="margin-left:50px;margin-top:10px;height:40px;" src="images/brand/PressToOpen_Final_TrademarkReady2.png"/>
+        <a href="#" class="brand-logo left" style="margin-left:30px;margin-top:15px;" >
+          <img style="margin-top:0px;height:40px;" src="../homepage/images/brand/PressToOpen_Final_TrademarkReady2.png"/>
         </a> 
         <ul id="nav-mobile" class="right hide-on-small-and-down">
-          <li><a class='dropdown-button' href='#' data-activates='dropdown1'><img id="navHeart" style="margin-top:0px;height:25px;" src="/pt-heart.png"/>
-          <span id="badge" style="background-color:#FF727D;font-size:14px;" class="new badge">0</span></a><li>
-           <ul style="margin-top:10px;" id='dropdown1' class='dropdown-content'>
-          </ul>
-          <li><a id="nameLink" style="font-size:12px;color:black;" href="../profile"></a></li>
-          <li><a id="signOut" style="font-size:12px;color:black;">Sign Out</a></li>
+          <li>
+            <a class='dropdown-button ' href='#' data-activates='dropdown1'>
+              <img id="navHeart" style="margin-top:0px;height:25px;" src="/pt-heart.png">
+              <span id="badge" style="font-size:14px;" class="new badge">0</span>
+            </a>
+          </li>
+          <ul style="margin-top:10px;" id='dropdown1' class='dropdown-content'></ul>
+          <li><a id="nameLink" style="font-size:12px;color:black;" href="../profile">Name Here</a></li>
+          <li><a id="signOut" style="font-size:14px;color:black;">Sign Out</a></li>             
         </ul>
-         <ul class="left" style="background:none;margin-left:10%;">
-            <li class="active" style="background:none;"><a style="font-size:14px;color:black;" href="#home">Members</a></li>
-            <li><a style="font-size:14px;color:black;" href="../messages">Messages</a></li>
-            <li><a style="font-size:14px;color:black;" href=#join>Winks</a></li>
-          </ul>
+        <ul class="left hide-on-med-and-down" style="margin-left:20%;">
+          <li  class="active"><a style="color:black;font-size:14px;" href="../homepage/search.html">Members</a></li>
+          <li><a style="color:black;font-size:14px;" href="../messages">Messages</a></li>
+          <li><a style="color:black;font-size:14px;" href=#join>Support</a></li>
+        </ul>
       </div>
     </nav>
   </div>
@@ -80,11 +84,21 @@
     </div>
   </div>
    <!-- Modal Structure -->
-  <div id="blockModal" class="modal modal-fixed-footer" style="border:none;height:120px;width:320px;overflow: hidden;">
+  <div id="blockModal" class="modal modal-fixed-footer" style="border:none;height:170px;width:320px;overflow: hidden;">
     <div class="modal-content" style="border:none;margin:10px;padding:5px;box-shadow:none;height:65%;overflow:hidden;">
       <p id="blockedUserName"></p>
+        <div class="row" style="margin-left:20px;width:80%;">
+         <label>Reason</label>
+          <select id="reason" class="browser-default" style="width:100%;">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="Harassment">Harassment</option>
+            <option value="Threatening">Threatening</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
     </div>
-    <div class="modal-footer" style="border:none;box-shadow:none;height:35%;">        
+    <div class="modal-footer" style="border:none;box-shadow:none;height:35%;">    
+
       <a id="cancelBlockBtn" href="#!" class="modal-action modal-close waves-effect waves-red btn-flat" style="color:#FF6672">Cancel</a>
         <a id="blockUserBtn" href="#!" class="modal-action waves-effect waves-red btn-flat" style="color:#FF6672">Block</a>
 
@@ -96,7 +110,8 @@
   <div class="loader" id="loader" style="margin-left:50px"></div>
   <div class="row">
     <div id="slide-out" class="hide-on-small-and-down side-nav fixed col s2" style="min-width:20%;margin-top:80px;">
-        <ul class="collapsible" data-collapsible="accordion">
+      <ul class="collapsible" data-collapsible="accordion">
+  
         <li>
           <div class="collapsible-header">
             <i class="material-icons">filter_drama</i>Age Range
@@ -195,10 +210,32 @@
             </p>
         </div>
       </li>
+      <li>
+          <div class="collapsible-header"><i class="material-icons">whatshot</i>Sort By</div>
+          <div class="collapsible-body">
+           <div class="row" style="padding:5px;margin-top:10px;">
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="sort" checked value=0 type="radio" id="sortAge" />
+                <label style="font-size:12px;" for="sortAge">Age</label>
+              </p>
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="sort" value=1 type="radio" id="sortDistance" />
+                <label style="font-size:12px;" for="sortDistance">Distance</label>
+              </p>
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="sort" value=2 type="radio" id="sortHeight"  />
+                <label style="font-size:12px;" for="sortHeight">Height</label>
+              </p>
+              <p class="col s12 offset-s1">
+                <input class="with-gap" name="sort" value=3 type="radio" id="sortWeight" />
+                <label style="font-size:12px;" for="sortWeight">Weight</label>
+              </p>
+          </div>
+        </li>
     </ul>
   </div>
-  <div id="myDiv" class="center-align valign-wrapper col s10 animate-bottom" style="width:90%;">
-     <div class="valign-wrapper center-align col s12 push-s2">
+  <div id="myDiv" class="center-align valign-wrapper col s12 animate-bottom" style="width:90%;">
+     <div class="valign-wrapper center-align col s12 offset-s2">
         <div id="flex-grid" class="center-align flex-grid">
         </div>
       </div>

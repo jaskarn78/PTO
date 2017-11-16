@@ -4,6 +4,7 @@ var data = getUserData();
 var code = "DkWeb25";
 var formComplete = false;
 var totalCost;
+var totalCostFloat;
  var placeSearch, autocomplete;
 
 $(document).ready(function(){
@@ -83,17 +84,18 @@ function setupDiscountBtn(data){
 			data.userData.plan.discountAmount = totalDiscount;
 			data.userData.plan.discountCode = code;
 			$("#total").text(totalCost);
-			storeData(data);
 			alert("Discount code applied");
 		}else if(data.userData.plan.discountApplied)
 			alert("Discount already applied");
 		else alert("Invalid discount code");
 	});
+
 }
 
 function storeData(data){
 	sessionStorage.setItem("userData", JSON.stringify(data));
 }
+
 
 function setCheckBoxListener(data){
 	var userInfo = data.userData;
@@ -130,7 +132,7 @@ function sendData(nonce, totalCost){
 		success:function(data){}
 	}).done(function(data){
 		if(data.transaction != null){
-			//alert("Charged for the amount: $"+data.transaction.amount);
+			alert("Charged for the amount: $"+data.transaction.amount);
 			goToNext();
 		}
 	}).catch(function(err){
@@ -140,18 +142,20 @@ function sendData(nonce, totalCost){
 
 function getToken(userData){
 	$.ajax({ type: "GET", url: "/checkout"
-	}).done(function(data){ setupPayment(data); });
+	}).done(function(data){ setupPayment(data, $("#total").text()); });
 }
 
-function setupPayment(token){
+function setupPayment(token, cost){
 	var userData = data.userData;
+	var totalFloat = $("#total").text().substring(1, $("#total").text().length);
+	var totalCost = parseFloat(Math.round((totalFloat) * 100) / 100).toFixed(2);
 	braintree.setup(token, "custom", 
 	{
 		id: "checkout",
 		paypal: {
 			container: "paypal-button",
 			singleUse: true, // Required
-			amount: parseFloat($("#total").text()), // Required
+			amount: totalCost, // Required
 			currency: 'USD', // Required
 			intent: 'sale',
 			submitForSettlement: true,

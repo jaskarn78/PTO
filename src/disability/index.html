@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Welcome</title>
+    <title>Additional Info</title>
     <!-- Favicons-->
     <link rel="icon" href="/pt-heart.png" sizes="32x32">
     <meta name="msapplication-TileColor" content="#00bcd4">
@@ -62,45 +62,64 @@
         <section id="content">
           <div class="container">
              <div class="row" style="color:white;width:100%;">
-                <div class="center-align col s12" style="font-size:25px;margin-top:55px;">Sign Up With Press To Open!</div>
+                <div id="welcomeName" class="center-align col s12" style="font-size:25px;margin-top:25px;"></div>
                 <div class="center-align col s8 push-s2" style="font-size:14px;font-weight:300;margin-top:15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at dictum tellus. Sed pretium elit risus, eu malesuada lectus porttitor vel. </div>
               </div>
-            <div id="pricing-page" class="section">
+            <div id="disability-page" class="section">
                 <div class="row col s12 animate-bottom">
                   <div class="center-align col s8 push-s2 card" id="welcomeCard" style="position:relative;padding:20px;">
-                    <div class="left-align col s4" style="margin-top:45px;">
+                    <div class="left-align col s4" style="margin-top:50px;">
                       <img class="valign-wrapper col s5" id="photoURL" src="assets/img/person.png" style="background:#C7EDFE; padding:5px;width:130px;height:130px;border-radius:50%">
                     </div>
 
                     <div class="left-align valign-wrapper col s8" >
                       <div class="row" style="width:100%;">
-                      <div style="color:white;font-size:18px;width:100%;max-width:400px;" class="col s12">Your Name
-                        <input class="userinfo" style="width:100%;border:none;background-color:#8CDEFD;height:50px;color:white;font-size:18px;padding-left:10px;" 
-                        id="name" placeholder="First and Last" type="text"/>
+                      <div style="color:white;font-size:14px;font-weight:400;width:100%;max-width:500px;height:65px;margin-bottom:0px;" class="input-field col s12">Do any of the following apply to you?
+                        <select class="form-control" id="disability" style="font-size:12px;margin-left:15px;background-color:rgba(255,255,255,0.15);color:white;">
+                          <optgroup label="Select from options">
+                              <option value="No"> Does not apply to me</option> 
+                              <option value="ADD/ADHD"> ADD/ADHD</option> 
+                              <option value="Aphasia/Dysphagia"> Aphasia/Dysphagia</option>  
+                              <option value="Apraxia/Dyspraxia"> Apraxia/Dyspraxia</option>  
+                              <option value="Auditory Processing"> Auditory Processing</option>  
+                              <option value="Autism/Aspergers"> Autism/Aspergers</option>
+                              <option value="Cerebral Palsy"> Cerebral Palsy</option>
+                              <option value="Cystic Fibrosis"> Cystic Fibrosis</option>
+                              <option value="Developmental Delays"> Developmental Delays</option>
+                              <option value="Down Syndrome"> Down Syndrome</option>
+                              <option value="Dyslexia"> Dyslexia</option>
+                              <option value="Emotional/Behavior Disorders"> Emotional/Behavior Disorders</option>
+                              <option value="Fetal Alcohol Syndrome"> Fetal Alcohol Syndrome</option>
+                              <option value="Fragile "X""> Fragile "X"</option>
+                              <option value="Hearing Impaired"> Hearing Impaired</option>
+                              <option value="Learning Disabilities"> Learning Disabilities</option>
+                              <option value="Mental Retardation"> Mental Retardation</option>
+                              <option value="Neurological Disabilities"> Neurological Disabilities</option>
+                              <option value="Seizure Disorder"> Seizure Disorder</option>
+                              <option value="Support Groups"> Support Groups</option>
+                              <option value="Visual Impairment"> Visual Impairment</option>
+                              </optgroup>                
+                        </select>
+                      </div>
+                      <p id="showOnProfile" hidden class="col s12" style="margin:0px;">
+                        <input type="checkbox" style="border-color:white;" id="showDisability" />
+                        <label style="color:white;font-size:12px;font-weight:350" for="showDisability">I want this to be visible on my profile.</label>
+                      </p>
+                      <div style="color:white;font-size:14px;width:100%;font-weight:400;" class="input-field col s12">I am ok with my potential match having one or more of the above disabilities. 
+                        <select class="form-control"  id="okWithDisability" style="font-size:12px;margin-left:15px;background-color:rgba(255,255,255,0.15);color:white;">
+                          <optgroup label="Select from options">
+                              <option value=0> No</option>     
+                              <option value=1> Yes</option>   
+                          </optgroup>                  
+                        </select>
                       </div>
                     </div>
                   </div>
-                  <div class="left-align valign-wrapper col s8" >
-                      <div class="row" style="max-width:400px;">
-                      <div style="color:white;font-size:16px;" class="col s6">Birthday
-                        <input id="bday" class="userinfo" style="background-color:#8CDEFD;margin-right:15px;height:50px;color:white;font-size:18px;padding-left:10px;border:none;" placeholder="mm/dd/yyy" type="text"/>
-                      </div>
-                        <div style="color:white;font-size:16px;" class="col s6">Zip Code
-                          <input class="userinfo"  style="background-color:#8CDEFD;height:50px;color:white;font-size:18px;padding-left:10px;border:none" id="zip" placeholder="Zip Code" type="number"/>
-                        </div>
-                    </div>
-                  </div>
-
                   <div class="col s8 push-s4">
                     <div class="col s12">
-                      <a id="finishBtn" style="width:100%;height:40px;font-size:12px;padding:1px;" class="waves-effect waves-red btn">Go To Next Step</a>
+                      <a id="finishBtn" style="width:100%;height:40px;font-size:12px;padding:1px;" class="waves-effect waves-red btn">SELECT A PLAN</a>
                     </div>
                   </div>
-                  <div class="col s8 left-align pull-s8" style="height:100px;width:100px;margin-top:-18%;margin-bottom:-25%">
-                    <a id="profileImageBtn" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
-                    <input id="my_file" type="file" hidden />
-                  </div>
-
                 </div><!--/profile-page-->
             
           </div>
@@ -130,12 +149,6 @@
     Scripts
     ================================================ -->
     <script src="../homepage/materialize/js/materialize.js"></script>
-    <script src="/__/firebase/4.5.0/firebase-app.js"></script>
-    <script src="/__/firebase/4.5.0/firebase-auth.js"></script>
-    <script src="/__/firebase/4.5.0/firebase-firestore.js"></script>
-    <script src="/__/firebase/4.5.0/firebase-storage.js"></script>
-    <script src="/__/firebase/init.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFkCxV_3OOisXaIwa3SKd4VkXQPDqTS3k&libraries=places&callback=initAutocomplete" async defer></script>
     <script src="../util/util.js"></script>    
     <script src="assets/js/index.js"></script>
    

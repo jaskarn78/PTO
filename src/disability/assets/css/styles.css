@@ -1,0 +1,44 @@
+input::-webkit-input-placeholder {
+color: white !important;
+}
+ 
+input:-moz-placeholder { /* Firefox 18- */
+color: white !important;  
+}
+ 
+input::-moz-placeholder {  /* Firefox 19+ */
+color: white !important;  
+}
+ 
+input:-ms-input-placeholder {  
+color: white !important;  
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    white;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    white;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    white;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    white;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color:    white;
+}
+
+#welcomeCard {
+    background: -webkit-linear-gradient(bottom right,transparent,#7cdffd); /*Safari 5.1-6*/
+    background: -o-linear-gradient(bottom right,#6ED2FF,#7cdffd); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(bottom right,#6ED2FF,#7cdffd); /*Fx 3.6-15*/
+    background: linear-gradient(bottom right, #6ED2FF, #7cdffd);
+}
+
+.userinfo{
+   background-color: #5DCBFF;
+}

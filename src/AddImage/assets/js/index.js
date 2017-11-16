@@ -1,12 +1,3 @@
- var config = {
-        apiKey: "AIzaSyD657gqCD1kkqRTmrqy0mIbw9gpfiOKyQg",
-        authDomain: "dkweb-176823.firebaseapp.com",
-        databaseURL: "https://dkweb-176823.firebaseio.com",
-        projectId: "dkweb-176823",
-        storageBucket: "dkweb-176823.appspot.com",
-        messagingSenderId: "412591321120"
- };
-firebase.initializeApp(config);
 
 $(document).ready(function(){
 	var user = JSON.parse(sessionStorage.getItem("userData"));
@@ -40,6 +31,3 @@ function sendVerificationEmail(data){
 		}
 	});
 }
-
-
-

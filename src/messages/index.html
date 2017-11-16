@@ -57,7 +57,7 @@
   <div class="demo-layout mdl-layout mdl-js-layout mdl-color--grey-100">
   <!-- Header section containing logo -->
   <header hidden style="display:none" class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
-    <div class="mdl-layout__header-row">
+    <div hidden class="mdl-layout__header-row">
       <div id="user-container">
         <div hidden id="user-pic" style="display: none"></div>
         <div hidden id="user-name" style="display: none"></div>
@@ -69,8 +69,37 @@
     
     </div>
   </header>
-  <ul id="slide-out" class="side-nav fixed" style="background-color:#F5F5F5">
-    <li style="background-color:#3C3C3C;">
+   <div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper" style="background-color:white;padding-right:20px;">
+          <a href="#" class="brand-logo left" style="margin-left:30px;margin-top:0px;" >
+            <img style="margin-top:0px;height:40px;" src="../homepage/images/brand/PressToOpen_Final_TrademarkReady2.png"/>
+          </a> 
+          <ul id="nav-mobile" class="right hide-on-small-and-down" style="margin-top:20px;">
+            <li>
+              <a class='dropdown-button ' href='#' data-activates='dropdown1'>
+                <img id="navHeart" style="margin-top:0px;height:25px;" src="/pt-heart.png">
+                <span id="badge" style="font-size:14px;" class="new badge">0</span>
+              </a>
+            </li>
+
+             <ul style="margin-top:10px;" id='dropdown1' class='dropdown-content'>
+            </ul>
+            <li class="active"><a id="navbar-name" style="padding-bottom:15px;font-size:12px;color:black;" href="#">Name Here</a></li>
+            <li><a id="signOutBtn" style="padding-bottom:15px;font-size:14px;color:black;">Sign Out</a></li>
+              <!-- Dropdown Structure -->
+             
+          </ul>
+           <ul class="left hide-on-med-and-down " style="margin-left:20%;margin-top:20px;">
+              <li><a style="padding-bottom:15px; color:black;font-size:14px;" href="../homepage/search.html">Members</a></li>
+              <li><a style="padding-bottom:15px;color:black;font-size:14px;" href="../messages">Messages</a></li>
+              <li><a style="padding-bottom:15px;color:black;font-size:14px;" href=#join>Winks</a></li>
+            </ul>
+          </div>
+      </nav>
+    </div>
+  <ul id="slide-out" class="side-nav fixed" style="max-width:22%;margin-top:70px;background-color:#F5F5F5">
+    <li style="background-color:#3C3C3C;width:100%;">
       <a class="center-align" href="../homepage/search.html" style="color:white;">Back To Members</a>
     </li>
   </ul>

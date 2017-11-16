@@ -162,5 +162,5 @@ function geolocate() {
 
 
 function goToNext(){
-	window.location.href='../plan';
+	window.location.href='../disability';
 }

@@ -2914,7 +2914,7 @@ table.bordered > tbody > tr {
 }
 
 table.striped > tbody > tr:nth-child(odd) {
-  background-color: #f2f2f2;
+  background-color: #FF707E;
 }
 
 table.striped > tbody > tr > td {
@@ -2927,7 +2927,7 @@ table.highlight > tbody > tr {
 }
 
 table.highlight > tbody > tr:hover {
-  background-color: #f2f2f2;
+  background-color: #FF707E;
 }
 
 table.centered thead tr th, table.centered tbody tr td {
@@ -3097,7 +3097,7 @@ td, th {
 }
 
 .collection a.collection-item:not(.active):hover {
-  background-color: #ddd;
+  background-color: none;
 }
 
 .collection.with-header .collection-header {
@@ -4357,7 +4357,7 @@ nav ul a.btn > .material-icons, nav ul a.btn-large > .material-icons, nav ul a.b
 }
 
 nav ul a:hover {
-  background-color:none ;
+  background-color:transparent;
   border-bottom-color: #FF768A;
   border-bottom: solid;
   border-color: #FF768A;
@@ -4961,8 +4961,8 @@ small {
   min-height: 48px;
   line-height: 1.5em;
   word-break: break-all;
-  background-color: #F01150;
-  color:white;
+  background-color: white;
+  color:#FF707E;
   padding: 10px 25px;
   font-size: 1.1rem;
   font-weight: 300;
@@ -6993,7 +6993,7 @@ select {
   background-color: rgba(255, 255, 255, 0.9);
   width: 100%;
   padding: 5px;
-  border: 1px solid #f2f2f2;
+  border: 1px solid #FF707E;
   border-radius: 2px;
   height: 3rem;
 }
@@ -7355,7 +7355,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .table-of-contents a:hover {
-  color: #a8a8a8;
+  color: #FF707E;
   padding-left: 19px;
   border-left: 1px solid #ee6e73;
 }
@@ -9274,7 +9274,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
  */
 .picker--time .picker__box {
   font-size: 1em;
-  background: #f2f2f2;
+  background: #FF707E;
   padding: 0;
 }
 

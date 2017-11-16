@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Support</title>
+    <!-- Favicons-->
+    <link rel="icon" href="/pt-heart.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <link href="../homepage/materialize/css/materialize.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="../util/css/loader.css">
+
+  </head>
+  <body style="background-color:rgba(238,238,238,0.75);">
+    <!-- Start Page Loading -->
+    <div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper" style="background-color:white">
+          <a href="#" class="brand-logo left" style="margin-left:30px;margin-top:15px;" >
+            <img style="margin-top:0px;height:40px;" src="../homepage/images/brand/PressToOpen_Final_TrademarkReady2.png"/>
+          </a> 
+          <ul id="nav-mobile" class="right hide-on-small-and-down">
+            <li>
+              <a class='dropdown-button ' href='#' data-activates='dropdown1'>
+                <img id="navHeart" style="margin-top:0px;height:25px;" src="/pt-heart.png">
+                <span id="badge" style="font-size:14px;" class="new badge">0</span>
+              </a>
+            </li>
+
+             <ul style="margin-top:10px;" id='dropdown1' class='dropdown-content'>
+            </ul>
+            <li><a id="navbar-name" style="font-size:12px;color:black;" href="../profile">Name Here</a></li>
+            <li><a id="signOutBtn" style="font-size:14px;color:black;">Sign Out</a></li>
+              <!-- Dropdown Structure -->
+             
+          </ul>
+           <ul class="left hide-on-med-and-down " style="margin-left:20%;">
+              <li><a style="color:black;font-size:14px;" href="../homepage/search.html">Members</a></li>
+              <li><a style="color:black;font-size:14px;" href="../messages">Messages</a></li>
+              <li  class="active"><a style="color:black;font-size:14px;" href=#join>Support</a></li>
+            </ul>
+          </div>
+      </nav>
+    </div>
+
+    <div class="loader" id="loader" style="display:none"></div>
+    <div id="main" class="animate-bottom">
+      <!-- START WRAPPER -->
+      <div class="wrapper">
+        <section id="content">
+          <!--start container-->
+          <div class="container">
+            <div id="profile-page" class="section">
+              <!-- profile-page-header -->
+            
+              <!--/ profile-page-header -->
+              <!-- profile-page-content -->
+              <div id="profile-page-content" class="row" style="height:550px;overflow-y:hidden;">
+                <!-- profile-page-sidebar-->
+                <div id="profile-page-sidebar" class="col s12 m8" style="overflow-y:hidden;">
+                  <!-- Profile About  -->
+                  <div id="profile-page-wall-share" class="row">
+                    <div class="col s12" style="">
+                      <div class="card">
+                        <div class="card-content black-text" style="padding-top:10px;">
+                        <span class="card-title" style="font-size:20px;font-weight:200px;margin-bottom:50px;">Submit A Ticket</span>
+                        <div class="row">
+                          <div class="input-field col s12" style="height:70px;width:100%;">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="name" type="text"  style="width:60%;">
+                            <label class="active" for="name">First Name</label>
+                          </div>
+                          <div class="input-field col s12" style="height:70px;width:100%;">
+                            <i class="material-icons prefix">email</i>
+                            <input id="email" type="text"  style="width:60%;">
+                            <label for="email">Email</label>
+                          </div>
+                          <div class="input-field col s12" style="height:70px;width:100%;">
+                            <i class="material-icons prefix">subject</i>
+                            <input id="subject" type="text" style="width:60%;">
+                            <label for="subject">Subject</label>
+                          </div>
+                           <div class="input-field col s12" style="width:100%;">
+                            <i class="material-icons prefix">description</i>
+                            <textarea id="description" class="materialize-textarea" style="width:60%;"></textarea>
+                            <label for="description">Description</label>
+                            <input type="file" id="attachment">
+                          </div>
+                          
+
+                          <div class="center-align input-field col s12" style="width:100%;margin-top:10px;margin-bottom:5px;">
+                            <a class="btn-flat waves-effect waves-red" style="color:#FF6A7F;" id="submitTicket" name="action">Submit
+                            <i class="material-icons right">send</i>
+                          </a>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div> <!--/profile-page-wall-->
+                  </div><!--/profile-page-content-->
+                </div>
+                <!-- profile-page-sidebar-->
+                <!-- profile-page-wall -->
+                <div id="profile-page-sidebar" class="col s12 m4" style="overflow-y:hidden;">
+                  <!-- Profile About  -->
+                  <div id="profile-page-wall-share" class="row">
+                    <div class="col s12" style="">
+                      <div class="card">
+                        <div class="card-content black-text" style="padding-top:10px;">
+                          <span class="card-title" style="font-size:20px;font-weight:200px;margin-bottom:10px;">Open Tickets</span>
+                          <div class="row" id="openTickets">
+                             <div class="left-align col s4">Ticket ID</div>
+                             <div class="right-align col s8">Created At</div>
+                             <hr>
+                           
+                          </div>
+                            
+                      </div>
+                    </div><!--/profile-page-content-->
+                  </div>
+                </div><!--/profile-page-->
+              </div><!--container-->
+            </section><!--section-->
+          </div><!--wrapper-->
+    </div><!--main-->
+    <!-- END MAIN -->
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+    <script src="../homepage/js/jquery.min.js"></script>
+    <script src="../homepage/materialize/js/materialize.js"></script>
+
+    <script src="/__/firebase/4.5.0/firebase-app.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-auth.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-database.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-storage.js"></script>
+    <script src="/__/firebase/4.5.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="../util/util.js"></script>
+    <script src="assets/js/index.js"></script>
+   
+  </body>
+</html>

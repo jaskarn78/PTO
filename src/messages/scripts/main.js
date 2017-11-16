@@ -37,7 +37,7 @@ function Chat() {
   this.imageForm = document.getElementById('image-form');
   this.mediaCapture = document.getElementById('mediaCapture');
   this.userPic = document.getElementById('user-pic');
-  this.userName = document.getElementById('user-name');
+  this.userName = document.getElementById('navbar-name');
   this.signInButton = document.getElementById('sign-in');
   this.signOutButton = document.getElementById('sign-out');
   this.signInSnackbar = document.getElementById('must-signin-snackbar');
@@ -80,24 +80,19 @@ Chat.prototype.initFirebase = function() {
 Chat.prototype.loadMessages = function(members) {
   // TODO(DEVELOPER): Load and listens for new messages.
   this.messageList.innerHTML = '';
-  this.chatRef = this.database.ref().child("chats").push();
-  var chatKey = this.chatRef.key;
-  this.database.ref().child("members").orderByChild(recipient).equalTo(true)
+  this.database.ref().child("conversations").orderByChild("fromMe").equalTo(Chat.userInfo.userData.uid+"_"+recipient)
   .once("value", function(snapshot){
-    firebase.database().ref().child("members").orderByChild(Chat.userInfo.userData.uid).equalTo(true) 
-    .once("value", function(userSnap2){
-      console.log(extend({}, snapshot.val(), userSnap2.val()));
-    
+    firebase.database().ref().child("conversations").orderByChild("toMe").equalTo(recipient+"_"+Chat.userInfo.userData.uid) 
+    .once("value", function(userSnap2){    
       var memberData = extend({}, snapshot.val(), userSnap2.val());
-      //console.log(memberData);
       //Check if previous conversation between two users exists
       if(isEmpty(memberData)){
-        var key = firebase.database().ref().child("members").push(members).key;
+        var key = firebase.database().ref().child("conversations").push(members).key;
         messagesRef =  firebase.database().ref().child("/messages/"+key+"/");
         setMsg(messagesRef);
       }
       else{
-        var key = Object.keys(snapshot.val())[0];
+        var key = Object.keys(memberData)[0];
         messagesRef =  firebase.database().ref().child("/messages/"+key+"/");
         setMsg(messagesRef);
      }
@@ -134,8 +129,8 @@ Chat.prototype.saveMessage = function(e) {
         text: this.messageInput.value,
         photoUrl: currentUser.photoURL || '/images/profile_placeholder.png',
         timestamp: Date.now(),
-        toId: recipient,
-        fromId: this.user.uid
+        fromMe: Chat.userInfo.userData.uid+"_"+recipient,
+        toMe: recipient+"_"+Chat.userInfo.userData.uid
     }).then(function(){
       resetMaterialTextfield(this.messageInput);
       sendMessagePush(currentUser.name, this.messageInput.value);
@@ -268,7 +263,7 @@ Chat.prototype.loadMatches = function(curUser){
       var index = 0;
       querySnapshot.forEach(function(doc){
         var match = doc.data();
-        matches.push('<li class="matched_userList"><a class="userChat waves-effect" data-toId="'+match.userData.uid+'">\
+        matches.push('<li class="matched_userList" style="width:100%;"><a class="userChat waves-effect" data-toId="'+match.userData.uid+'">\
               <img src="'+match.userData.photoURL+'"class="mdl-color-text--blue-grey-400 material-icons"\
               style="width:40px; height:40px;margin-bottom:10px;margin-right:5px; border-radius:50%;">'+match.userData.name+'</a></li>\
                   <li><div class="divider"></div></li>');
@@ -296,7 +291,7 @@ Chat.prototype.loadMatches = function(curUser){
         $(this).parent().addClass('active');//.removeClass('active');
         getConvoFromMe = true;
         recipient = toId;
-        var members = {[uid]:true, [toId]:true, to:toId, from:uid};
+        var members = {[uid]:true, [toId]:true, fromMe: Chat.userInfo.userData.uid+"_"+recipient,toMe: recipient+"_"+Chat.userInfo.userData.uid};
         Chat.loadMessages(members);
 
     });
@@ -360,7 +355,7 @@ function getMessageTemplate(){
   var MESSAGE_TEMPLATE =
     '<div class="message-container">' +
       '<div class="spacing"><div class="pic" ></div></div>' +
-      '<div class="message" style="font-size:20px;"></div>' +
+      '<div class="message" style="font-size:15px;"></div>' +
       '<div class="name"></div>' +
     '</div>';
     return MESSAGE_TEMPLATE;

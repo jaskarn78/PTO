@@ -1,0 +1,17 @@
+.dropzone-previews .dz-preview {
+	margin: 0px;
+	margin-bottom: 10px;
+}
+
+.dropzone-previews .dz-preview .dz-image {
+    width: 100px;
+    height: 100px;
+	margin-bottom: 15px;
+	display: block;
+	margin: auto;
+}
+
+.drp-image > img{
+	display: block;
+	margin: auto;
+}

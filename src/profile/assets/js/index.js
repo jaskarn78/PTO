@@ -6,18 +6,17 @@ $(document).ready(function(){
 	setupDropZone();
 	$("#signOutBtn").on("click", function(){ signOut(); });
 	user = JSON.parse(sessionStorage.getItem("userData"));
+	if(user.userData.disability !=null)
+		setupDisabilityCheckbox(user.userData);
+	else $("#disabilityItem").hide();
 	console.log(user);
 	getUserDataFromDb();
 });
 
 
-function getUserDataFromDb(){
-	console.log('db');
-}
 
 function getUserDataFromSession(){
 	user = JSON.parse(sessionStorage.getItem("userData"));
-	console.log(user);
 	setupProfile(user);
 	getImageFromSession(user);
 	hideLoader();
@@ -60,6 +59,20 @@ function setupProfile(user){
 	$("#drop3").attr("src", $("#userImage2").attr("src"));
 	$("#drop4").attr("src", $("#userImage3").attr("src"));
 	$("#drop5").attr("src", $("#userImage4").attr("src"));
+}
+
+function setupDisabilityCheckbox(data){
+	$("#disability").text(data.disability.disability);
+	if(data.disability.showDisability)
+		$("#showDisabilityCheckbox").prop('checked', true);
+	$("#showDisabilityCheckbox").change(function(){
+		data.disability.showDisability = $(this).is(":checked");
+		firebase.firestore().collection("users").doc(data.uid)
+		.update({"userData.disability":data.disability}).then(function() {
+    		console.log("Document successfully written!");
+    		//sessionStorage.setItem("userData", JSON.stringify(userData))
+		}).catch(function(error) { console.error("Error writing document: ", error); });
+	});
 }
 
 function setupDropZone(){	

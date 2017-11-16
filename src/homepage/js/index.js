@@ -27,6 +27,7 @@ db.collection("users").doc(myId).onSnapshot(function(doc) {
 });
 
 $(document).ready(function(){
+    $('select').material_select();
 	showLoader();
 	setupAgeSlider();
 	$("#nameLink").text(myInfo.userData.name);
@@ -34,13 +35,13 @@ $(document).ready(function(){
 	$("#closeWink").on("click", function(){ $("#modal1").modal('close');});
 	$("#sendWink").hide();
 	$("#deleteWink").hide();
-	getMatchesFromDb(myInfo.userData);
+	setupSorting(myInfo.userData);
  	activityLevel = -1;hairColor = -1;eyeColor = -1;
 });
 
-function getMatchesFromDb(myInfo){
+function getMatchesFromDb(myInfo, sortBy, order){
 	db.collection("users").where("userData.gender", "==", parseInt(myInfo.seeking))
-	.where("userData.seeking", "==", parseInt(myInfo.gender))
+	.where("userData.seeking", "==", parseInt(myInfo.gender)).orderBy(sortBy, order)
 		.get().then(function(querySnapshot) {
     	querySnapshot.forEach(function(doc) {
     		if(blocked[doc.data().userData.uid] == null){
@@ -65,6 +66,11 @@ function getMatchedUsersArray(){
 		if(matchedUsers[i].attributes[6] != null)
 			hiddenUsers[matchedUsers[i].attributes[6].value] = matchedUsers[i];
 	}
+}
+
+function setupSorting(){
+	getMatchesFromDb(myInfo.userData, "userData.birthday", "desc");
+	console.log(matchObj);
 }
 
 
@@ -184,8 +190,9 @@ function blockUser(uid, users){
 	var blockUserData = users[uid].userData;
 	var blockUserName = blockUserData.name;
 	
-	$("#blockedUserName").html("Are you sure you want to block:<br>"+blockUserName+"<br><span style='font-size:11px;'>*User will be added to your blocked list.");
+	$("#blockedUserName").html("Are you sure you want to block:<br>"+blockUserName);
 	$("#blockUserBtn").on("click", function(){
+		var blockReason = $("#reason").val();
 		  db.collection("users").doc(myId).set({"blocked":{[uid]: true}}, {"merge":true})
 		  .then(function(){
 			  db.collection("users").doc(uid).set({"blocked":{[myId]: true}}, {"merge":true})
@@ -194,6 +201,7 @@ function blockUser(uid, users){
 		});
 	  	$("#blockedUserName").html("Successfully blocked user:<br>"+blockUserName);
 		 setTimeout(closeModal, 500);
+		 sendSupportTicket(blockUserData, blockReason);
 
 	});
 }
@@ -208,6 +216,49 @@ function hideBlockedUsers(blocked){
 
 		}
 	}
+}
+
+function sendSupportTicket(blockUserData, blockReason){
+	var blockUserName = blockUserData.name;
+	var blockUserId = blockUserData.uid;
+	var subject = "Block User";
+	var email = blockUserData.email;
+	var myEmail = myInfo.userData.email;
+	var blockUserEmail = blockUserData.email;
+	var cc_emails = [myEmail];
+	var api_key = "LCIyzYfk2Qk9u6qsbD7T";
+	var timestamp = new Date(1382086394000);
+	var userDbLink = "https://console.firebase.google.com/project/ptoapp-90ad1/database/firestore/data~2Fusers~2F"+blockUserId;
+	//var description = "Blocked User Information\nName of blocked user:"+blockUserName+"\nUser ID of blocked user:"+blockUserId+"\nReason for block:"+blockReason;
+	var description = '<table>'+
+	  '<tr style="background-color:black;color: white;font-size:16px;">'+
+	    '<th>Blocked User Name</th>'+
+	    '<th>Blocked User Id</th>'+
+	    '<th>Reason</th>'+
+	    '<th>Submitted By</th>'+
+	     '<th>Timestamp</th></tr>'+
+	    '<tr style="font-size:15px;"><td>'+blockUserName+'</td>'+
+	    '<td><a href='+userDbLink+'>'+blockUserId+'</a></td>'+
+    	'<td>'+blockReason+'</td>'+
+    	'<td>'+myInfo.userData.name+'</td>'+
+    	'<td>'+timestamp.toString().substring(0, 21)+'</td>'+
+	  '</tr></table>'
+   // var ticket_data = '{ "description": "Details about the issue...", "subject": "Support Needed...", "email": "tom@outerspace.com", "priority": 1, "status": 2, "cc_emails": ["ram@freshdesk.com","diana@freshdesk.com"] }';
+   var ticket_data = {"description":description, "subject":subject, "email":blockUserEmail, "priority": 1, "status":2, "cc_emails":cc_emails};
+   console.log(ticket_data);
+   // var ticket_data = '{ "description": description, "subject": "'+subject+'", "email": "'+blockUserEmail+'", "priority": 1, "status": 2, "cc_emails": ["'+myEmail+'"] }';
+	$.ajax({
+        url: "https://ptosupportpage.freshdesk.com/api/v2/tickets",
+        type: "POST",
+        contentType:"application/json; charset=utf-8",
+        dataType: "json",
+        headers: { "Authorization": "Basic " + btoa(api_key + ":x") },
+		data: JSON.stringify(ticket_data),
+		success: function(data, textStatus, jqXHR){
+			console.log(data);
+			console.log(jqXHR);
+		}
+	});
 }
 
 

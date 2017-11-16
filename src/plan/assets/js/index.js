@@ -31,7 +31,8 @@ function writeUserData(user) {
 		"birthday":user.userData.birthday, "city":user.userData.city, "country":user.userData.country,
 		"state":user.userData.state,"zip":user.userData.zip,"lat":user.userData.lat,"lng":user.userData.lng,
 		"age":getAgeFromDob(user.userData.birthday), "uid":user.userData.uid, "plan":user.userData.plan, 
-		"verified":user.userData.emailVerified, "gender":user.userData.gender, "seeking":user.userData.seeking}
+		"verified":user.userData.emailVerified, "gender":user.userData.gender, "seeking":user.userData.seeking,
+		"disability":user.userData.disability}
 	}).catch(function(error){
 		alert(error.message);
 	}).then(function(){
@@ -52,12 +53,12 @@ function getAgeFromDob(bday){
 
 function getCost(planType){
 	switch(planType){
-		case "0"  : return "0.00";
-		case "1"  : return "40.00";
-		case "3"  : return "36.00";
-		case "6"  : return "34.00";
-		case "9"  : return "32.00";
-		case "12" : return "30.00";
+		case "0"  : return "0.00";  break;
+		case "1"  : return "40.00"; break;
+		case "3"  : return "36.00"; break;
+		case "6"  : return "34.00"; break;
+		case "9"  : return "32.00"; break;
+		case "12" : return "30.00"; break;
 	}
 }
 function verifyChecked(response){
