@@ -146,20 +146,15 @@ function populateMatches(matchData){
 				        <p class="user-location" style="margin-bottom:5px;">'+userData.city+", "+userData.state+'</p>\
 				    </div>\
 	         		<div layout="row" class="center-align user-more" style="z-index:20 !important;"margin-bottom:25px;">\
+	         			<div class="col s4 push-s2">\
 	                	<a href="../member/member.html?match='+userData.uid+'">\
-	                	<i class="small material-icons" id="person">person_outline</i></a>\
-	                	<a data-target="modal1" style="margin-left:15px;margin-right:15px;background:none;border:none;border-shadow:none;cursor:pointer;cursor:hand;color:#FC747C" class="wink modal-trigger" id="'+userData.uid.replace("-", "")+'">\
-	                	<i name="wink" class="small material-icons">favorite_border</i></a>\
-				   		<a id="'+userData.uid+'" style="position:absolute;" class="dropdown-button usermenubtn" data-activates="usermenu" href="#"><i class="small material-icons">menu</i></a>\
+	                	<i class="small material-icons" id="person">person_outline</i></a></div>\
+	                	<div class="col s4 push-s2">\
+	                	<a data-target="modal1" style="background:none;border:none;border-shadow:none;cursor:pointer;cursor:hand;color:#FC747C" class="wink modal-trigger" id="'+userData.uid.replace("-", "")+'">\
+	                	<i name="wink" class="small material-icons">favorite_border</i></a></div>\
 	         		</div>\
 	         	</div>\
-	         </div>\
-   			<ul id="usermenu"  style="position:absolute;z-index:20" class="dropdown-content">\
-			    <li><a id="block" class="modal-trigger" href="#blockModal" style="font-size:14px;color:#FC747C">Block User</a></li>\
-			    <li><a id="view" href="#!" style="font-size:14px;color:#FC747C">View Page</a></li>\
-			    <li class="divider"></li>\
-			    <li><a id="chat" href="#!" style="font-size:14px;color:#FC747C">Chat</a></li>\
-	  </ul>');
+	         </div>');
 	}
 }
 

@@ -60,18 +60,19 @@ function getOpenTickets(){
 	var ticketRef = firebase.database().ref('support/tickets/'+user.userData.uid+'/');
 	var setTicketData = function(data){
   		var val = data.val();
-      console.log(data.val().ticket.id);
-  		displayTicket(val.ticket.id, val.ticket.created_at);
+      console.log(data.val());
+  		displayTicket(val.ticket.id, val.ticket.created_at, val.ticket.subject);
   }.bind(this);
   	ticketRef.limitToLast(12).on('child_added', setTicketData);
   	ticketRef.limitToLast(12).on('child_changed', setTicketData);
 
 }
 
-function displayTicket(id, createdAt){
+function displayTicket(id, createdAt, subject){
 	$("#openTickets").append('\
-		 <div class="center-align col s4"><a href="https://ptosupportpage.freshdesk.com/a/tickets/'+id+'">'+id+'</a></div>\
-         <div class="right-align col s8">'+createdAt.substring(0, 10)+'</div>'
+		 <div class="left-align col s3"><a href="https://ptosupportpage.freshdesk.com/a/tickets/'+id+'">'+id+'</a></div>\
+        <div class="center-align col s4">'+subject+'</div>\
+         <div class="right-align col s5">'+createdAt.substring(0, 10)+'</div>'
 	);
 }
 
